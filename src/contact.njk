@@ -63,24 +63,18 @@ permalink: /contact/
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="field">
-              <label for="cf-product">Product of interest</label>
-              <select id="cf-product" name="product">
-                <option value="">General enquiry</option>
-                {% for cat in products.categories %}
-                <optgroup label="{{ cat.name }}">
-                  {% for p in products.items | byCategory(cat.slug) %}
-                  <option value="{{ p.slug }}">{{ p.shortName }}</option>
-                  {% endfor %}
-                </optgroup>
+          <div class="field">
+            <label for="cf-product">Product of interest</label>
+            <select id="cf-product" name="product">
+              <option value="">General enquiry</option>
+              {% for cat in products.categories %}
+              <optgroup label="{{ cat.name }}">
+                {% for p in products.items | byCategory(cat.slug) %}
+                <option value="{{ p.slug }}">{{ p.shortName }}</option>
                 {% endfor %}
-              </select>
-            </div>
-            <div class="field">
-              <label for="cf-quantity">Estimated quantity</label>
-              <input id="cf-quantity" name="quantity" type="text" placeholder="e.g. 5 MT / month">
-            </div>
+              </optgroup>
+              {% endfor %}
+            </select>
           </div>
 
           <div class="field">
@@ -88,11 +82,14 @@ permalink: /contact/
             <textarea id="cf-message" name="message" rows="5" required placeholder="Tell us about your application, target specification and delivery location."></textarea>
           </div>
 
-          <div class="field field--check">
-            <label>
-              <input type="checkbox" name="consent" value="yes" required>
-              <span>I agree to be contacted about my enquiry. <span class="req" aria-hidden="true">*</span></span>
-            </label>
+          {#
+            Spam protection — Cloudflare Turnstile (free, privacy-friendly).
+            [VERIFY] Replace the test sitekey "1x00000000000000000000AA" (always passes)
+            with your real Turnstile site key at deploy, and enable server-side
+            verification in the form service (Formspree/FormSubmit both support it).
+          #}
+          <div class="field cf-captcha">
+            <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="light"></div>
           </div>
 
           <div class="contact-form__actions">
@@ -159,6 +156,9 @@ permalink: /contact/
     </div>
   </div>
 </section>
+
+<!-- Cloudflare Turnstile widget loader (renders .cf-turnstile above) -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 {# ---- Structured data (JSON-LD in body is valid per schema.org / Google) ---- #}
 <script type="application/ld+json">

@@ -42,6 +42,12 @@
   background: var(--color-primary-tint);
 }
 
+/* Header phone: white over the hero, reverts to dark when the header solidifies */
+.site-header--overlay .header-phone { color: #fff; }
+.site-header--overlay .header-phone svg { color: #fff; }
+.site-header--overlay.is-solid .header-phone { color: var(--color-ink); }
+.site-header--overlay.is-solid .header-phone svg { color: var(--color-primary); }
+
 /* ---------- Buttons on dark backgrounds ---------- */
 .btn--on-dark { color: #fff; border-color: rgba(255, 255, 255, 0.6); background: transparent; }
 .btn--on-dark:hover { background: #fff; color: var(--color-primary-dark); border-color: #fff; }
