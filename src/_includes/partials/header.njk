@@ -9,10 +9,24 @@
     <nav class="nav" id="primary-nav" aria-label="Primary" data-nav>
       <ul class="nav__list">
         {% for item in nav.primary %}
-        <li>
+        {% if item.children %}
+        <li class="nav__item nav__item--has-children">
+          <a class="nav__link" href="{{ item.href }}" aria-haspopup="true"
+             {% if page.url == item.href %}aria-current="page"{% endif %}>{{ item.label }}
+            <svg class="nav__caret" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <ul class="nav__dropdown">
+            {% for child in item.children %}
+            <li><a class="nav__dropdown-link" href="{{ child.href }}">{{ child.label }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav__item">
           <a class="nav__link" href="{{ item.href }}"
              {% if page.url == item.href %}aria-current="page"{% endif %}>{{ item.label }}</a>
         </li>
+        {% endif %}
         {% endfor %}
       </ul>
     </nav>

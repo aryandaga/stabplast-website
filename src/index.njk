@@ -80,7 +80,7 @@ heroHeader: true
     </div>
     <div class="grid grid--3">
       {% for app in applications %}
-      {% if loop.index <= 6 %}
+      {% if loop.index <= 7 %}
       {% if app.detail %}
       <a class="card app-card" href="/applications/{{ app.slug }}/">
         <div class="card__media">
@@ -105,8 +105,16 @@ heroHeader: true
       {% endif %}
       {% endif %}
       {% endfor %}
+
+      {# 8th tile: redirect to the full applications list #}
+      <a class="card app-card app-all" href="/applications/">
+        <span class="app-all__icon" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+        <h3 class="app-all__title">See all applications</h3>
+        <p>Explore every PVC end-use we serve.</p>
+      </a>
     </div>
-    <p class="section__cta"><a class="btn btn--primary btn--lg" href="/applications/">See all applications</a></p>
   </div>
 </section>
 
@@ -121,15 +129,13 @@ heroHeader: true
     <div class="expertise-grid">
       {% for e in home.expertise %}
       <article class="expertise-tile">
-        <div class="expertise-tile__icon" aria-hidden="true">
-          {% if e.icon == "factory" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l6 4V9l6 4v8"/><path d="M5 9V5l3-2v4"/></svg>
-          {% elif e.icon == "flask" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/></svg>
-          {% elif e.icon == "shield" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
-          {% elif e.icon == "support" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-          {% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15 0 18M12 3c-2.5 2.7-2.5 15 0 18"/></svg>{% endif %}
+        <div class="expertise-tile__media">
+          {% image e.image, e.title, "(max-width: 768px) 100vw, 300px" %}
         </div>
-        <h3 class="expertise-tile__title">{{ e.title }}</h3>
-        <p>{{ e.text }}</p>
+        <div class="expertise-tile__body">
+          <h3 class="expertise-tile__title">{{ e.title }}</h3>
+          <p>{{ e.text }}</p>
+        </div>
       </article>
       {% endfor %}
     </div>

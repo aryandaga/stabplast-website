@@ -8,8 +8,8 @@
  */
 export const heroSlides = [
   {
-    img: "src/assets/images/hero/hero-2-plant.jpg",
-    alt: "Stainless-steel chemical processing plant with pumps and reactor vessels",
+    img: "src/assets/images/hero/hero-lab.jpg",
+    alt: "Chemist testing a PVC additive sample in the Stabplast laboratory",
     eyebrow: "PVC Stabilizers · Since 1988",
     title: "Precision & Consistency You Can Trust",
     text: "One-pack, calcium-zinc and lead-based PVC stabilizers, manufactured in India since 1988.",
@@ -54,34 +54,29 @@ export const heroSlides = [
 ];
 
 /**
- * "Explore Our Expertise" — capability areas (what we do well), styled like the
- * demo's sector tiles. Kept distinct from Applications (end-uses) to avoid overlap.
+ * "Explore Our Expertise" — 4 capability areas, each shown as an image-backed
+ * tile (dark overlay for white-text legibility). Images reuse existing repo assets.
  */
 export const expertise = [
   {
     title: "In-house Manufacturing",
     text: "Stabilizers, metallic stearates and lead compounds produced under one roof for consistent supply.",
-    icon: "factory",
+    image: "src/assets/images/hero/hero-2-plant.jpg",
   },
   {
     title: "Custom Formulation",
-    text: "One-pack, single-stage and calcium-zinc systems developed to match your process and specification.",
-    icon: "flask",
+    text: "One-pack, single-stage and calcium-zinc systems developed to match your process, with technical support on grade selection.",
+    image: "src/assets/images/hero/hero-lab.jpg",
   },
   {
     title: "Quality Control",
-    text: "Batches checked for thermal stability and consistency before dispatch.",
-    icon: "shield",
-  },
-  {
-    title: "Technical Support",
-    text: "Grade selection guidance for pipes, profiles, cables, masterbatch and plastics.",
-    icon: "support",
+    text: "Every batch checked for thermal stability and consistency before dispatch.",
+    image: "src/assets/images/hero/hero-3-granules.jpg",
   },
   {
     title: "Export & Logistics",
     text: "Documentation and packaging suited to domestic and export shipments.",
-    icon: "globe",
+    image: "src/assets/images/hero/hero-1-pipes.jpg",
   },
 ];
 
