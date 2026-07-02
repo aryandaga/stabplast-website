@@ -39,4 +39,59 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   }
+
+  // ---- Overlay header: transparent over hero, solid on scroll ----
+  var overlayHeader = document.querySelector(".site-header--overlay");
+  if (overlayHeader) {
+    var onHeadScroll = function () {
+      overlayHeader.classList.toggle("is-solid", window.scrollY > 60);
+    };
+    window.addEventListener("scroll", onHeadScroll, { passive: true });
+    onHeadScroll();
+  }
+
+  // ---- Hero slider (fade, autoplay, dots + arrows, reduced-motion aware) ----
+  var slider = document.querySelector("[data-slider]");
+  if (slider) {
+    var slides = Array.prototype.slice.call(slider.querySelectorAll("[data-slide]"));
+    var dots = Array.prototype.slice.call(slider.querySelectorAll("[data-dot]"));
+    var idx = 0;
+    var timer = null;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var DELAY = 6000;
+
+    var go = function (n) {
+      idx = (n + slides.length) % slides.length;
+      slides.forEach(function (s, i) {
+        var active = i === idx;
+        s.classList.toggle("is-active", active);
+        s.setAttribute("aria-hidden", active ? "false" : "true");
+      });
+      dots.forEach(function (d, i) {
+        var active = i === idx;
+        d.classList.toggle("is-active", active);
+        d.setAttribute("aria-selected", active ? "true" : "false");
+      });
+    };
+    var next = function () { go(idx + 1); };
+    var prev = function () { go(idx - 1); };
+    var stop = function () { if (timer) { clearInterval(timer); timer = null; } };
+    var start = function () { if (!reduce && slides.length > 1) { stop(); timer = setInterval(next, DELAY); } };
+
+    var nextBtn = slider.querySelector("[data-next]");
+    var prevBtn = slider.querySelector("[data-prev]");
+    if (nextBtn) nextBtn.addEventListener("click", function () { next(); start(); });
+    if (prevBtn) prevBtn.addEventListener("click", function () { prev(); start(); });
+    dots.forEach(function (d, i) {
+      d.addEventListener("click", function () { go(i); start(); });
+    });
+
+    slider.addEventListener("mouseenter", stop);
+    slider.addEventListener("mouseleave", start);
+    slider.addEventListener("focusin", stop);
+    slider.addEventListener("focusout", start);
+
+    go(0);
+    start();
+  }
 })();

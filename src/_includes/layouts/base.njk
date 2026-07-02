@@ -44,6 +44,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
   <link rel="stylesheet" href="/styles/global.css">
+  <link rel="stylesheet" href="/styles/home.css">
 
   <!-- Organization / LocalBusiness structured data -->
   <script type="application/ld+json">
@@ -73,7 +74,7 @@
   </script>
   {% block head %}{% endblock %}
 </head>
-<body>
+<body{% if heroHeader %} class="has-hero-header"{% endif %}>
   <a class="skip-link" href="#main">Skip to content</a>
 
   {% include "partials/header.njk" %}

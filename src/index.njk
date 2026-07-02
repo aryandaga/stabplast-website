@@ -1,124 +1,142 @@
 ---
 layout: layouts/base.njk
 title: PVC Stabilizer Manufacturer & Supplier
-description: Stabplast Chemo Industries Pvt Ltd manufactures PVC stabilizers, metallic stearates and lead compounds for pipes, profiles, cables and plastics. Request a quote today.
+description: Stabplast Chemo Industries manufactures PVC stabilizers, metallic stearates and lead compounds for pipes, profiles, cables and plastics. Request a quote today.
+heroHeader: true
 ---
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="container hero__inner">
-    <div class="hero__content">
-      <span class="eyebrow hero__eyebrow">Industrial Chemicals · Since {{ site.facts.founded }}</span>
-      <h1>Advanced PVC Stabilizers &amp; Additives for Industry</h1>
-      <p class="hero__text">
-        {{ site.legalName }} manufactures and supplies high-performance stabilizers,
-        metallic stearates and lead compounds engineered for pipes, profiles, cables
-        and plastic products.
-      </p>
-      <div class="hero__actions">
-        <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
-        <a class="btn btn--ghost btn--lg" href="/products/" style="color:#fff;border-color:rgba(255,255,255,.6)">Explore Products</a>
+<!-- ============ HERO SLIDER ============ -->
+<section class="hero-slider" data-slider aria-roledescription="carousel" aria-label="Stabplast highlights">
+  <div class="hero-slider__viewport">
+    {% for s in home.heroSlides %}
+    <div class="hero-slide{{ ' is-active' if loop.first }}" data-slide role="group" aria-roledescription="slide"
+         aria-label="{{ loop.index }} of {{ home.heroSlides.length }}" {% if not loop.first %}aria-hidden="true"{% endif %}>
+      <div class="hero-slide__media">
+        {% image s.img, s.alt, "100vw", { widths: [800, 1280, 1920], loading: (loop.first and "eager" or "lazy"), fetchpriority: (loop.first and "high" or "") } %}
       </div>
-      <div class="hero__stats">
-        <div class="hero__stat"><b>{{ site.facts.experienceYears }}</b><span>Years of expertise</span></div>
-        <div class="hero__stat"><b>3</b><span>Product categories</span></div>
-        <div class="hero__stat"><b>B2B</b><span>&amp; Export supply</span></div>
+      <div class="hero-slide__scrim" aria-hidden="true"></div>
+      <div class="container hero-slide__content">
+        <span class="hero-slide__eyebrow">{{ s.eyebrow }}</span>
+        <h1 class="hero-slide__title">{{ s.title }}</h1>
+        <p class="hero-slide__text">{{ s.text }}</p>
+        <div class="hero-slide__actions">
+          {% for c in s.ctas %}
+          <a class="btn {{ c.class }} btn--lg" href="{{ c.href }}">{{ c.label }}</a>
+          {% endfor %}
+        </div>
       </div>
     </div>
-    <div class="hero__media">
-      {% image "src/assets/images/hero-lab.jpg", "Laboratory glassware used in PVC additive quality control", "(max-width: 900px) 90vw, 480px", { loading: "eager", fetchpriority: "high", widths: [480, 800] } %}
-    </div>
+    {% endfor %}
   </div>
-</section>
 
-<!-- ============ WHY US ============ -->
-<section class="section">
-  <div class="container">
-    <div class="section__head section__head--center">
-      <span class="eyebrow">Why Stabplast</span>
-      <h2>Consistent quality, reliable supply</h2>
-      <p class="lead">Formulations tuned to your process, backed by in-house quality control and dependable lead times.</p>
-    </div>
-    <div class="grid grid--4">
-      <div class="feature">
-        <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7z"/></svg></div>
-        <h3>Quality Assured</h3>
-        <p>Every batch tested for thermal stability and consistency before dispatch.</p>
-      </div>
-      <div class="feature">
-        <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v6l9 4 9-4V7"/></svg></div>
-        <h3>Custom Formulations</h3>
-        <p>One-pack and single-stage systems developed to match your application.</p>
-      </div>
-      <div class="feature">
-        <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15 0 18M12 3c-2.5 2.7-2.5 15 0 18"/></svg></div>
-        <h3>Export Ready</h3>
-        <p>Documentation and packaging suited to domestic and export shipments.</p>
-      </div>
-      <div class="feature">
-        <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 7L9 18l-5-5"/></svg></div>
-        <h3>On-Time Delivery</h3>
-        <p>Planned production and stock to keep your line running.</p>
-      </div>
-    </div>
+  <button class="hero-slider__arrow hero-slider__arrow--prev" type="button" data-prev aria-label="Previous slide">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="hero-slider__arrow hero-slider__arrow--next" type="button" data-next aria-label="Next slide">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+
+  <div class="hero-slider__dots" role="tablist" aria-label="Choose slide">
+    {% for s in home.heroSlides %}
+    <button class="hero-slider__dot{{ ' is-active' if loop.first }}" type="button" data-dot role="tab"
+            aria-selected="{{ 'true' if loop.first else 'false' }}" aria-label="Go to slide {{ loop.index }}"></button>
+    {% endfor %}
   </div>
 </section>
 
 <!-- ============ PRODUCT CATEGORIES ============ -->
-<section class="section section--alt">
+<section class="section">
   <div class="container">
     <div class="section__head section__head--center">
       <span class="eyebrow">Our Range</span>
-      <h2>Product categories</h2>
+      <h2>Top product categories</h2>
       <p class="lead">A complete portfolio of PVC stabilization and lubrication chemistry.</p>
     </div>
     <div class="grid grid--3">
-      <a class="card" href="/products/pvc-stabilizers/">
+      {% for cat in products.categories %}
+      <a class="card" href="/products/{{ cat.slug }}/">
         <div class="card__media">
-          {% image "src/assets/images/cat-pvc-stabilizers.jpg", "PVC one-pack stabilizer product", "(max-width: 768px) 100vw, 360px" %}
+          {% image cat.image, cat.name, "(max-width: 768px) 100vw, 360px" %}
         </div>
         <div class="card__body">
-          <h3 class="card__title">PVC Stabilizers</h3>
-          <p>One-pack, single-stage, calcium-zinc and lead-based complex stabilizers.</p>
+          <span class="card__tag">Category</span>
+          <h3 class="card__title">{{ cat.name }}</h3>
+          <p>{{ cat.summary }}</p>
           <span class="card__link">View category →</span>
         </div>
       </a>
-      <a class="card" href="/products/metallic-stearates/">
-        <div class="card__media">
-          {% image "src/assets/images/cat-metallic-stearates.jpg", "Calcium stearate metallic stearate powder", "(max-width: 768px) 100vw, 360px" %}
-        </div>
-        <div class="card__body">
-          <h3 class="card__title">Metallic Stearates</h3>
-          <p>Calcium, lead and dibasic lead stearate for lubrication and co-stabilization.</p>
-          <span class="card__link">View category →</span>
-        </div>
-      </a>
-      <a class="card" href="/products/lead-compounds/">
-        <div class="card__media">
-          {% image "src/assets/images/cat-lead-compounds.jpg", "Dibasic lead phosphite compound", "(max-width: 768px) 100vw, 360px" %}
-        </div>
-        <div class="card__body">
-          <h3 class="card__title">Lead Compounds</h3>
-          <p>Dibasic lead phosphite (DBLP) and tribasic lead sulphate (TBLS).</p>
-          <span class="card__link">View category →</span>
-        </div>
-      </a>
+      {% endfor %}
     </div>
   </div>
 </section>
 
 <!-- ============ APPLICATIONS ============ -->
-<section class="section">
-  <div class="container hero__inner" style="align-items:center">
-    <div>
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head section__head--center">
       <span class="eyebrow">Applications</span>
       <h2>Chemistry that performs across industries</h2>
-      <p>Our additives are trusted in the manufacture of PVC and CPVC pipes, UPVC window
-        and door profiles, wires and cables, masterbatch and a wide range of plastic products.</p>
-      <p style="margin-top:1rem"><a class="btn btn--primary" href="/applications/">See all applications</a></p>
+      <p class="lead">Trusted in PVC &amp; CPVC pipes, UPVC profiles, wires &amp; cables, masterbatch and plastic products.</p>
     </div>
-    <div class="hero__media">
-      {% image "src/assets/images/applications.jpg", "Industrial applications of PVC additives", "(max-width: 900px) 90vw, 480px", { widths: [480, 800] } %}
+    <div class="grid grid--3">
+      {% for app in applications %}
+      <article class="card app-card">
+        <div class="card__media">
+          {% image app.image, app.alt, "(max-width: 768px) 100vw, 360px" %}
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">{{ app.name }}</h3>
+          <p>{{ app.summary }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <p class="section__cta"><a class="btn btn--primary btn--lg" href="/applications/">See all applications</a></p>
+  </div>
+</section>
+
+<!-- ============ EXPLORE OUR EXPERTISE ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">What we do</span>
+      <h2>Explore our expertise</h2>
+      <p class="lead">Four decades of PVC additive know-how, from formulation to dispatch.</p>
+    </div>
+    <div class="expertise-grid">
+      {% for e in home.expertise %}
+      <article class="expertise-tile">
+        <div class="expertise-tile__icon" aria-hidden="true">
+          {% if e.icon == "factory" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l6 4V9l6 4v8"/><path d="M5 9V5l3-2v4"/></svg>
+          {% elif e.icon == "flask" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/></svg>
+          {% elif e.icon == "shield" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
+          {% elif e.icon == "support" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          {% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15 0 18M12 3c-2.5 2.7-2.5 15 0 18"/></svg>{% endif %}
+        </div>
+        <h3 class="expertise-tile__title">{{ e.title }}</h3>
+        <p>{{ e.text }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRIVING FOR SUSTAINABILITY ============ -->
+<section class="section sustain">
+  <div class="container sustain__inner">
+    <div class="sustain__copy">
+      <span class="eyebrow eyebrow--light">Responsibility</span>
+      <h2>Striving for sustainability</h2>
+      <p>{{ home.sustainability.intro }}</p>
+      <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
+    </div>
+    <div class="sustain__stats">
+      {% for st in home.sustainability.stats %}
+      <div class="sustain__stat">
+        <b>{{ st.value }}</b>
+        <span>{{ st.label }}</span>
+      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -132,7 +150,7 @@ description: Stabplast Chemo Industries Pvt Ltd manufactures PVC stabilizers, me
     </div>
     <div class="cta-band__actions">
       <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
-      <a class="btn btn--ghost btn--lg" href="{{ site.contact.phoneHref }}" style="color:#fff;border-color:rgba(255,255,255,.6)">{{ site.cta.call.label }}</a>
+      <a class="btn btn--ghost btn--lg btn--on-dark" href="{{ site.contact.phoneHref }}">{{ site.cta.call.label }}</a>
     </div>
   </div>
 </section>

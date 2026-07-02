@@ -1,0 +1,274 @@
+/* ==========================================================================
+   HOME / CHEMID-STYLE LANDING (M8)
+   Transparent overlay nav, full-screen hero slider, expertise, sustainability.
+   Depends on tokens.css + global.css (loaded first).
+   ========================================================================== */
+
+/* ---------- Overlay header (transparent over hero → solid on scroll) ------ */
+.site-header--overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: transparent;
+  border-bottom-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  transition: background var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.site-header--overlay .brand,
+.site-header--overlay .nav__link { color: #fff; }
+.site-header--overlay .brand__mark { color: #fff; }
+.site-header--overlay .brand__name small { color: rgba(255, 255, 255, 0.8); }
+.site-header--overlay .nav__link:hover,
+.site-header--overlay .nav__link[aria-current="page"] {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Solid state (JS toggles .is-solid past 60px) */
+.site-header--overlay.is-solid {
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--color-line);
+  box-shadow: var(--shadow-sm);
+}
+.site-header--overlay.is-solid .brand,
+.site-header--overlay.is-solid .nav__link { color: var(--color-ink); }
+.site-header--overlay.is-solid .brand__mark { color: var(--color-primary); }
+.site-header--overlay.is-solid .brand__name small { color: var(--color-muted); }
+.site-header--overlay.is-solid .nav__link:hover,
+.site-header--overlay.is-solid .nav__link[aria-current="page"] {
+  color: var(--color-primary-dark);
+  background: var(--color-primary-tint);
+}
+
+/* ---------- Buttons on dark backgrounds ---------- */
+.btn--on-dark { color: #fff; border-color: rgba(255, 255, 255, 0.6); background: transparent; }
+.btn--on-dark:hover { background: #fff; color: var(--color-primary-dark); border-color: #fff; }
+
+/* ---------- Hero slider ---------- */
+.hero-slider {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 600px;
+  max-height: 920px;
+  overflow: hidden;
+  background: var(--color-primary-darker);
+}
+.hero-slider__viewport { position: absolute; inset: 0; }
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease;
+}
+.hero-slide.is-active { opacity: 1; visibility: visible; z-index: 1; }
+
+.hero-slide__media { position: absolute; inset: 0; }
+.hero-slide__media picture,
+.hero-slide__media img { width: 100%; height: 100%; }
+.hero-slide__media img { object-fit: cover; object-position: center; }
+
+.hero-slide__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(9, 20, 43, 0.85) 0%,
+    rgba(9, 20, 43, 0.6) 45%,
+    rgba(9, 20, 43, 0.28) 100%
+  );
+}
+
+.hero-slide__content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding-block: calc(var(--header-h) + 1rem);
+  max-width: 780px;
+}
+.hero-slide__eyebrow {
+  display: inline-block;
+  color: var(--color-yellow-bright);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: var(--fs-eyebrow);
+  margin-bottom: var(--space-2);
+}
+.hero-slide__title {
+  color: #fff;
+  font-size: clamp(2.2rem, 5.2vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  max-width: 16ch;
+}
+.hero-slide__text {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: var(--fs-lg);
+  margin-top: var(--space-3);
+  max-width: 50ch;
+}
+.hero-slide__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+/* Subtle rise-in for the active slide's copy */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-slide__content > * { opacity: 0; transform: translateY(14px); }
+  .hero-slide.is-active .hero-slide__content > * {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .hero-slide.is-active .hero-slide__eyebrow { transition-delay: 0.15s; }
+  .hero-slide.is-active .hero-slide__title { transition-delay: 0.25s; }
+  .hero-slide.is-active .hero-slide__text { transition-delay: 0.35s; }
+  .hero-slide.is-active .hero-slide__actions { transition-delay: 0.45s; }
+}
+
+/* Arrows */
+.hero-slider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.hero-slider__arrow:hover {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  border-color: var(--color-yellow);
+}
+.hero-slider__arrow--prev { left: clamp(0.75rem, 3vw, 2rem); }
+.hero-slider__arrow--next { right: clamp(0.75rem, 3vw, 2rem); }
+
+/* Dots */
+.hero-slider__dots {
+  position: absolute;
+  bottom: clamp(1rem, 4vh, 2.5rem);
+  left: 0; right: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+}
+.hero-slider__dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.hero-slider__dot::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: transparent;
+  transition: background var(--transition), transform var(--transition);
+}
+.hero-slider__dot.is-active::before { background: var(--color-yellow); border-color: var(--color-yellow); transform: scale(1.2); }
+
+/* ---------- Applications cards (non-link variant) ---------- */
+.app-card { height: 100%; }
+.section__cta { text-align: center; margin-top: var(--space-4); }
+
+/* ---------- Explore our expertise ---------- */
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+.expertise-tile {
+  padding: var(--space-4) var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  background: #fff;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.expertise-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: transparent; }
+.expertise-tile__icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-tint);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-3);
+}
+.expertise-tile__icon svg { width: 28px; height: 28px; }
+.expertise-tile:hover .expertise-tile__icon { background: var(--color-yellow); color: var(--color-ink); }
+.expertise-tile__title { font-size: 1.15rem; margin-bottom: 0.4rem; }
+
+/* ---------- Striving for sustainability ---------- */
+.sustain { background: linear-gradient(115deg, var(--color-primary-darker) 0%, var(--color-primary) 90%); color: #fff; }
+.sustain__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+.sustain h2 { color: #fff; }
+.sustain p { color: rgba(255, 255, 255, 0.9); font-size: var(--fs-lg); margin-block: var(--space-3); max-width: 54ch; }
+.eyebrow--light { color: var(--color-yellow-bright); }
+.sustain__stats { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.sustain__stat {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  text-align: center;
+}
+.sustain__stat b {
+  display: block;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: var(--fw-black);
+  color: var(--color-yellow-bright);
+  line-height: 1;
+}
+.sustain__stat span { display: block; margin-top: 0.4rem; font-size: var(--fs-sm); color: rgba(255, 255, 255, 0.85); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .sustain__inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .hero-slider { height: auto; min-height: 88svh; max-height: none; }
+  .hero-slider__arrow { display: none; }
+  .hero-slide__scrim {
+    background: linear-gradient(180deg, rgba(9, 20, 43, 0.7) 0%, rgba(9, 20, 43, 0.55) 60%, rgba(9, 20, 43, 0.7) 100%);
+  }
+  /* Mobile slide-in menu: solid white panel needs dark links even in overlay mode */
+  .site-header--overlay .nav { background: #fff; }
+  .site-header--overlay .nav__link { color: var(--color-ink); }
+  .site-header--overlay .nav__link:hover,
+  .site-header--overlay .nav__link[aria-current="page"] {
+    color: var(--color-primary-dark);
+    background: var(--color-primary-tint);
+  }
+}
