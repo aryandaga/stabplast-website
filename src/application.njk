@@ -1,0 +1,151 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: appDetails
+  size: 1
+  alias: app
+permalink: "/applications/{{ app.slug }}/"
+eleventyComputed:
+  title: "{{ app.name }} — PVC Additives & Stabilizers"
+  description: "{{ app.summary }}"
+---
+{%- set canonical = (page.url | absoluteUrl(site.url)) -%}
+
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li><a href="/applications/">Applications</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li aria-current="page">{{ app.name }}</li>
+      </ol>
+    </nav>
+    <span class="page-hero__eyebrow">Application</span>
+    <h1>{{ app.name }}</h1>
+    <p>{{ app.summary }}</p>
+    <div class="page-hero__actions">
+      <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
+      <a class="btn btn--ghost btn--lg btn--on-dark" href="{{ site.contact.phoneHref }}">{{ site.cta.call.label }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="product-detail">
+      <div class="product-detail__media">
+        {% image app.image, app.alt, "(max-width: 900px) 100vw, 480px" %}
+      </div>
+
+      <div class="product-detail__body">
+        <h2 class="product-detail__heading">Overview</h2>
+        <p class="product-detail__lead">{{ app.intro or app.summary }}</p>
+
+        {% if app.features.length %}
+        <div class="spec-group">
+          <h3>Features</h3>
+          <ul class="prop-list">
+            {% for f in app.features %}<li>{{ f }}</li>{% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if app.performance.length %}
+        <div class="spec-group">
+          <h3>Performance</h3>
+          <div class="chips">
+            {% for p in app.performance %}<span class="chip chip--static">{{ p }}</span>{% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if app.systems.length %}
+        <div class="spec-group">
+          <h3>Available Systems</h3>
+          <div class="chips">
+            {% for s in app.systems %}<span class="chip chip--static">{{ s }}</span>{% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if app.benefits.length %}
+        <div class="spec-group">
+          <h3>Benefits</h3>
+          <ul class="prop-list">
+            {% for b in app.benefits %}<li>{{ b }}</li>{% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if app.subApplications.length %}
+        <div class="spec-group">
+          <h3>Typical uses</h3>
+          <div class="chips">
+            {% for u in app.subApplications %}<span class="chip chip--static">{{ u }}</span>{% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="product-detail__cta">
+          <a class="btn btn--primary btn--lg" href="{{ site.cta.quote.href }}">Request pricing &amp; TDS</a>
+          <a class="btn btn--ghost-dark btn--lg" href="{{ site.contact.emailHref }}">{{ site.cta.email.label }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- Recommended products ---- #}
+{%- set recommended = products.items | bySlugs(app.relatedProducts) -%}
+{% if recommended.length %}
+<section class="section section--tint">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">Recommended products</span>
+      <h2>Grades for {{ app.name }}</h2>
+    </div>
+    <div class="grid grid--3">
+      {% for p in recommended %}
+      <a class="card" href="/products/{{ p.slug }}/">
+        <div class="card__media">
+          {% image p.image, p.alt, "(max-width: 768px) 100vw, 360px" %}
+        </div>
+        <div class="card__body">
+          <span class="card__tag">{{ p.category }}</span>
+          <h3 class="card__title">{{ p.name }}</h3>
+          <p>{{ p.summary }}</p>
+          <span class="card__link">View product →</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <h2>Formulating for {{ app.name | lower }}?</h2>
+      <p>Tell us your process and target specification — we'll recommend the right system.</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
+      <a class="btn btn--ghost btn--lg btn--on-dark" href="{{ site.contact.phoneHref }}">{{ site.cta.call.label }}</a>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ ("/" | absoluteUrl(site.url)) | dump | safe }} },
+    { "@type": "ListItem", "position": 2, "name": "Applications", "item": {{ ("/applications/" | absoluteUrl(site.url)) | dump | safe }} },
+    { "@type": "ListItem", "position": 3, "name": {{ app.name | dump | safe }}, "item": {{ canonical | dump | safe }} }
+  ]
+}
+</script>

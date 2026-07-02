@@ -31,8 +31,10 @@ permalink: /products/
         </div>
         <a class="btn btn--ghost" href="/products/{{ cat.slug }}/">View all →</a>
       </div>
+      {% set catItems = products.items | byCategory(cat.slug) %}
+      {% if catItems.length %}
       <div class="grid grid--3">
-        {% for card in products.items | byCategory(cat.slug) %}
+        {% for card in catItems %}
         <a class="card" href="/products/{{ card.slug }}/">
           <div class="card__media">
             {% image card.image, card.alt, "(max-width: 768px) 100vw, 360px" %}
@@ -46,6 +48,9 @@ permalink: /products/
         </a>
         {% endfor %}
       </div>
+      {% else %}
+      <p class="category-note">Grades developed to customer requirements. <a href="{{ site.cta.quote.href }}">Request available grades &amp; TDS →</a></p>
+      {% endif %}
     </div>
     {% endfor %}
   </div>

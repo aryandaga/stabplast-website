@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 title: Applications
-description: PVC additives from Stabplast are used in PVC and CPVC pipes, UPVC profiles, wires and cables, masterbatch and plastic products.
+description: Stabplast additives and stabilizer systems for PVC pipes, fittings, profiles, foam boards, wires & cables, sheets, WPC, roofing, footwear and paints.
 permalink: /applications/
 ---
 
@@ -14,8 +14,9 @@ permalink: /applications/
         <li aria-current="page">Applications</li>
       </ol>
     </nav>
+    <span class="page-hero__eyebrow">Applications we serve</span>
     <h1>Applications</h1>
-    <p>Our stabilizers and additives perform across the PVC and plastics value chain — from pressure pipes to window profiles, cables and masterbatch.</p>
+    <p>Stabplast Chemo Industries manufactures specialty additives and stabilizer systems for a wide range of PVC applications — from pipes and profiles to foam boards, cables, footwear and paints.</p>
   </div>
 </section>
 
@@ -23,6 +24,18 @@ permalink: /applications/
   <div class="container">
     <div class="grid grid--3">
       {% for app in applications %}
+      {% if app.detail %}
+      <a class="card" href="/applications/{{ app.slug }}/">
+        <div class="card__media">
+          {% image app.image, app.alt, "(max-width: 768px) 100vw, 360px" %}
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">{{ app.name }}</h2>
+          <p>{{ app.summary }}</p>
+          <span class="card__link">Explore application →</span>
+        </div>
+      </a>
+      {% else %}
       <article class="card">
         <div class="card__media">
           {% image app.image, app.alt, "(max-width: 768px) 100vw, 360px" %}
@@ -30,18 +43,33 @@ permalink: /applications/
         <div class="card__body">
           <h2 class="card__title">{{ app.name }}</h2>
           <p>{{ app.summary }}</p>
-          {% set related = products.items | bySlugs(app.relatedProducts) %}
-          {% if related.length %}
-          <div class="chips">
-            {% for r in related %}
-            <a class="chip" href="/products/{{ r.slug }}/">{{ r.shortName }}</a>
-            {% endfor %}
-          </div>
-          {% endif %}
         </div>
       </article>
+      {% endif %}
       {% endfor %}
     </div>
+  </div>
+</section>
+
+<!-- ============ KEY ADVANTAGES ============ -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">Why Stabplast</span>
+      <h2>Key advantages of Stabplast products</h2>
+    </div>
+    <ul class="prop-list prop-list--cols">
+      <li>High whiteness and colour consistency</li>
+      <li>Excellent weather resistance</li>
+      <li>Wide processing window</li>
+      <li>Superior surface finish</li>
+      <li>Excellent impact strength</li>
+      <li>Low cycle time</li>
+      <li>Customized formulations</li>
+      <li>Lead and Calcium-Zinc systems available</li>
+      <li>Suitable for high-speed extrusion and moulding</li>
+      <li>Technical support for customer-specific applications</li>
+    </ul>
   </div>
 </section>
 

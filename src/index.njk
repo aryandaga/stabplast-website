@@ -80,6 +80,19 @@ heroHeader: true
     </div>
     <div class="grid grid--3">
       {% for app in applications %}
+      {% if loop.index <= 6 %}
+      {% if app.detail %}
+      <a class="card app-card" href="/applications/{{ app.slug }}/">
+        <div class="card__media">
+          {% image app.image, app.alt, "(max-width: 768px) 100vw, 360px" %}
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">{{ app.name }}</h3>
+          <p>{{ app.summary }}</p>
+          <span class="card__link">Explore application →</span>
+        </div>
+      </a>
+      {% else %}
       <article class="card app-card">
         <div class="card__media">
           {% image app.image, app.alt, "(max-width: 768px) 100vw, 360px" %}
@@ -89,6 +102,8 @@ heroHeader: true
           <p>{{ app.summary }}</p>
         </div>
       </article>
+      {% endif %}
+      {% endif %}
       {% endfor %}
     </div>
     <p class="section__cta"><a class="btn btn--primary btn--lg" href="/applications/">See all applications</a></p>
