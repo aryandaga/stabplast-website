@@ -1,0 +1,190 @@
+---
+layout: layouts/base.njk
+title: About Us
+description: Stabplast Chemo Industries has manufactured and exported PVC stabilizers, metallic stearates and lead compounds from Nagpur, India since 1988.
+permalink: /about/
+---
+{%- set canonical = (page.url | absoluteUrl(site.url)) -%}
+
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li aria-current="page">About</li>
+      </ol>
+    </nav>
+    <span class="page-hero__eyebrow">About us</span>
+    <h1>About {{ site.name }}</h1>
+    <p>Manufacturing and exporting dependable PVC stabilizers and additives from Nagpur, India since {{ site.facts.founded }}.</p>
+  </div>
+</section>
+
+{# ---- Company overview + facts ---- #}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">Our company</span>
+      <h2>Over three decades of PVC additive expertise</h2>
+    </div>
+    <p class="lead">{{ site.legalName }} was established in {{ site.facts.founded }} as a manufacturer and exporter of PVC heat stabilizers and chemical additives. From our base in {{ site.contact.address.locality }}, {{ site.contact.address.region }}, we supply stabilizer systems, metallic stearates and lead compounds used across the PVC and plastics value chain.</p>
+    <p>Our range covers one-pack and calcium-zinc stabilizers, single-stage and lead-based complex grades, metallic stearates such as calcium and lead stearate, and lead compounds including tribasic lead sulphate and dibasic lead phosphite — serving pressure pipes, profiles, wires and cables, and general plastics processing.</p>
+
+    <div class="spec-grid">
+      <div class="spec-item">
+        <span class="spec-item__label">Established</span>
+        <span class="spec-item__value">{{ site.facts.founded }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-item__label">Experience</span>
+        <span class="spec-item__value">{{ site.facts.experienceYears }} years</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-item__label">Business type</span>
+        <span class="spec-item__value">Manufacturer &amp; Exporter</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-item__label">Head office</span>
+        <span class="spec-item__value">{{ site.contact.address.locality }}, {{ site.contact.address.region }}, {{ site.contact.address.country }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- What we manufacture ---- #}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">Product range</span>
+      <h2>What we manufacture</h2>
+    </div>
+    <div class="grid grid--3">
+      {% for cat in products.categories %}
+      <a class="card" href="/products/{{ cat.slug }}/">
+        <div class="card__media">
+          {% image cat.image, cat.name, "(max-width: 768px) 100vw, 360px" %}
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">{{ cat.name }}</h3>
+          <p>{{ cat.summary }}</p>
+          <span class="card__link">View range →</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ---- Why partner with us ---- #}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">Why Stabplast</span>
+      <h2>Why manufacturers work with us</h2>
+    </div>
+    <div class="grid grid--3">
+      <article class="card feature">
+        <div class="card__body">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="5"/></svg>
+          </div>
+          <h3 class="card__title">Established since {{ site.facts.founded }}</h3>
+          <p>More than {{ site.facts.experienceYears }} years formulating and producing PVC stabilizer systems for Indian and export customers.</p>
+        </div>
+      </article>
+      <article class="card feature">
+        <div class="card__body">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+          </div>
+          <h3 class="card__title">In-house manufacturing</h3>
+          <p>Stabilizers, metallic stearates and lead compounds produced in-house for consistent, repeatable supply.</p>
+        </div>
+      </article>
+      <article class="card feature">
+        <div class="card__body">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+          </div>
+          <h3 class="card__title">Manufacturer &amp; exporter</h3>
+          <p>Direct-from-manufacturer pricing with the capability to supply export buyers alongside our domestic customers.</p>
+        </div>
+      </article>
+      <article class="card feature">
+        <div class="card__body">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="card__title">Full additive range</h3>
+          <p>One-pack, calcium-zinc, single-stage and lead-based systems plus stearates — a single source for your PVC formulation.</p>
+        </div>
+      </article>
+      <article class="card feature">
+        <div class="card__body">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h3 class="card__title">Application support</h3>
+          <p>We help match the right grade to your process, end-use and target specification — share your requirement and we'll advise.</p>
+        </div>
+      </article>
+      <article class="card feature">
+        <div class="card__body">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 7L9 18l-5-5"/></svg>
+          </div>
+          <h3 class="card__title">Reliable supply</h3>
+          <p>Established processes and product breadth help us serve pipes, profiles, cables and plastics manufacturers dependably.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <h2>Let's talk about your PVC formulation</h2>
+      <p>Tell us your application and volume — we'll recommend the right stabilizer or stearate.</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
+      <a class="btn btn--ghost btn--lg" href="{{ site.contact.phoneHref }}" style="color:#fff;border-color:rgba(255,255,255,.6)">{{ site.cta.call.label }}</a>
+    </div>
+  </div>
+</section>
+
+{# ---- Structured data (JSON-LD in body is valid per schema.org / Google) ---- #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": {{ "About Stabplast Chemo Industries" | dump | safe }},
+  "url": {{ canonical | dump | safe }},
+  "about": {
+    "@type": "Organization",
+    "name": {{ site.legalName | dump | safe }},
+    "url": {{ site.url | dump | safe }},
+    "foundingDate": {{ site.facts.founded | dump | safe }},
+    "email": {{ site.contact.email | dump | safe }},
+    "telephone": {{ site.contact.phone | dump | safe }},
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": {{ site.contact.address.locality | dump | safe }},
+      "addressRegion": {{ site.contact.address.region | dump | safe }},
+      "addressCountry": {{ site.contact.address.countryCode | dump | safe }}
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ ("/" | absoluteUrl(site.url)) | dump | safe }} },
+    { "@type": "ListItem", "position": 2, "name": "About", "item": {{ canonical | dump | safe }} }
+  ]
+}
+</script>

@@ -1,0 +1,64 @@
+---
+layout: layouts/base.njk
+title: Products
+description: Explore Stabplast's range of PVC stabilizers, metallic stearates and lead compounds for pipes, profiles, cables and plastics.
+permalink: /products/
+---
+
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li aria-current="page">Products</li>
+      </ol>
+    </nav>
+    <h1>Our Product Range</h1>
+    <p>PVC stabilization and lubrication chemistry engineered for pipes, profiles, cables, masterbatch and plastics — supplied to manufacturers and export buyers.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% for cat in products.categories %}
+    <div class="category-block">
+      <div class="category-block__head">
+        <div>
+          <span class="eyebrow">Category</span>
+          <h2 id="{{ cat.slug }}">{{ cat.name }}</h2>
+          <p>{{ cat.summary }}</p>
+        </div>
+        <a class="btn btn--ghost" href="/products/{{ cat.slug }}/">View all →</a>
+      </div>
+      <div class="grid grid--3">
+        {% for card in products.items | byCategory(cat.slug) %}
+        <a class="card" href="/products/{{ card.slug }}/">
+          <div class="card__media">
+            {% image card.image, card.alt, "(max-width: 768px) 100vw, 360px" %}
+          </div>
+          <div class="card__body">
+            <span class="card__tag">{{ card.category }}</span>
+            <h3 class="card__title">{{ card.name }}</h3>
+            <p>{{ card.summary }}</p>
+            <span class="card__link">View product →</span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <h2>Need help choosing a grade?</h2>
+      <p>Share your application and volume — our team will recommend the right formulation.</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
+    </div>
+  </div>
+</section>

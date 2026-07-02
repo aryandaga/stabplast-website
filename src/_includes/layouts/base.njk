@@ -1,0 +1,93 @@
+{%- set pageTitle = title and (site.seo.titleTemplate | replace("%s", title)) or site.seo.defaultTitle -%}
+{%- set pageDesc = description or site.description -%}
+{%- set canonical = (page.url | absoluteUrl(site.url)) -%}
+{%- set ogImage = (socialImage or site.seo.ogImage) | absoluteUrl(site.url) -%}
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDesc }}">
+  <link rel="canonical" href="{{ canonical }}">
+  {% if noindex %}<meta name="robots" content="noindex, follow">{% else %}<meta name="robots" content="index, follow, max-image-preview:large">{% endif %}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.legalName }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDesc }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:image" content="{{ ogImage }}">
+  <meta property="og:locale" content="{{ site.locale }}">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ pageTitle }}">
+  <meta name="twitter:description" content="{{ pageDesc }}">
+  <meta name="twitter:image" content="{{ ogImage }}">
+
+  <!-- Icons & theme -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#1a6dff">
+
+  <!-- Performance: preconnect + font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+
+  <link rel="stylesheet" href="/styles/global.css">
+
+  <!-- Organization / LocalBusiness structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": {{ site.legalName | dump | safe }},
+    "url": {{ site.url | dump | safe }},
+    "description": {{ site.description | dump | safe }},
+    "logo": {{ (site.url + "/favicon.svg") | dump | safe }},
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "telephone": {{ site.contact.phone | dump | safe }},
+      "email": {{ site.contact.email | dump | safe }},
+      "areaServed": {{ site.contact.address.country | dump | safe }}
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": {{ site.contact.address.street | dump | safe }},
+      "addressLocality": {{ site.contact.address.locality | dump | safe }},
+      "addressRegion": {{ site.contact.address.region | dump | safe }},
+      "postalCode": {{ site.contact.address.postalCode | dump | safe }},
+      "addressCountry": {{ site.contact.address.countryCode | dump | safe }}
+    }
+  }
+  </script>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  {% include "partials/header.njk" %}
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+
+  <a class="to-top" href="#top" aria-label="Scroll to top" data-to-top>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

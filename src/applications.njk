@@ -1,0 +1,58 @@
+---
+layout: layouts/base.njk
+title: Applications
+description: PVC additives from Stabplast are used in PVC and CPVC pipes, UPVC profiles, wires and cables, masterbatch and plastic products.
+permalink: /applications/
+---
+
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li aria-current="page">Applications</li>
+      </ol>
+    </nav>
+    <h1>Applications</h1>
+    <p>Our stabilizers and additives perform across the PVC and plastics value chain — from pressure pipes to window profiles, cables and masterbatch.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid--3">
+      {% for app in applications %}
+      <article class="card">
+        <div class="card__media">
+          {% image app.image, app.alt, "(max-width: 768px) 100vw, 360px" %}
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">{{ app.name }}</h2>
+          <p>{{ app.summary }}</p>
+          {% set related = products.items | bySlugs(app.relatedProducts) %}
+          {% if related.length %}
+          <div class="chips">
+            {% for r in related %}
+            <a class="chip" href="/products/{{ r.slug }}/">{{ r.shortName }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <h2>Have a specific application in mind?</h2>
+      <p>We'll match the right stabilizer or stearate to your process and end-use.</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
+    </div>
+  </div>
+</section>

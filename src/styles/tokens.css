@@ -1,0 +1,76 @@
+/* ==========================================================================
+   DESIGN TOKENS — Stabplast (Chemid-inspired)
+   Mirrors the Chemid theme: bright-blue primary, large type scale (theme.json),
+   generous line-height (1.8), clean sans-serif. Single source of design truth.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand palette ---- */
+  --color-primary: #1668f5;        /* Chemid signature bright blue (AA: 4.85:1 w/ white) */
+  --color-primary-dark: #0f4fd6;   /* hover / links / eyebrow on white (AA contrast) */
+  --color-primary-darker: #0a3aa0;
+  --color-primary-tint: #e9f1ff;   /* section backgrounds */
+  --color-accent: #12c48b;         /* eco/secondary accent */
+
+  /* ---- Yellow accent (safety amber) — decorative + CTA only, never small text on blue ---- */
+  --color-yellow: #ffc60b;         /* button bg (dark ink text = AA) */
+  --color-yellow-bright: #ffd21e;  /* large stat numbers on blue (AA large) */
+  --color-yellow-hover: #f0b400;   /* button hover */
+
+  /* ---- Neutrals ---- */
+  --color-ink: #0e1b2b;            /* headings */
+  --color-body: #384555;           /* body text (AA on white) */
+  --color-muted: #556070;          /* muted text (AA on tinted bg) */
+  --color-line: #e3e8ef;           /* borders */
+  --color-bg: #ffffff;
+  --color-bg-alt: #f5f8fc;
+  --color-bg-dark: #0c1a2b;        /* footer */
+  --color-white: #ffffff;
+
+  /* ---- Typography ---- */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-heading: var(--font-sans);
+
+  --fs-base: 1.125rem;   /* 18px body — tightened from Chemid 20px for readability */
+  --fs-sm: 0.9375rem;    /* 15px */
+  --fs-lg: 1.25rem;      /* 20px */
+  --fs-h1: clamp(2rem, 1.4rem + 3vw, 3.25rem);
+  --fs-h2: clamp(1.6rem, 1.2rem + 2vw, 2.4rem);
+  --fs-h3: clamp(1.3rem, 1.1rem + 1vw, 1.6rem);
+  --fs-h4: 1.2rem;
+  --fs-eyebrow: 0.8125rem;
+
+  --lh-body: 1.75;
+  --lh-heading: 1.15;
+
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 800;
+
+  /* ---- Spacing scale (mirrors theme.json steps) ---- */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6.5rem;
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;   /* Chemid wideSize */
+  --container-narrow: 780px; /* Chemid contentSize */
+  --gutter: clamp(1rem, 5vw, 2.5rem);
+
+  /* ---- UI ---- */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 3px rgba(14, 27, 43, 0.08);
+  --shadow: 0 8px 24px rgba(14, 27, 43, 0.10);
+  --shadow-lg: 0 18px 48px rgba(14, 27, 43, 0.14);
+  --transition: 0.2s ease;
+
+  --header-h: 76px;
+}

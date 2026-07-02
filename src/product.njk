@@ -1,0 +1,195 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: products.items
+  size: 1
+  alias: product
+permalink: "/products/{{ product.slug }}/"
+eleventyComputed:
+  title: "{{ product.name }}"
+  description: "{{ product.summary }}"
+---
+{%- set canonical = (page.url | absoluteUrl(site.url)) -%}
+
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li><a href="/products/">Products</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li><a href="/products/{{ product.categorySlug }}/">{{ product.category }}</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li aria-current="page">{{ product.name }}</li>
+      </ol>
+    </nav>
+    <span class="page-hero__eyebrow">{{ product.category }}</span>
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.summary }}</p>
+    <div class="page-hero__actions">
+      <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
+      <a class="btn btn--ghost btn--lg" href="{{ site.contact.phoneHref }}" style="color:#fff;border-color:rgba(255,255,255,.6)">{{ site.cta.call.label }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="product-detail">
+      <div class="product-detail__media">
+        {% image product.image, product.alt, "(max-width: 900px) 100vw, 480px" %}
+      </div>
+
+      <div class="product-detail__body">
+        <h2 class="product-detail__heading">Overview</h2>
+        <p class="product-detail__lead">{{ product.description }}</p>
+
+        {% if product.keyProperties.length %}
+        <div class="spec-group">
+          <h3>Key Properties</h3>
+          <ul class="prop-list">
+            {% for prop in product.keyProperties %}
+            <li>{{ prop | replace(" [verify]", "") }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        <div class="spec-grid">
+          {% if product.applications.length %}
+          <div class="spec-item">
+            <span class="spec-item__label">Typical Applications</span>
+            <span class="spec-item__value">{{ product.applications | join(", ") }}</span>
+          </div>
+          {% endif %}
+          {% if product.forms.length %}
+          <div class="spec-item">
+            <span class="spec-item__label">Available Forms</span>
+            <span class="spec-item__value">{{ product.forms | join(", ") }}</span>
+          </div>
+          {% endif %}
+          {% if product.packaging %}
+          <div class="spec-item">
+            <span class="spec-item__label">Packaging</span>
+            <span class="spec-item__value">{{ product.packaging | replace(" [verify]", "") }}</span>
+          </div>
+          {% endif %}
+        </div>
+
+        {% if not product.verified %}
+        <p class="product-note" role="note">
+          Technical details are indicative and subject to confirmation. Contact us for the
+          current product data sheet and specifications.
+        </p>
+        {% endif %}
+
+        <div class="product-detail__cta">
+          <a class="btn btn--primary btn--lg" href="{{ site.cta.quote.href }}">Request pricing &amp; TDS</a>
+          <a class="btn btn--ghost-dark btn--lg" href="{{ site.contact.emailHref }}">{{ site.cta.email.label }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- Related applications (end-uses that reference this product) ---- #}
+{%- set relatedApps = [] -%}
+{%- for app in applications -%}
+  {%- if product.slug in app.relatedProducts -%}
+    {%- set relatedApps = (relatedApps.push(app), relatedApps) -%}
+  {%- endif -%}
+{%- endfor -%}
+{% if relatedApps.length %}
+<section class="section section--tint">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">Where it's used</span>
+      <h2>Applications</h2>
+    </div>
+    <div class="chips">
+      {% for app in relatedApps %}
+      <a class="chip" href="/applications/#{{ app.slug }}">{{ app.name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ---- Related products (same category, excluding this one) ---- #}
+{%- set siblings = products.items | byCategory(product.categorySlug) -%}
+{% set relatedCount = 0 %}
+{% for sib in siblings %}{% if sib.slug != product.slug %}{% set relatedCount = relatedCount + 1 %}{% endif %}{% endfor %}
+{% if relatedCount %}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">More in {{ product.category }}</span>
+      <h2>Related Products</h2>
+    </div>
+    <div class="grid grid--3">
+      {% for sib in siblings %}
+      {% if sib.slug != product.slug %}
+      <a class="card" href="/products/{{ sib.slug }}/">
+        <div class="card__media">
+          {% image sib.image, sib.alt, "(max-width: 768px) 100vw, 360px" %}
+        </div>
+        <div class="card__body">
+          <span class="card__tag">{{ sib.category }}</span>
+          <h3 class="card__title">{{ sib.name }}</h3>
+          <p>{{ sib.summary }}</p>
+          <span class="card__link">View product →</span>
+        </div>
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <h2>Request a quote for {{ product.name }}</h2>
+      <p>Tell us your grade, application and volume for a prompt quotation.</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
+      <a class="btn btn--ghost btn--lg" href="{{ site.contact.phoneHref }}" style="color:#fff;border-color:rgba(255,255,255,.6)">{{ site.cta.call.label }}</a>
+    </div>
+  </div>
+</section>
+
+{# ---- Structured data (JSON-LD in body is valid per schema.org / Google) ---- #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.name | dump | safe }},
+  "description": {{ product.summary | dump | safe }},
+  "category": {{ product.category | dump | safe }},
+  "url": {{ canonical | dump | safe }},
+  "brand": {
+    "@type": "Brand",
+    "name": {{ site.legalName | dump | safe }}
+  },
+  "manufacturer": {
+    "@type": "Organization",
+    "name": {{ site.legalName | dump | safe }},
+    "url": {{ site.url | dump | safe }}
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ ("/" | absoluteUrl(site.url)) | dump | safe }} },
+    { "@type": "ListItem", "position": 2, "name": "Products", "item": {{ ("/products/" | absoluteUrl(site.url)) | dump | safe }} },
+    { "@type": "ListItem", "position": 3, "name": {{ product.category | dump | safe }}, "item": {{ (["/products/", product.categorySlug, "/"] | join | absoluteUrl(site.url)) | dump | safe }} },
+    { "@type": "ListItem", "position": 4, "name": {{ product.name | dump | safe }}, "item": {{ canonical | dump | safe }} }
+  ]
+}
+</script>

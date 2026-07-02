@@ -1,0 +1,60 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: products.categories
+  size: 1
+  alias: category
+permalink: "/products/{{ category.slug }}/"
+eleventyComputed:
+  title: "{{ category.name }}"
+  description: "{{ category.summary }}"
+---
+
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li><a href="/products/">Products</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li aria-current="page">{{ category.name }}</li>
+      </ol>
+    </nav>
+    <h1>{{ category.name }}</h1>
+    <p>{{ category.summary }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid--3">
+      {% for card in products.items | byCategory(category.slug) %}
+      <a class="card" href="/products/{{ card.slug }}/">
+        <div class="card__media">
+          {% image card.image, card.alt, "(max-width: 768px) 100vw, 360px" %}
+        </div>
+        <div class="card__body">
+          <span class="card__tag">{{ card.category }}</span>
+          <h3 class="card__title">{{ card.name }}</h3>
+          <p>{{ card.summary }}</p>
+          <span class="card__link">View product →</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <h2>Request pricing for {{ category.name }}</h2>
+      <p>Tell us your grade, application and volume for a prompt quotation.</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
+      <a class="btn btn--ghost btn--lg" href="{{ site.contact.phoneHref }}" style="color:#fff;border-color:rgba(255,255,255,.6)">{{ site.cta.call.label }}</a>
+    </div>
+  </div>
+</section>
