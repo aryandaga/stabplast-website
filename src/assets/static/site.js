@@ -94,4 +94,40 @@
     go(0);
     start();
   }
+
+  // ---- Contact form → Apps Script (Turnstile-gated, appends to Google Sheet) ----
+  var cform = document.querySelector("[data-contact-form]");
+  if (cform) {
+    var statusEl = cform.querySelector("[data-form-status]");
+    var setStatus = function (msg, kind) {
+      if (!statusEl) return;
+      statusEl.textContent = msg;
+      statusEl.className = "form-status" + (kind ? " form-status--" + kind : "");
+    };
+    cform.addEventListener("submit", function (e) {
+      var action = cform.getAttribute("action");
+      if (!action || action === "#") return; // endpoint not configured yet → no-op
+      e.preventDefault();
+      var hp = cform.querySelector('[name="_gotcha"]');
+      if (hp && hp.value) return; // honeypot tripped → silently drop
+      var token = cform.querySelector('[name="cf-turnstile-response"]');
+      if (!token || !token.value) {
+        setStatus("Please complete the verification below and try again.", "error");
+        return;
+      }
+      var btn = cform.querySelector('button[type="submit"]');
+      if (btn) btn.disabled = true;
+      setStatus("Sending your enquiry…", "");
+      fetch(action, { method: "POST", body: new FormData(cform), mode: "no-cors" })
+        .then(function () {
+          cform.reset();
+          if (window.turnstile) { try { window.turnstile.reset(); } catch (err) {} }
+          setStatus("Thank you! Your enquiry has been sent — we'll get back to you within one business day.", "ok");
+        })
+        .catch(function () {
+          setStatus("Sorry, something went wrong. Please email us instead.", "error");
+        })
+        .finally(function () { if (btn) btn.disabled = false; });
+    });
+  }
 })();

@@ -31,11 +31,12 @@ permalink: /contact/
         <p class="contact-form__intro">Fields marked <span aria-hidden="true">*</span> are required. We typically reply within one business day.</p>
 
         {#
-          NOTE: static form — no backend yet. Wire a submission service at deploy
-          (Formspree / FormSubmit / Netlify Forms). Replace the action below with the
-          real endpoint and remove data-form-endpoint.  [VERIFY] endpoint
+          Submissions POST to the Google Apps Script web app (site.forms.endpoint),
+          which verifies the Turnstile token server-side (with the secret key kept
+          in the script, NOT in this repo) and appends a row to the Google Sheet.
+          JS in /assets/site.js handles the AJAX submit + success message.
         #}
-        <form class="contact-form" method="POST" action="#" data-form-endpoint="[VERIFY] set Formspree/FormSubmit endpoint at deploy">
+        <form class="contact-form" method="POST" action="{{ site.forms.endpoint or '#' }}" data-contact-form>
           {# Honeypot anti-spam field (bots fill it, humans don't). Formspree/FormSubmit honour _gotcha. #}
           <div class="form-hp" aria-hidden="true">
             <label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
@@ -82,20 +83,16 @@ permalink: /contact/
             <textarea id="cf-message" name="message" rows="5" required placeholder="Tell us about your application, target specification and delivery location."></textarea>
           </div>
 
-          {#
-            Spam protection — Cloudflare Turnstile (free, privacy-friendly).
-            [VERIFY] Replace the test sitekey "1x00000000000000000000AA" (always passes)
-            with your real Turnstile site key at deploy, and enable server-side
-            verification in the form service (Formspree/FormSubmit both support it).
-          #}
+          {# Spam protection — Cloudflare Turnstile (public site key from site.forms). #}
           <div class="field cf-captcha">
-            <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="light"></div>
+            <div class="cf-turnstile" data-sitekey="{{ site.forms.turnstileSiteKey }}" data-theme="light"></div>
           </div>
 
           <div class="contact-form__actions">
             <button class="btn btn--accent btn--lg" type="submit">Send enquiry</button>
             <p class="form-note">Prefer email? Write to <a href="{{ site.contact.emailHref }}">{{ site.contact.email }}</a>.</p>
           </div>
+          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
         </form>
       </div>
 
