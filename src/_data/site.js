@@ -55,9 +55,9 @@ export default {
 
   // ---- Forms ----
   forms: {
-    // [VERIFY] Paste the deployed Google Apps Script web-app URL here (NOT secret).
-    // Until set, the contact form does not submit. See the Apps Script setup notes.
-    endpoint: "",
+    // Deployed Google Apps Script web-app URL (NOT secret). Appends rows to the
+    // Google Sheet + emails a notification on each submission.
+    endpoint: "https://script.google.com/macros/s/AKfycbwnru5nUcFV8mENKor0QQLrfYclC7JfcVqMKIC8-b2L4K2ZVzjJ9TpXRmMzHbETZcSjaw/exec",
     // Public Cloudflare Turnstile site key (safe to expose in client HTML).
     turnstileSiteKey: "0x4AAAAAADuer7FVpo3upq8W",
   },
@@ -95,4 +95,8 @@ export default {
   },
 
   buildYear: `${new Date().getFullYear()}`,
+
+  // Cache-busting token appended to CSS/JS URLs so browsers fetch fresh assets
+  // after each deploy (fixed asset URLs would otherwise be served from cache).
+  buildId: `${Date.now()}`,
 };

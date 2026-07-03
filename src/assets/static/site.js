@@ -2,34 +2,41 @@
 (function () {
   "use strict";
 
-  // ---- Mobile nav toggle ----
+  // ---- Mobile nav toggle (open/close, backdrop, scroll-lock, a11y) ----
   var toggle = document.querySelector("[data-nav-toggle]");
   var nav = document.querySelector("[data-nav]");
+  var backdrop = document.querySelector("[data-nav-backdrop]");
+  var navClose = document.querySelector("[data-nav-close]");
   if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var open = nav.getAttribute("data-open") === "true";
-      nav.setAttribute("data-open", String(!open));
-      toggle.setAttribute("aria-expanded", String(!open));
-      toggle.setAttribute("aria-label", open ? "Open menu" : "Close menu");
-    });
-    // Close on link click (mobile)
+    var isOpen = function () { return nav.getAttribute("data-open") === "true"; };
+    var setMenu = function (open) {
+      nav.setAttribute("data-open", String(open));
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      document.body.classList.toggle("nav-open", open);
+      if (backdrop) {
+        if (open) {
+          backdrop.hidden = false;
+          requestAnimationFrame(function () { backdrop.classList.add("is-open"); });
+        } else {
+          backdrop.classList.remove("is-open");
+          setTimeout(function () { backdrop.hidden = true; }, 250);
+        }
+      }
+    };
+    toggle.addEventListener("click", function () { setMenu(!isOpen()); });
+    if (navClose) navClose.addEventListener("click", function () { setMenu(false); toggle.focus(); });
+    if (backdrop) backdrop.addEventListener("click", function () { setMenu(false); });
+    // Close when any menu link (including Products category dropdown links) is tapped
     nav.addEventListener("click", function (e) {
-      if (e.target.closest(".nav__link")) {
-        nav.setAttribute("data-open", "false");
-        toggle.setAttribute("aria-expanded", "false");
-      }
+      if (e.target.closest(".nav__link, .nav__dropdown-link")) setMenu(false);
     });
-    // Close on Escape
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && nav.getAttribute("data-open") === "true") {
-        nav.setAttribute("data-open", "false");
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.focus();
-      }
+      if (e.key === "Escape" && isOpen()) { setMenu(false); toggle.focus(); }
     });
   }
 
-  // ---- Scroll-to-top visibility ----
+  // ---- Scroll-to-top (visibility + reliable click) ----
   var toTop = document.querySelector("[data-to-top]");
   if (toTop) {
     var onScroll = function () {
@@ -38,6 +45,10 @@
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+    toTop.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   }
 
   // ---- Overlay header: transparent over hero, solid on scroll ----

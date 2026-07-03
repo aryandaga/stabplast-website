@@ -786,3 +786,49 @@ a:not([class]):hover { color: var(--color-primary-darker); }
   .nav__caret { display: none; }
 }
 
+/* ---------------------------------------------------------------------------
+   MOBILE MENU ROBUSTNESS + iOS TAP FIX (M13)
+   --------------------------------------------------------------------------- */
+/* Keep header controls above the fixed header's backdrop-filter layer — iOS
+   Safari can otherwise swallow taps on buttons inside a blurred fixed header. */
+.brand,
+.nav-toggle,
+.header-utility,
+.header-phone { position: relative; z-index: 2; }
+
+/* Dark scrim behind the open mobile menu */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 96;
+  background: rgba(9, 20, 43, 0.5);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.nav-backdrop[hidden] { display: none; }
+.nav-backdrop.is-open { opacity: 1; }
+
+/* Lock body scroll while the menu is open */
+body.nav-open { overflow: hidden; }
+
+/* Close (×) button inside the mobile panel — hidden on desktop */
+.nav__close {
+  display: none;
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 768px) {
+  .nav { z-index: 110; }
+  .nav__close { display: inline-grid; place-items: center; }
+  .nav__list { margin-top: 2.25rem; }
+}
+
