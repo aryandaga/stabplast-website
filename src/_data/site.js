@@ -49,7 +49,15 @@ export default {
     mapEmbed:
       "https://www.google.com/maps?q=Tiwsa+Gin,+College+Road,+Old+Cotton+Market,+Amravati,+Maharashtra+444601&output=embed",
     hours: "Mon–Sat, 9:30–18:30 IST",
+    // Approx coordinates (Old Cotton Market, Amravati) for LocalBusiness schema.
+    // Set a precise pin via Google Business Profile for Maps accuracy.
+    geo: { latitude: "20.9333", longitude: "77.7500" },
   },
+
+  // ---- Analytics ----
+  // Paste your GA4 Measurement ID ("G-XXXXXXXXXX") to enable Google Analytics
+  // site-wide. Empty = disabled (no tracking script is emitted).
+  analytics: { ga4Id: "" },
 
   // ---- Forms ----
   forms: {

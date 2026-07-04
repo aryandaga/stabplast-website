@@ -50,17 +50,28 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "LocalBusiness"],
+    "@id": {{ (site.url + "/#business") | dump | safe }},
     "name": {{ site.legalName | dump | safe }},
     "url": {{ site.url | dump | safe }},
     "description": {{ site.description | dump | safe }},
     "logo": {{ (site.url + "/favicon.svg") | dump | safe }},
+    "image": {{ (site.seo.ogImage | absoluteUrl(site.url)) | dump | safe }},
+    "foundingDate": {{ site.facts.founded | dump | safe }},
+    "telephone": {{ site.contact.phone | dump | safe }},
+    "email": {{ site.contact.email | dump | safe }},
+    "knowsAbout": ["PVC stabilizers", "Calcium-zinc stabilizers", "Lead-based stabilizers", "Metallic stearates", "One-pack stabilizer systems", "CPVC stabilizers"],
+    "areaServed": [
+      { "@type": "Country", "name": "India" },
+      { "@type": "Place", "name": "Export markets worldwide" }
+    ],
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "sales",
       "telephone": {{ site.contact.phone | dump | safe }},
       "email": {{ site.contact.email | dump | safe }},
-      "areaServed": {{ site.contact.address.country | dump | safe }}
+      "areaServed": {{ site.contact.address.country | dump | safe }},
+      "availableLanguage": ["en", "hi"]
     },
     "address": {
       "@type": "PostalAddress",
@@ -69,9 +80,31 @@
       "addressRegion": {{ site.contact.address.region | dump | safe }},
       "postalCode": {{ site.contact.address.postalCode | dump | safe }},
       "addressCountry": {{ site.contact.address.countryCode | dump | safe }}
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": {{ site.contact.geo.latitude | dump | safe }},
+      "longitude": {{ site.contact.geo.longitude | dump | safe }}
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:30",
+      "closes": "18:30"
     }
   }
   </script>
+
+  {% if site.analytics.ga4Id %}
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.ga4Id }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', {{ site.analytics.ga4Id | dump | safe }});
+  </script>
+  {% endif %}
   {% block head %}{% endblock %}
 </head>
 <body{% if heroHeader %} class="has-hero-header"{% endif %}>
