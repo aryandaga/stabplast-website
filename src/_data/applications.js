@@ -132,6 +132,26 @@ export default [
     relatedProducts: ["tribasic-lead-sulphate", "dibasic-lead-stearate", "lead-stearate"],
   },
   {
+    slug: "cpvc-pipes-fittings",
+    name: "CPVC Pipes & Fittings",
+    image: "src/assets/images/applications/cpvc-pipes-fittings.jpg",
+    alt: "Yellow CPVC pipework with elbow fittings mounted on a wall",
+    summary:
+      "Dedicated stabilizer systems for chlorinated PVC (CPVC) pipes and fittings for hot and cold water distribution.",
+    detail: false,
+    relatedProducts: ["one-pack-stabilizer", "calcium-zinc-stabilizer"],
+  },
+  {
+    slug: "masterbatch",
+    name: "Masterbatch",
+    image: "src/assets/images/applications/masterbatch.jpg",
+    alt: "Plastic masterbatch pellets",
+    summary:
+      "Metallic stearates acting as dispersion aids, lubricants and processing aids in masterbatch production.",
+    detail: false,
+    relatedProducts: ["calcium-stearate"],
+  },
+  {
     slug: "pvc-sheets",
     name: "PVC Sheets",
     image: "src/assets/images/applications/plastic-products.jpg",
@@ -170,16 +190,6 @@ export default [
       "Stabilizers for PVC edge banding with consistent colour and a smooth, durable finish.",
     detail: false,
     relatedProducts: ["calcium-zinc-stabilizer", "one-pack-stabilizer"],
-  },
-  {
-    slug: "masterbatch",
-    name: "Masterbatch",
-    image: "src/assets/images/applications/masterbatch.jpg",
-    alt: "Plastic masterbatch pellets",
-    summary:
-      "Metallic stearates acting as dispersion aids, lubricants and processing aids in masterbatch production.",
-    detail: false,
-    relatedProducts: ["calcium-stearate"],
   },
   {
     slug: "footwear",

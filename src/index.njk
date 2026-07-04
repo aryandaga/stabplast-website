@@ -68,8 +68,7 @@ heroHeader: true
 <section class="section">
   <div class="container">
     <div class="section__head section__head--center">
-      <span class="eyebrow">Our Range</span>
-      <h2>Top product categories</h2>
+      <h2>Our Range</h2>
       <p class="lead">A complete portfolio of PVC stabilization and lubrication chemistry.</p>
     </div>
     <div class="grid grid--4 cards-compact">
@@ -125,13 +124,17 @@ heroHeader: true
       {% endif %}
       {% endfor %}
 
-      {# 8th tile: redirect to the full applications list #}
+      {# 8th tile: redirect to the full applications list — collage of the inside-only apps #}
       <a class="card app-card app-all" href="/applications/">
-        <span class="app-all__icon" aria-hidden="true">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </span>
-        <h3 class="app-all__title">See all applications</h3>
-        <p>Explore every PVC end-use we serve.</p>
+        {% image "src/assets/images/applications/all-apps-collage.jpg", "Collage of PVC sheets, WPC boards, roofing sheets, edge banding, footwear and paints", "(max-width: 768px) 100vw, 360px", { class: "app-all__bg" } %}
+        <span class="app-all__scrim" aria-hidden="true"></span>
+        <div class="app-all__content">
+          <span class="app-all__icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+          <h3 class="app-all__title">See all applications</h3>
+          <p>PVC sheets, edge banding &amp; more.</p>
+        </div>
       </a>
     </div>
   </div>
@@ -166,7 +169,7 @@ heroHeader: true
   <div class="container cta-band__inner">
     <div>
       <h2>Ready to discuss your requirement?</h2>
-      <p>Tell us your application and volume — we'll recommend the right formulation.</p>
+      <p>Tell us your application, we'll recommend the right formulation.</p>
     </div>
     <div class="cta-band__actions">
       <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>

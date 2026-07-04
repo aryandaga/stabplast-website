@@ -671,6 +671,18 @@ a:not([class]):hover { color: var(--color-primary-darker); }
   box-shadow: var(--shadow-sm);
 }
 
+/* Adaptive logo: over the transparent hero nav the plate disappears and the
+   wordmark renders pure white; original colors return once the header turns
+   solid on scroll. Desktop only — the mobile header is solid white. */
+@media (min-width: 901px) {
+  .site-header--overlay:not(.is-solid) .brand__logo {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    filter: brightness(0) invert(1);
+  }
+}
+
 /* Header row: brand left, nav + utility cluster pushed right */
 .site-header__inner { justify-content: flex-start; }
 .brand { margin-right: auto; flex: none; }
