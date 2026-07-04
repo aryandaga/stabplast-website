@@ -198,7 +198,12 @@ a:not([class]):hover { color: var(--color-primary-darker); }
 .utility-bar svg { flex: none; opacity: 0.8; }
 .utility-bar__note { color: var(--color-yellow-bright); font-weight: var(--fw-semibold); letter-spacing: 0.03em; }
 @media (max-width: 900px) {
-  .utility-bar { display: none; }
+  /* Keep the dark contact strip on phones — phone + email only, drop the
+     right-hand note and centre the pair */
+  .utility-bar { font-size: 0.68rem; }
+  .utility-bar__inner { justify-content: center; min-height: 30px; }
+  .utility-bar__group:first-child { gap: var(--space-2); }
+  .utility-bar__group:last-child { display: none; }
 }
 
 /* "Technical Services" is the longest label and wraps to two lines on
@@ -718,23 +723,15 @@ a:not([class]):hover { color: var(--color-primary-darker); }
   display: block;
   height: 52px;
   width: auto;
-  background: #fff;
-  border: 1px solid var(--color-line);
-  border-radius: 10px;
-  padding: 4px 8px;
-  box-shadow: var(--shadow-sm);
 }
 
-/* Adaptive logo: over the transparent hero nav the plate disappears and the
-   wordmark renders pure white; original colors return once the header turns
-   solid on scroll. Desktop only — the mobile header is solid white. */
-@media (min-width: 901px) {
-  .site-header--overlay:not(.is-solid) .brand__logo {
-    background: transparent;
-    border-color: transparent;
-    box-shadow: none;
-    filter: brightness(0) invert(1);
-  }
+/* Adaptive logo: no plate anywhere. Over the transparent hero header (all
+   widths) the dark wordmark renders pure white for contrast; on the solid/white
+   header (scrolled, or interior pages) it shows its original colours; the dark
+   footer whitens it too. */
+.site-header--overlay:not(.is-solid) .brand__logo,
+.site-footer .brand__logo {
+  filter: brightness(0) invert(1);
 }
 
 /* Header row: brand left, nav + utility cluster pushed right */
