@@ -57,7 +57,6 @@ export const categories = [
     summary:
       "Internal and external lubricants and acrylic processing aids that fine-tune flow, fusion and surface finish across PVC extrusion and moulding. Grades to suit your line.",
     image: "src/assets/images/products/lead-stearate.jpg",
-    descOnly: true,
   },
   {
     slug: "metallic-stearates",
@@ -298,6 +297,32 @@ export const items = [
       "Good electrical properties [verify]",
     ],
     applications: ["Wires & cables", "Rigid profiles", "Pipes"],
+    packaging: "25 kg bags [verify]",
+    forms: ["Powder"],
+    featured: false,
+    verified: false,
+  },
+
+  // ---------------- LUBRICANTS & PROCESSING AIDS ----------------
+  {
+    slug: "pvc-lubricant",
+    name: "PVC Lubricant",
+    shortName: "PVC Lubricant",
+    category: "Lubricants & Processing Aids",
+    categorySlug: "lubricants-processing-aids",
+    // [verify] placeholder image — replace with a real PVC lubricant photo
+    image: "src/assets/images/products/lead-stearate.jpg",
+    alt: "PVC lubricant for extrusion and moulding",
+    summary:
+      "Internal and external lubricant systems that control fusion, flow and metal release for smooth, high-output PVC processing.",
+    description:
+      "Our PVC lubricants balance internal and external lubrication to fine-tune gelation, reduce plate-out and improve surface finish across pipe, profile and fittings production. Supplied as stand-alone grades or built into one-pack systems.",
+    keyProperties: [
+      "Balanced internal / external lubrication [verify]",
+      "Controls fusion and flow [verify]",
+      "Reduces plate-out and improves surface finish [verify]",
+    ],
+    applications: ["Pipes", "Profiles", "PVC fittings"],
     packaging: "25 kg bags [verify]",
     forms: ["Powder"],
     featured: false,

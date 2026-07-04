@@ -260,6 +260,42 @@
 .expertise-tile__title { color: #fff; font-size: 1.2rem; margin-bottom: 0.35rem; }
 .expertise-tile__body p { color: rgba(255, 255, 255, 0.9); font-size: var(--fs-sm); }
 
+/* Offset the anchored Technical Services section below the fixed header */
+#technical-services { scroll-margin-top: calc(var(--header-h) + 1rem); }
+
+/* ---------- Stats band (count-up, directly under the hero) ---------- */
+.stats-band {
+  background: var(--color-primary-darker);
+  color: #fff;
+  padding-block: clamp(1.75rem, 4vw, 2.75rem);
+}
+.stats-band__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-3);
+  text-align: center;
+}
+.stats-band__item { display: flex; flex-direction: column; gap: 0.3rem; }
+.stats-band__num {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+  font-weight: var(--fw-black);
+  color: var(--color-yellow-bright);
+  line-height: 1;
+}
+.stats-band__label {
+  font-size: var(--fs-sm);
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+@media (max-width: 900px) {
+  .stats-band__grid { grid-template-columns: repeat(3, 1fr); row-gap: var(--space-4); }
+}
+@media (max-width: 480px) {
+  .stats-band__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* ---------- Striving for sustainability ---------- */
 .sustain { background: linear-gradient(115deg, var(--color-primary-darker) 0%, var(--color-primary) 90%); color: #fff; }
 .sustain__inner {

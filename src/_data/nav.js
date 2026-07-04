@@ -2,10 +2,12 @@
  * Primary navigation structure.
  * Consumed by the header/nav partial to render desktop + mobile menus.
  *
- * The Products item carries `children` (the 8 Product Range categories, imported
- * from products.js so the menu stays in sync) → rendered as a hover/focus dropdown.
+ * Products + Applications carry `children` (imported so the menus stay in sync)
+ * → rendered as hover/focus dropdowns. Technical Services anchors to the
+ * homepage section.
  */
 import { categories } from "./products.js";
+import applications from "./applications.js";
 
 export default {
   primary: [
@@ -16,7 +18,14 @@ export default {
       href: "/products/",
       children: categories.map((c) => ({ label: c.name, href: `/products/${c.slug}/` })),
     },
-    { label: "Applications", href: "/applications/" },
+    {
+      label: "Applications",
+      href: "/applications/",
+      children: applications
+        .filter((a) => a.detail)
+        .map((a) => ({ label: a.name, href: `/applications/${a.slug}/` })),
+    },
+    { label: "Technical Services", href: "/#technical-services" },
     { label: "Contact", href: "/contact/" },
   ],
 };

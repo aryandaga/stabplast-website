@@ -44,6 +44,24 @@ heroHeader: true
   </div>
 </section>
 
+<!-- ============ STATS BAND ============ -->
+<section class="stats-band" data-stats aria-label="Stabplast at a glance">
+  <div class="container">
+    <div class="stats-band__grid">
+      {% for s in home.stats %}
+      <div class="stats-band__item">
+        {% if s.count %}
+        <b class="stats-band__num" data-count="{{ s.count }}" data-suffix="{{ s.suffix }}">{{ s.count }}{{ s.suffix }}</b>
+        {% else %}
+        <b class="stats-band__num">{{ s.text }}</b>
+        {% endif %}
+        <span class="stats-band__label">{{ s.label }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 <!-- ============ PRODUCT CATEGORIES ============ -->
 <section class="section">
   <div class="container">
@@ -118,16 +136,16 @@ heroHeader: true
   </div>
 </section>
 
-<!-- ============ EXPLORE OUR EXPERTISE ============ -->
-<section class="section">
+<!-- ============ TECHNICAL SERVICES ============ -->
+<section class="section" id="technical-services">
   <div class="container">
     <div class="section__head">
       <span class="eyebrow">What we do</span>
-      <h2>Explore our expertise</h2>
-      <p class="lead">Four decades of PVC additive know-how, from formulation to dispatch.</p>
+      <h2>Technical Services</h2>
+      <p class="lead">Four decades of PVC additive know-how put to work on your process.</p>
     </div>
     <div class="expertise-grid">
-      {% for e in home.expertise %}
+      {% for e in home.services %}
       <article class="expertise-tile">
         <div class="expertise-tile__media">
           {% image e.image, e.title, "(max-width: 768px) 100vw, 300px" %}

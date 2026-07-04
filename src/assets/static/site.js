@@ -69,7 +69,7 @@
     var idx = 0;
     var timer = null;
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var DELAY = 6000;
+    var DELAY = 4800; // 1.25x faster autoplay
 
     var go = function (n) {
       idx = (n + slides.length) % slides.length;
@@ -140,5 +140,39 @@
         })
         .finally(function () { if (btn) btn.disabled = false; });
     });
+  }
+
+  // ---- Count-up stats (animate 0→target when scrolled into view) ----
+  var statsBand = document.querySelector("[data-stats]");
+  if (statsBand) {
+    var nums = Array.prototype.slice.call(statsBand.querySelectorAll("[data-count]"));
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var fmt = function (n) { return n.toLocaleString("en-IN"); };
+    var runCount = function () {
+      nums.forEach(function (el) {
+        var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+        var suffix = el.getAttribute("data-suffix") || "";
+        if (reduceMotion) { el.textContent = fmt(target) + suffix; return; }
+        var startTs = null;
+        var dur = 1500;
+        var tick = function (ts) {
+          if (!startTs) startTs = ts;
+          var p = Math.min((ts - startTs) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = fmt(Math.round(target * eased)) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        el.textContent = "0" + suffix;
+        requestAnimationFrame(tick);
+      });
+    };
+    if ("IntersectionObserver" in window) {
+      var statsObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { runCount(); statsObs.disconnect(); } });
+      }, { threshold: 0.35 });
+      statsObs.observe(statsBand);
+    } else {
+      runCount();
+    }
   }
 })();
