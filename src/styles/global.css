@@ -201,6 +201,16 @@ a:not([class]):hover { color: var(--color-primary-darker); }
   .utility-bar { display: none; }
 }
 
+/* "Technical Services" is the longest label and wraps to two lines on
+   desktop — center the wrapped text and size it down 2px so it sits balanced */
+@media (min-width: 901px) {
+  .nav__link[href*="technical-services"] {
+    font-size: calc(0.85rem - 2px);
+    text-align: center;
+    line-height: 1.35;
+  }
+}
+
 .nav-toggle { display: none; }
 .header-actions { display: flex; align-items: center; gap: var(--space-2); }
 
@@ -652,7 +662,7 @@ a:not([class]):hover { color: var(--color-primary-darker); }
    (white solid header, transparent hero header, dark footer). */
 .brand__logo {
   display: block;
-  height: 46px;
+  height: 52px;
   width: auto;
   background: #fff;
   border: 1px solid var(--color-line);

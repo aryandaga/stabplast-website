@@ -18,6 +18,20 @@ export const heroSlides = [
     ],
   },
   {
+    // Product-range infographic (light artwork) — rendered with the
+    // `light: true` treatment: dark text + white wash scrim (hero-slide--light).
+    img: "src/assets/images/hero/hero-5-range.png",
+    alt: "Stabplast product range: calcium-zinc and Ca-organic stabilizers, lead-based and CPVC one-pack stabilizers, individual PVC stabilizers, metallic stearates and speciality lubricants",
+    light: true,
+    eyebrow: "Our Product Range",
+    title: "One Range, Every PVC Need",
+    text: "Calcium-zinc, lead-based and CPVC one-packs, individual stabilizers, metallic stearates and speciality lubricants.",
+    ctas: [
+      { label: "View Our Products", href: "/products/", class: "btn--accent" },
+      { label: "Request a Quote", href: "/contact/", class: "btn--ghost" },
+    ],
+  },
+  {
     img: "src/assets/images/hero/hero-3-granules.jpg",
     alt: "Close-up of blue PVC polymer granules",
     eyebrow: "Tailored Chemistry",

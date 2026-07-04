@@ -9,7 +9,7 @@ heroHeader: true
 <section class="hero-slider" data-slider aria-roledescription="carousel" aria-label="Stabplast highlights">
   <div class="hero-slider__viewport">
     {% for s in home.heroSlides %}
-    <div class="hero-slide{{ ' is-active' if loop.first }}" data-slide role="group" aria-roledescription="slide"
+    <div class="hero-slide{{ ' is-active' if loop.first }}{{ ' hero-slide--light' if s.light }}" data-slide role="group" aria-roledescription="slide"
          aria-label="{{ loop.index }} of {{ home.heroSlides.length }}" {% if not loop.first %}aria-hidden="true"{% endif %}>
       <div class="hero-slide__media">
         {% image s.img, s.alt, "100vw", { widths: [800, 1280, 1920], loading: (loop.first and "eager" or "lazy"), fetchpriority: (loop.first and "high" or "") } %}
