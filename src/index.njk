@@ -52,6 +52,17 @@ heroHeader: true
     <div class="stats-band__grid">
       {% for s in home.stats %}
       <div class="stats-band__item">
+        {% if s.icon %}
+        <svg class="stats-band__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          {%- if s.icon == "clock" %}<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          {%- elif s.icon == "globe" %}<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20 15.3 15.3 0 010-20z"/>
+          {%- elif s.icon == "flask" %}<path d="M10 2v6.3L4.6 18a2 2 0 001.8 3h11.2a2 2 0 001.8-3L14 8.3V2M8.5 2h7M7 15h10"/>
+          {%- elif s.icon == "factory" %}<path d="M3 21h18M5 21V9l5 3.5V9l5 3.5V4h4v17"/>
+          {%- elif s.icon == "calendar" %}<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+          {%- elif s.icon == "award" %}<circle cx="12" cy="8" r="6"/><path d="M9 13l-1.5 8L12 18.5 16.5 21 15 13"/>
+          {%- endif %}
+        </svg>
+        {% endif %}
         {% if s.count %}
         <b class="stats-band__num" data-count="{{ s.count }}" data-suffix="{{ s.suffix }}">{{ s.count }}{{ s.suffix }}</b>
         {% else %}
@@ -68,7 +79,7 @@ heroHeader: true
 <section class="section">
   <div class="container">
     <div class="section__head section__head--center">
-      <h2>Our Range</h2>
+      <h2>Our Product Range</h2>
       <p class="lead">A complete portfolio of PVC stabilization and lubrication chemistry.</p>
     </div>
     <div class="grid grid--4 cards-compact">
@@ -126,7 +137,7 @@ heroHeader: true
 
       {# 8th tile: redirect to the full applications list — collage of the inside-only apps #}
       <a class="card app-card app-all" href="/applications/">
-        {% image "src/assets/images/applications/all-apps-collage.jpg", "Collage of PVC sheets, WPC boards, roofing sheets, edge banding, footwear and paints", "(max-width: 768px) 100vw, 360px", { class: "app-all__bg" } %}
+        {% image "src/assets/images/applications/edge-banding.jpg", "Stack of colourful PVC edge-banding rolls", "(max-width: 768px) 100vw, 360px", { class: "app-all__bg" } %}
         <span class="app-all__scrim" aria-hidden="true"></span>
         <div class="app-all__content">
           <span class="app-all__icon" aria-hidden="true">
@@ -140,8 +151,32 @@ heroHeader: true
   </div>
 </section>
 
+<!-- ============ TECHNICAL SERVICES ============ -->
+<section class="section" id="technical-services">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">What we do</span>
+      <h2>Technical Services</h2>
+      <p class="lead">Four decades of PVC additive know-how put to work on your process.</p>
+    </div>
+    <div class="expertise-grid">
+      {% for e in home.services %}
+      <article class="expertise-tile" id="service-{{ e.slug }}">
+        <div class="expertise-tile__media">
+          {% image e.image, e.title, "(max-width: 768px) 100vw, 300px" %}
+          <h3 class="expertise-tile__title">{{ e.title }}</h3>
+        </div>
+        <div class="expertise-tile__body">
+          <p>{{ e.text }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 <!-- ============ TECHNICAL ARTICLES ============ -->
-<section class="section">
+<section class="section section--alt">
   <div class="container">
     <div class="section__head section__head--center">
       <span class="eyebrow">Knowledge Hub</span>
@@ -163,30 +198,6 @@ heroHeader: true
     </a>
     {% endif %}
     <p class="section__cta"><a class="btn btn--ghost" href="/articles/">View all articles</a></p>
-  </div>
-</section>
-
-<!-- ============ TECHNICAL SERVICES ============ -->
-<section class="section section--alt" id="technical-services">
-  <div class="container">
-    <div class="section__head">
-      <span class="eyebrow">What we do</span>
-      <h2>Technical Services</h2>
-      <p class="lead">Four decades of PVC additive know-how put to work on your process.</p>
-    </div>
-    <div class="expertise-grid">
-      {% for e in home.services %}
-      <article class="expertise-tile" id="service-{{ e.slug }}">
-        <div class="expertise-tile__media">
-          {% image e.image, e.title, "(max-width: 768px) 100vw, 300px" %}
-        </div>
-        <div class="expertise-tile__body">
-          <h3 class="expertise-tile__title">{{ e.title }}</h3>
-          <p>{{ e.text }}</p>
-        </div>
-      </article>
-      {% endfor %}
-    </div>
   </div>
 </section>
 

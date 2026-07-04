@@ -27,9 +27,17 @@
     toggle.addEventListener("click", function () { setMenu(!isOpen()); });
     if (navClose) navClose.addEventListener("click", function () { setMenu(false); toggle.focus(); });
     if (backdrop) backdrop.addEventListener("click", function () { setMenu(false); });
-    // Close when any menu link (including Products category dropdown links) is tapped
+    // Close when any menu link (dropdown links + the drawer's quote CTA) is tapped
     nav.addEventListener("click", function (e) {
-      if (e.target.closest(".nav__link, .nav__dropdown-link")) setMenu(false);
+      if (e.target.closest(".nav__link, .nav__dropdown-link, .nav__cta a")) setMenu(false);
+    });
+    // Mobile accordions: sub-menus stay collapsed until their chevron is tapped
+    Array.prototype.forEach.call(nav.querySelectorAll("[data-subtoggle]"), function (btn) {
+      btn.addEventListener("click", function () {
+        var li = btn.closest(".nav__item");
+        var open = li.classList.toggle("is-open");
+        btn.setAttribute("aria-expanded", String(open));
+      });
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && isOpen()) { setMenu(false); toggle.focus(); }

@@ -34,8 +34,11 @@
         <li class="nav__item nav__item--has-children">
           <a class="nav__link" href="{{ item.href }}" aria-haspopup="true"
              {% if page.url == item.href %}aria-current="page"{% endif %}>{{ item.label }}
-            <svg class="nav__caret" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            {% if not item.hideCaret %}<svg class="nav__caret" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>{% endif %}
           </a>
+          <button class="nav__subtoggle" type="button" aria-expanded="false" aria-label="Toggle {{ item.label }} submenu" data-subtoggle>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
           <ul class="nav__dropdown">
             {% for child in item.children %}
             <li><a class="nav__dropdown-link" href="{{ child.href }}">{{ child.label }}</a></li>
@@ -49,6 +52,12 @@
         </li>
         {% endif %}
         {% endfor %}
+        {# Quote CTA lives inside the drawer on mobile (hidden on desktop) #}
+        <li class="nav__item nav__cta">
+          <a class="btn--quote" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </li>
       </ul>
     </nav>
 
@@ -59,6 +68,7 @@
 
       <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false" data-nav-toggle>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="nav-toggle__label">Menu</span>
       </button>
     </div>
 

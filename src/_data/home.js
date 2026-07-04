@@ -58,12 +58,12 @@ export const heroSlides = [
  * Figures are brand-owner supplied and approved for publication.
  */
 export const stats = [
-  { count: 35, suffix: "+", label: "Years" },
-  { count: 20, suffix: "+", label: "Countries" },
-  { count: 500, suffix: "+", label: "Formulations" },
-  { count: 24000, suffix: "", label: "MT Annual Capacity" },
-  { text: "1988", label: "Established" },
-  { text: "ISO 9001", label: "Certified" },
+  { count: 35, suffix: "+", label: "Years", icon: "clock" },
+  { count: 20, suffix: "+", label: "Countries", icon: "globe" },
+  { count: 500, suffix: "+", label: "Formulations", icon: "flask" },
+  { count: 24000, suffix: "", label: "MT Annual Capacity", icon: "factory" },
+  { text: "1988", label: "Established", icon: "calendar" },
+  { text: "ISO 9001", label: "Certified", icon: "award" },
 ];
 
 /**

@@ -68,7 +68,7 @@ export default [
     slug: "pvc-fittings",
     name: "PVC Fittings",
     image: "src/assets/images/applications/pvc-fittings.jpg",
-    alt: "PVC pressure fittings and valves",
+    alt: "White UPVC 90-degree elbow pipe fitting",
     summary:
       "Specially developed stabilizer systems for pressure fittings, engineered for optimum VST and SRT performance.",
     detail: true,
@@ -135,7 +135,7 @@ export default [
     slug: "cpvc-pipes-fittings",
     name: "CPVC Pipes & Fittings",
     image: "src/assets/images/applications/cpvc-pipes-fittings.jpg",
-    alt: "Yellow CPVC pipework with elbow fittings mounted on a wall",
+    alt: "Bundle of cream CPVC plumbing pipes",
     summary:
       "Dedicated stabilizer systems for chlorinated PVC (CPVC) pipes and fittings for hot and cold water distribution.",
     detail: false,
@@ -185,7 +185,7 @@ export default [
     slug: "edge-banding",
     name: "Edge Banding",
     image: "src/assets/images/applications/edge-banding.jpg",
-    alt: "PVC edge banding for furniture panels",
+    alt: "Stack of colourful PVC edge-banding rolls",
     summary:
       "Stabilizers for PVC edge banding with consistent colour and a smooth, durable finish.",
     detail: false,
@@ -195,7 +195,7 @@ export default [
     slug: "footwear",
     name: "Footwear",
     image: "src/assets/images/applications/footwear.jpg",
-    alt: "PVC footwear and soles",
+    alt: "PVC footwear compound granules with finished slippers",
     summary:
       "Stabilizer and lubricant packages for flexible PVC footwear and soles.",
     detail: false,

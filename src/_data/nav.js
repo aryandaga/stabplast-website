@@ -29,8 +29,10 @@ export default {
     {
       label: "Technical Services",
       href: "/#technical-services",
+      hideCaret: true, // dropdown still opens on hover/focus — just no arrow (owner preference)
       children: services.map((s) => ({ label: s.title, href: `/#service-${s.slug}` })),
     },
+    { label: "Knowledge Hub", href: "/articles/" },
     { label: "Contact", href: "/contact/" },
   ],
 };
