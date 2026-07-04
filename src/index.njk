@@ -17,7 +17,9 @@ heroHeader: true
       <div class="hero-slide__scrim" aria-hidden="true"></div>
       <div class="container hero-slide__content">
         <span class="hero-slide__eyebrow">{{ s.eyebrow }}</span>
-        <h1 class="hero-slide__title">{{ s.title }}</h1>
+        {# SEO: exactly one h1 per page — only the first slide's title is the h1 #}
+        {% if loop.first %}<h1 class="hero-slide__title">{{ s.title }}</h1>
+        {% else %}<p class="hero-slide__title">{{ s.title }}</p>{% endif %}
         <p class="hero-slide__text">{{ s.text }}</p>
         <div class="hero-slide__actions">
           {% for c in s.ctas %}
@@ -70,14 +72,13 @@ heroHeader: true
       <h2>Top product categories</h2>
       <p class="lead">A complete portfolio of PVC stabilization and lubrication chemistry.</p>
     </div>
-    <div class="grid grid--3">
+    <div class="grid grid--4 cards-compact">
       {% for cat in products.categories %}
       <a class="card" href="/products/{{ cat.slug }}/">
         <div class="card__media">
           {% image cat.image, cat.name, "(max-width: 768px) 100vw, 360px" %}
         </div>
         <div class="card__body">
-          <span class="card__tag">Category</span>
           <h3 class="card__title">{{ cat.name }}</h3>
           <p>{{ cat.summary }}</p>
           <span class="card__link">View category →</span>
@@ -155,26 +156,6 @@ heroHeader: true
           <p>{{ e.text }}</p>
         </div>
       </article>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<!-- ============ STRIVING FOR SUSTAINABILITY ============ -->
-<section class="section sustain">
-  <div class="container sustain__inner">
-    <div class="sustain__copy">
-      <span class="eyebrow eyebrow--light">Responsibility</span>
-      <h2>Striving for sustainability</h2>
-      <p>{{ home.sustainability.intro }}</p>
-      <a class="btn btn--accent btn--lg" href="{{ site.cta.quote.href }}">{{ site.cta.quote.label }}</a>
-    </div>
-    <div class="sustain__stats">
-      {% for st in home.sustainability.stats %}
-      <div class="sustain__stat">
-        <b>{{ st.value }}</b>
-        <span>{{ st.label }}</span>
-      </div>
       {% endfor %}
     </div>
   </div>

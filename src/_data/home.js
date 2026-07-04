@@ -62,8 +62,8 @@ export const stats = [
   { count: 20, suffix: "+", label: "Countries" },
   { count: 500, suffix: "+", label: "Formulations" },
   { text: "ISO 9001", label: "Certified" },
-  { text: "In-house", label: "R&D" },
-  { count: 24000, suffix: " MT/a", label: "Annual Capacity" },
+  { text: "1988", label: "Established" },
+  { count: 24000, suffix: "", label: "MT Annual Capacity" },
 ];
 
 /**
@@ -93,18 +93,4 @@ export const services = [
   },
 ];
 
-/**
- * "Striving for Sustainability" — qualitative claims only.
- */
-export const sustainability = {
-  intro:
-    "We continue to expand our calcium-zinc and lead-free stabilizer range, helping customers meet evolving environmental and regulatory requirements without compromising PVC performance.",
-  stats: [
-    { value: "1988", label: "Established" },
-    { value: "35+", label: "Years of expertise" },
-    { value: "Ca–Zn", label: "Lead-free systems" },
-    { value: "9", label: "Stabilizer grades" },
-  ],
-};
-
-export default { heroSlides, stats, services, sustainability };
+export default { heroSlides, stats, services };

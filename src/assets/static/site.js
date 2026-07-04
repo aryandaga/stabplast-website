@@ -154,7 +154,7 @@
         var suffix = el.getAttribute("data-suffix") || "";
         if (reduceMotion) { el.textContent = fmt(target) + suffix; return; }
         var startTs = null;
-        var dur = 1500;
+        var dur = 2500;
         var tick = function (ts) {
           if (!startTs) startTs = ts;
           var p = Math.min((ts - startTs) / dur, 1);

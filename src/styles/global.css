@@ -147,14 +147,59 @@ a:not([class]):hover { color: var(--color-primary-darker); }
 .nav { display: flex; align-items: center; gap: var(--space-3); }
 .nav__list { display: flex; align-items: center; gap: 0.35rem; }
 .nav__link {
+  position: relative;
   display: inline-block;
-  padding: 0.5rem 0.85rem;
-  font-weight: var(--fw-medium);
+  padding: 0.55rem 0.7rem;
+  font-weight: var(--fw-semibold);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--color-ink);
-  border-radius: var(--radius-sm);
-  transition: color var(--transition), background var(--transition);
+  transition: color var(--transition);
 }
-.nav__link:hover, .nav__link[aria-current="page"] { color: var(--color-primary-dark); background: var(--color-primary-tint); }
+/* Distinct active/hover: amber underline instead of the generic pill */
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: 0.15rem;
+  height: 2px;
+  background: var(--color-yellow);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+.nav__link:hover, .nav__link[aria-current="page"] { color: var(--color-primary-dark); }
+.nav__link:hover::after, .nav__link[aria-current="page"]::after { transform: scaleX(1); }
+
+/* ---------- Top utility strip (two-tier industrial header) ---------- */
+.utility-bar {
+  background: var(--color-bg-dark);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.78rem;
+}
+.utility-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-height: 34px;
+}
+.utility-bar__group { display: flex; align-items: center; gap: var(--space-3); }
+.utility-bar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: var(--fw-medium);
+}
+.utility-bar a:hover { color: var(--color-yellow-bright); }
+.utility-bar svg { flex: none; opacity: 0.8; }
+.utility-bar__note { color: var(--color-yellow-bright); font-weight: var(--fw-semibold); letter-spacing: 0.03em; }
+@media (max-width: 900px) {
+  .utility-bar { display: none; }
+}
 
 .nav-toggle { display: none; }
 .header-actions { display: flex; align-items: center; gap: var(--space-2); }
@@ -607,7 +652,7 @@ a:not([class]):hover { color: var(--color-primary-darker); }
    (white solid header, transparent hero header, dark footer). */
 .brand__logo {
   display: block;
-  height: 56px;
+  height: 46px;
   width: auto;
   background: #fff;
   border: 1px solid var(--color-line);
@@ -671,6 +716,27 @@ a:not([class]):hover { color: var(--color-primary-darker); }
 }
 .wa-float:hover .wa-float__label,
 .wa-float:focus-visible .wa-float__label { opacity: 1; }
+
+/* Email floating button — same circle language, sits left of WhatsApp */
+.email-float {
+  position: fixed;
+  right: 5.5rem;
+  bottom: 1.25rem;
+  z-index: 95;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.email-float:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(22, 104, 245, 0.45); }
+.email-float svg { width: 26px; height: 26px; }
+.email-float:hover .wa-float__label,
+.email-float:focus-visible .wa-float__label { opacity: 1; }
 
 /* Non-interactive chips (spec/system badges) */
 .chip--static { cursor: default; }

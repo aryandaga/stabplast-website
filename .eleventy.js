@@ -13,7 +13,6 @@ export default function (eleventyConfig) {
   // ---- Passthrough copy: static assets served as-is ----
   eleventyConfig.addPassthroughCopy({ "src/styles": "styles" });
   eleventyConfig.addPassthroughCopy({ "src/assets/static": "assets" });
-  eleventyConfig.addPassthroughCopy({ "src/robots.txt": "robots.txt" });
   eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });
 
   // ---- Responsive image shortcode (AVIF/WebP/fallback + srcset) ----

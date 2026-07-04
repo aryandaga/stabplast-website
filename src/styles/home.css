@@ -1,6 +1,6 @@
 /* ==========================================================================
    HOME / CHEMID-STYLE LANDING (M8)
-   Transparent overlay nav, full-screen hero slider, expertise, sustainability.
+   Transparent overlay nav, full-screen hero slider, stats cards, expertise.
    Depends on tokens.css + global.css (loaded first).
    ========================================================================== */
 
@@ -19,10 +19,7 @@
 .site-header--overlay .brand__mark { color: #fff; }
 .site-header--overlay .brand__name small { color: rgba(255, 255, 255, 0.8); }
 .site-header--overlay .nav__link:hover,
-.site-header--overlay .nav__link[aria-current="page"] {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.16);
-}
+.site-header--overlay .nav__link[aria-current="page"] { color: #fff; }
 
 /* Solid state (JS toggles .is-solid past 60px) */
 .site-header--overlay.is-solid {
@@ -37,10 +34,7 @@
 .site-header--overlay.is-solid .brand__mark { color: var(--color-primary); }
 .site-header--overlay.is-solid .brand__name small { color: var(--color-muted); }
 .site-header--overlay.is-solid .nav__link:hover,
-.site-header--overlay.is-solid .nav__link[aria-current="page"] {
-  color: var(--color-primary-dark);
-  background: var(--color-primary-tint);
-}
+.site-header--overlay.is-solid .nav__link[aria-current="page"] { color: var(--color-primary-dark); }
 
 /* Header phone: white over the hero, reverts to dark when the header solidifies */
 .site-header--overlay .header-phone { color: #fff; }
@@ -260,74 +254,67 @@
 .expertise-tile__title { color: #fff; font-size: 1.2rem; margin-bottom: 0.35rem; }
 .expertise-tile__body p { color: rgba(255, 255, 255, 0.9); font-size: var(--fs-sm); }
 
-/* Offset the anchored Technical Services section below the fixed header */
-#technical-services { scroll-margin-top: calc(var(--header-h) + 1rem); }
+/* Offset the anchored Technical Services section below the fixed two-tier header
+   (nav row + 34px utility strip on desktop) */
+#technical-services { scroll-margin-top: calc(var(--header-h) + 34px + 1rem); }
+
+/* ---------- Compact category cards (denser homepage product grid) ---------- */
+.cards-compact { gap: var(--space-2); }
+.cards-compact .card__media { aspect-ratio: 16 / 10; }
+.cards-compact .card__body { padding: var(--space-2); gap: 0.35rem; }
+.cards-compact .card__title { font-size: 1rem; }
+.cards-compact .card__body p {
+  font-size: var(--fs-sm);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cards-compact .card__link { font-size: 0.85rem; }
 
 /* ---------- Stats band (count-up, directly under the hero) ---------- */
 .stats-band {
-  background: var(--color-primary-darker);
-  color: #fff;
+  background: var(--color-bg-alt);
   padding-block: clamp(1.75rem, 4vw, 2.75rem);
 }
 .stats-band__grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: var(--space-3);
+  gap: var(--space-2);
   text-align: center;
 }
-.stats-band__item { display: flex; flex-direction: column; gap: 0.3rem; }
+.stats-band__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-3) var(--space-2);
+}
 .stats-band__num {
   font-family: var(--font-heading);
   font-size: clamp(1.5rem, 3.2vw, 2.4rem);
   font-weight: var(--fw-black);
-  color: var(--color-yellow-bright);
+  color: var(--color-primary-dark);
   line-height: 1;
 }
 .stats-band__label {
   font-size: var(--fs-sm);
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 @media (max-width: 900px) {
-  .stats-band__grid { grid-template-columns: repeat(3, 1fr); row-gap: var(--space-4); }
+  .stats-band__grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 480px) {
   .stats-band__grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ---------- Striving for sustainability ---------- */
-.sustain { background: linear-gradient(115deg, var(--color-primary-darker) 0%, var(--color-primary) 90%); color: #fff; }
-.sustain__inner {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
-}
-.sustain h2 { color: #fff; }
-.sustain p { color: rgba(255, 255, 255, 0.9); font-size: var(--fs-lg); margin-block: var(--space-3); max-width: 54ch; }
-.eyebrow--light { color: var(--color-yellow-bright); }
-.sustain__stats { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
-.sustain__stat {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: var(--radius);
-  padding: var(--space-3);
-  text-align: center;
-}
-.sustain__stat b {
-  display: block;
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: var(--fw-black);
-  color: var(--color-yellow-bright);
-  line-height: 1;
-}
-.sustain__stat span { display: block; margin-top: 0.4rem; font-size: var(--fs-sm); color: rgba(255, 255, 255, 0.85); }
-
 /* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-  .sustain__inner { grid-template-columns: 1fr; }
-}
 @media (max-width: 768px) {
   .hero-slider { height: auto; min-height: 88svh; max-height: none; }
   .hero-slider__arrow { display: none; }

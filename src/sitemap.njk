@@ -8,6 +8,7 @@ eleventyExcludeFromCollections: true
   {%- if not page.data.noindex and not page.data.eleventyExcludeFromCollections %}
   <url>
     <loc>{{ page.url | absoluteUrl(site.url) }}</loc>
+    <lastmod>{{ page.date.toISOString().slice(0, 10) }}</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   {%- endif %}
