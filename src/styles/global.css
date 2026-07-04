@@ -211,7 +211,8 @@ a:not([class]):hover { color: var(--color-primary-darker); }
    "Knowledge Hub" matches it (same size + centered) for a consistent pair. */
 @media (min-width: 901px) {
   .nav__link[href*="technical-services"],
-  .nav__link[href="/articles/"] {
+  .nav__link[href="/articles/"],
+  .nav__link[href="/contact/"] {
     font-size: calc(0.85rem - 2px);
     text-align: center;
     line-height: 1.35;
