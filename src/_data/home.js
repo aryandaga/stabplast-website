@@ -11,6 +11,7 @@ export const heroSlides = [
     alt: "Chemist testing a PVC additive sample in the Stabplast laboratory",
     eyebrow: "PVC Stabilizers · Since 1988",
     title: "Precision & Consistency You Can Trust",
+    tabLabel: "Precision & Consistency",
     text: "One-pack, calcium-zinc and lead-based PVC stabilizers, manufactured in India since 1988.",
     ctas: [
       { label: "View Our Products", href: "/products/", class: "btn--accent" },
@@ -22,6 +23,7 @@ export const heroSlides = [
     alt: "Close-up of blue PVC polymer granules",
     eyebrow: "Tailored Chemistry",
     title: "Additives Tailored to Your Process",
+    tabLabel: "Tailored Additives",
     text: "Stabilizer and stearate grades matched to your formulation, throughput and end-use.",
     ctas: [
       { label: "Explore Solutions", href: "/products/", class: "btn--accent" },
@@ -33,6 +35,7 @@ export const heroSlides = [
     alt: "Stacks of industrial pipes ready for dispatch",
     eyebrow: "Proven Performance",
     title: "Proven PVC Stabilizer Chemistry",
+    tabLabel: "Proven Chemistry",
     text: "35+ years supplying pipe, profile, cable and plastics manufacturers across India and for export.",
     ctas: [
       { label: "See Applications", href: "/applications/", class: "btn--accent" },
@@ -44,6 +47,7 @@ export const heroSlides = [
     alt: "Bundles of colourful PVC-insulated wires and cables",
     eyebrow: "Reliable Supply",
     title: "Dependable, Cleaner Formulations",
+    tabLabel: "Cleaner Formulations",
     text: "Calcium-zinc systems and metallic stearates engineered for modern PVC processing.",
     ctas: [
       { label: "Learn More", href: "/about/", class: "btn--accent" },

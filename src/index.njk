@@ -31,17 +31,18 @@ heroHeader: true
     {% endfor %}
   </div>
 
-  <button class="hero-slider__arrow hero-slider__arrow--prev" type="button" data-prev aria-label="Previous slide">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-  </button>
-  <button class="hero-slider__arrow hero-slider__arrow--next" type="button" data-next aria-label="Next slide">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-  </button>
-
-  <div class="hero-slider__dots" role="tablist" aria-label="Choose slide">
+  {# Progress tabs (desktop) / dots (mobile) — active tab's bar fills over the autoplay timer #}
+  <div class="hero-slider__tabs" role="tablist" aria-label="Choose slide">
     {% for s in home.heroSlides %}
-    <button class="hero-slider__dot{{ ' is-active' if loop.first }}" type="button" data-dot role="tab"
-            aria-selected="{{ 'true' if loop.first else 'false' }}" aria-label="Go to slide {{ loop.index }}"></button>
+    <button class="hero-slider__tab{{ ' is-active' if loop.first }}" type="button" data-dot role="tab"
+            aria-selected="{{ 'true' if loop.first else 'false' }}"
+            aria-label="Go to slide {{ loop.index }}: {{ s.tabLabel }}">
+      <span class="hero-slider__tab-track" aria-hidden="true"><span class="hero-slider__tab-fill"></span></span>
+      <span class="hero-slider__tab-row">
+        <span class="hero-slider__tab-num">{{ loop.index }}</span>
+        <span class="hero-slider__tab-label">{{ s.tabLabel }}</span>
+      </span>
+    </button>
     {% endfor %}
   </div>
 </section>
@@ -144,7 +145,11 @@ heroHeader: true
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>
           <h3 class="app-all__title">See all applications</h3>
-          <p>PVC sheets, edge banding &amp; more.</p>
+          <ul class="app-all__list">
+            {% for app in applications %}{% if loop.index > 7 and app.slug != "wpc-boards" and app.slug != "roofing-sheets" %}
+            <li>{{ app.name }}</li>
+            {% endif %}{% endfor %}
+          </ul>
         </div>
       </a>
     </div>

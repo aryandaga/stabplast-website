@@ -158,36 +158,80 @@
 .hero-slider__arrow--prev { left: clamp(0.75rem, 3vw, 2rem); }
 .hero-slider__arrow--next { right: clamp(0.75rem, 3vw, 2rem); }
 
-/* Dots */
-.hero-slider__dots {
+/* Progress tabs (desktop) — active bar fills 0→100% over the autoplay timer.
+   JS sets the fill element's inline width; on mobile these collapse to dots. */
+.hero-slider__tabs {
   position: absolute;
-  bottom: clamp(1rem, 4vh, 2.5rem);
-  left: 0; right: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 5;
-  display: flex;
-  justify-content: center;
-  gap: 0.6rem;
+  width: 100%;
+  max-width: var(--container-max);
+  padding: 0 var(--gutter) clamp(1rem, 3vh, 2rem);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.75rem, 2vw, 1.75rem);
 }
-.hero-slider__dot {
-  width: 24px;
-  height: 24px;
+.hero-slider__tab {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
   padding: 0;
   border: 0;
   background: transparent;
+  text-align: left;
   cursor: pointer;
-  display: grid;
-  place-items: center;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color var(--transition);
 }
-.hero-slider__dot::before {
-  content: "";
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  background: transparent;
-  transition: background var(--transition), transform var(--transition);
+.hero-slider__tab-track {
+  position: relative;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.28);
+  overflow: hidden;
 }
-.hero-slider__dot.is-active::before { background: var(--color-yellow); border-color: var(--color-yellow); transform: scale(1.2); }
+.hero-slider__tab-fill {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 0;
+  background: #fff;
+}
+.hero-slider__tab-row { display: flex; align-items: center; gap: 0.55rem; }
+.hero-slider__tab-num { font-size: 1.6rem; font-weight: var(--fw-black); line-height: 1; }
+.hero-slider__tab-label {
+  font-size: 0.72rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.hero-slider__tab:hover { color: rgba(255, 255, 255, 0.85); }
+.hero-slider__tab.is-active { color: #fff; }
+
+/* Mobile (≤900px): collapse the tabs back to simple dots (PC-only bar feature) */
+@media (max-width: 900px) {
+  .hero-slider__tabs {
+    max-width: none;
+    padding: 0;
+    bottom: clamp(1rem, 4vh, 2.5rem);
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+  .hero-slider__tab { width: 24px; height: 24px; display: grid; place-items: center; gap: 0; }
+  .hero-slider__tab-track, .hero-slider__tab-row { display: none; }
+  .hero-slider__tab::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: transparent;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .hero-slider__tab.is-active::before { background: var(--color-yellow); border-color: var(--color-yellow); transform: scale(1.2); }
+}
 
 /* ---------- Applications cards (non-link variant) ---------- */
 .app-card { height: 100%; }
@@ -243,6 +287,30 @@
 }
 .app-all__title { color: #fff; font-size: 1.2rem; }
 .app-all p { color: rgba(255, 255, 255, 0.92); font-size: var(--fs-sm); }
+.app-all__list {
+  list-style: none;
+  margin-top: 0.7rem;
+  display: grid;
+  gap: 0.35rem;
+  text-align: left;
+}
+.app-all__list li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+}
+.app-all__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+}
 
 /* ---------- Explore our expertise (image-backed tiles) ---------- */
 .expertise-grid {

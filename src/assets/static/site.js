@@ -69,15 +69,21 @@
     onHeadScroll();
   }
 
-  // ---- Hero slider (fade, autoplay, dots + arrows, reduced-motion aware) ----
+  // ---- Hero slider (fade, autoplay w/ progress-bar tabs, reduced-motion aware) ----
   var slider = document.querySelector("[data-slider]");
   if (slider) {
     var slides = Array.prototype.slice.call(slider.querySelectorAll("[data-slide]"));
     var dots = Array.prototype.slice.call(slider.querySelectorAll("[data-dot]"));
+    var fills = dots.map(function (d) { return d.querySelector(".hero-slider__tab-fill"); });
     var idx = 0;
-    var timer = null;
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var DELAY = 4800; // 1.25x faster autoplay
+    var DELAY = 4800;
+    var raf = null;
+    var startTs = 0;
+    var elapsed = 0; // ms already counted toward the current slide (survives pause)
+    var playing = false;
+
+    var setFill = function (i, pct) { if (fills[i]) fills[i].style.width = pct + "%"; };
 
     var go = function (n) {
       idx = (n + slides.length) % slides.length;
@@ -91,18 +97,38 @@
         d.classList.toggle("is-active", active);
         d.setAttribute("aria-selected", active ? "true" : "false");
       });
+      fills.forEach(function (f) { if (f) f.style.width = "0%"; });
+      elapsed = 0;
+      startTs = 0;
     };
     var next = function () { go(idx + 1); };
-    var prev = function () { go(idx - 1); };
-    var stop = function () { if (timer) { clearInterval(timer); timer = null; } };
-    var start = function () { if (!reduce && slides.length > 1) { stop(); timer = setInterval(next, DELAY); } };
 
-    var nextBtn = slider.querySelector("[data-next]");
-    var prevBtn = slider.querySelector("[data-prev]");
-    if (nextBtn) nextBtn.addEventListener("click", function () { next(); start(); });
-    if (prevBtn) prevBtn.addEventListener("click", function () { prev(); start(); });
+    // One rAF loop owns both the visual fill and the slide advance, so the bar
+    // and the timer stay perfectly in sync and pause/resume together.
+    var frame = function (ts) {
+      if (!startTs) startTs = ts;
+      var p = Math.min((elapsed + (ts - startTs)) / DELAY, 1);
+      setFill(idx, p * 100);
+      if (p >= 1) next();
+      if (playing) raf = window.requestAnimationFrame(frame);
+    };
+    var start = function () {
+      if (reduce || slides.length < 2 || playing) return;
+      playing = true;
+      startTs = 0;
+      raf = window.requestAnimationFrame(frame);
+    };
+    var stop = function () {
+      if (!playing) return;
+      playing = false;
+      if (raf) { window.cancelAnimationFrame(raf); raf = null; }
+      var w = fills[idx] ? parseFloat(fills[idx].style.width) || 0 : 0;
+      elapsed = (w / 100) * DELAY; // freeze progress so resume continues from here
+      startTs = 0;
+    };
+
     dots.forEach(function (d, i) {
-      d.addEventListener("click", function () { go(i); start(); });
+      d.addEventListener("click", function () { go(i); stop(); start(); });
     });
 
     slider.addEventListener("mouseenter", stop);
