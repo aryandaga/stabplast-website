@@ -22,11 +22,9 @@ export default {
     "Stabplast Chemo Industries manufactures and exports high-performance PVC stabilizers, metallic stearates and lead compounds for pipes, profiles, cables and plastics. Established 1988, Amravati, India.",
 
   // ---- Deployment ----
-  // GitHub Pages project site. Includes the /stabplast-website/ sub-path so
-  // canonical/OG/JSON-LD/sitemap URLs resolve correctly (see absoluteUrl filter).
-  // When a custom domain is attached later, change this to e.g. https://stabplastchemo.com
-  // and drop the pathPrefix in .eleventy.js.
-  url: "https://aryandaga.github.io/stabplast-website",
+  // Custom domain (GitHub Pages, cut over 2026-07-04). The old
+  // aryandaga.github.io/stabplast-website URLs redirect here automatically.
+  url: "https://stabplastchemo.com",
   lang: "en",
   locale: "en_IN",
 

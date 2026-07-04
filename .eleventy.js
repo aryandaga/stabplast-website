@@ -66,7 +66,6 @@ export default function (eleventyConfig) {
   });
 
   return {
-    pathPrefix: "/stabplast-website/",
     dir: {
       input: "src",
       output: "_site",
