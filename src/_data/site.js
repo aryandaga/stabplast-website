@@ -57,7 +57,7 @@ export default {
   // ---- Analytics ----
   // Paste your GA4 Measurement ID ("G-XXXXXXXXXX") to enable Google Analytics
   // site-wide. Empty = disabled (no tracking script is emitted).
-  analytics: { ga4Id: "" },
+  analytics: { ga4Id: "G-5KV1PL166S" },
 
   // ---- Forms ----
   forms: {
