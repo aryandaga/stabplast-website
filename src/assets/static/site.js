@@ -209,4 +209,17 @@
       runCount();
     }
   }
+
+  // ---- Cookie notice (minimal, dismiss remembered) ----
+  var cookieNotice = document.querySelector("[data-cookie-notice]");
+  if (cookieNotice) {
+    var acked = false;
+    try { acked = localStorage.getItem("cookieAck") === "1"; } catch (e) {}
+    if (!acked) cookieNotice.hidden = false;
+    var cookieOk = cookieNotice.querySelector("[data-cookie-ok]");
+    if (cookieOk) cookieOk.addEventListener("click", function () {
+      cookieNotice.hidden = true;
+      try { localStorage.setItem("cookieAck", "1"); } catch (e) {}
+    });
+  }
 })();

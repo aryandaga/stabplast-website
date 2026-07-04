@@ -838,6 +838,38 @@ a:not([class]):hover { color: var(--color-primary-darker); }
 /* Lift the scroll-to-top button above the WhatsApp float */
 .to-top { bottom: 5.5rem; }
 
+/* Minimal cookie notice — bottom-left, dismissible */
+.cookie-notice {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 94;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: min(340px, calc(100vw - 2rem));
+  padding: 0.7rem 0.9rem;
+  background: var(--color-bg-dark);
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--fs-sm);
+}
+.cookie-notice[hidden] { display: none; }
+.cookie-notice p { margin: 0; }
+.cookie-notice button {
+  flex: none;
+  padding: 0.4rem 0.85rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+}
+.cookie-notice button:hover { background: var(--color-yellow-hover); }
+
 /* Reserve space for the captcha widget so layout doesn't jump */
 .cf-captcha { min-height: 66px; }
 
