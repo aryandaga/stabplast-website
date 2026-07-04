@@ -68,7 +68,7 @@ export default [
     slug: "pvc-fittings",
     name: "PVC Fittings",
     image: "src/assets/images/applications/pvc-fittings.jpg",
-    alt: "White UPVC 90-degree elbow pipe fitting",
+    alt: "Assortment of grey PVC pipe fittings — tees, elbows, reducers, unions and caps",
     summary:
       "Specially developed stabilizer systems for pressure fittings, engineered for optimum VST and SRT performance.",
     detail: true,
