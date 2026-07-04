@@ -478,5 +478,5 @@
     background: var(--color-primary-tint);
   }
   /* "Menu" trigger stays readable on the transparent hero header */
-  .site-header--overlay:not(.is-solid) .nav-toggle { background: rgba(255, 255, 255, 0.92); }
+  .site-header--overlay:not(.is-solid) .nav-toggle { color: #fff; }
 }

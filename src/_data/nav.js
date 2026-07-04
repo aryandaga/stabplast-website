@@ -33,6 +33,6 @@ export default {
       children: services.map((s) => ({ label: s.title, href: `/#service-${s.slug}` })),
     },
     { label: "Knowledge Hub", href: "/articles/" },
-    { label: "Contact", href: "/contact/" },
+    { label: "Contact Us", href: "/contact/" },
   ],
 };
