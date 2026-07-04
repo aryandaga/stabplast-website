@@ -8,6 +8,7 @@
  */
 import { categories } from "./products.js";
 import applications from "./applications.js";
+import { services } from "./home.js";
 
 export default {
   primary: [
@@ -25,7 +26,11 @@ export default {
         .filter((a) => a.detail)
         .map((a) => ({ label: a.name, href: `/applications/${a.slug}/` })),
     },
-    { label: "Technical Services", href: "/#technical-services" },
+    {
+      label: "Technical Services",
+      href: "/#technical-services",
+      children: services.map((s) => ({ label: s.title, href: `/#service-${s.slug}` })),
+    },
     { label: "Contact", href: "/contact/" },
   ],
 };

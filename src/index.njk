@@ -140,8 +140,34 @@ heroHeader: true
   </div>
 </section>
 
+<!-- ============ TECHNICAL ARTICLES ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow">Knowledge Hub</span>
+      <h2>Technical Articles</h2>
+      <p class="lead">Practical guidance from four decades of PVC stabilization experience.</p>
+    </div>
+    {% set featured = collections.articles | first %}
+    {% if featured %}
+    <a class="article-feature" href="{{ featured.url }}">
+      <div class="article-feature__media">
+        {% image featured.data.image, featured.data.imageAlt, "(max-width: 768px) 100vw, 520px" %}
+      </div>
+      <div class="article-feature__body">
+        <span class="article-feature__tag">Featured Article</span>
+        <h3>{{ featured.data.title }}</h3>
+        <p>{{ featured.data.description }}</p>
+        <span class="card__link">Read the article →</span>
+      </div>
+    </a>
+    {% endif %}
+    <p class="section__cta"><a class="btn btn--ghost" href="/articles/">View all articles</a></p>
+  </div>
+</section>
+
 <!-- ============ TECHNICAL SERVICES ============ -->
-<section class="section" id="technical-services">
+<section class="section section--alt" id="technical-services">
   <div class="container">
     <div class="section__head">
       <span class="eyebrow">What we do</span>
@@ -150,7 +176,7 @@ heroHeader: true
     </div>
     <div class="expertise-grid">
       {% for e in home.services %}
-      <article class="expertise-tile">
+      <article class="expertise-tile" id="service-{{ e.slug }}">
         <div class="expertise-tile__media">
           {% image e.image, e.title, "(max-width: 768px) 100vw, 300px" %}
         </div>

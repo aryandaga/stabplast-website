@@ -688,18 +688,27 @@ a:not([class]):hover { color: var(--color-primary-darker); }
 .brand { margin-right: auto; flex: none; }
 .header-utility { display: flex; align-items: center; gap: var(--space-2); }
 
-.header-phone {
+/* Request a Quote — pill CTA: amber gradient, arrow nudge, hover lift */
+.btn--quote {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  font-weight: var(--fw-semibold);
-  font-size: var(--fs-sm);
+  gap: 0.5rem;
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-yellow-bright) 0%, var(--color-yellow-hover) 100%);
   color: var(--color-ink);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-sm);
   white-space: nowrap;
-  transition: color var(--transition);
+  box-shadow: 0 4px 14px rgba(255, 178, 0, 0.35);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
-.header-phone svg { width: 20px; height: 20px; flex: none; color: var(--color-primary); }
-.header-phone:hover { color: var(--color-primary-dark); }
+.btn--quote:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 178, 0, 0.5);
+}
+.btn--quote svg { flex: none; transition: transform var(--transition); }
+.btn--quote:hover svg { transform: translateX(3px); }
 
 /* WhatsApp floating button — clean circle, bottom-right on every page */
 .wa-float {
@@ -808,9 +817,18 @@ a:not([class]):hover { color: var(--color-primary-darker); }
 @media (max-width: 768px) {
   .brand__logo { height: 40px; }
 }
-@media (max-width: 420px) {
-  .header-phone__num { display: none; } /* icon-only tap-to-call on very small screens */
-}
+/* Article body typography (article pages) */
+.prose { max-width: var(--container-narrow); margin-inline: auto; }
+.prose h2 { margin-top: var(--space-4); margin-bottom: var(--space-2); }
+.prose h3 { margin-top: var(--space-3); margin-bottom: var(--space-1); }
+.prose p { margin-bottom: var(--space-2); color: var(--color-body); }
+.prose ul, .prose ol { padding-left: 1.4rem; margin-bottom: var(--space-2); }
+.prose li { margin-bottom: 0.35rem; list-style: disc; color: var(--color-body); }
+.prose ol li { list-style: decimal; }
+.prose table { width: 100%; border-collapse: collapse; margin-block: var(--space-3); font-size: var(--fs-sm); }
+.prose th, .prose td { border: 1px solid var(--color-line); padding: 0.6rem 0.8rem; text-align: left; vertical-align: top; }
+.prose th { background: var(--color-bg-alt); }
+.article-meta { color: var(--color-muted); font-size: var(--fs-sm); }
 
 /* ---------------------------------------------------------------------------
    NAV DROPDOWN (Products → categories) — M12
@@ -881,8 +899,7 @@ a:not([class]):hover { color: var(--color-primary-darker); }
    Safari can otherwise swallow taps on buttons inside a blurred fixed header. */
 .brand,
 .nav-toggle,
-.header-utility,
-.header-phone { position: relative; z-index: 2; }
+.header-utility { position: relative; z-index: 2; }
 
 /* Dark scrim behind the open mobile menu */
 .nav-backdrop {

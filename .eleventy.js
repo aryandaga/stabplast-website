@@ -22,6 +22,10 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("products", (api) =>
     api.getAll().filter((item) => item.data.type === "product")
   );
+  // Technical articles (markdown in src/articles/), newest first
+  eleventyConfig.addCollection("articles", (api) =>
+    api.getFilteredByGlob("src/articles/*.md").sort((a, b) => b.date - a.date)
+  );
 
   // ---- Filters ----
   eleventyConfig.addFilter("year", () => `${new Date().getFullYear()}`);

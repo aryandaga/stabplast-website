@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+title: Technical Articles
+description: Technical articles and practical guides on PVC stabilization, formulation and processing from Stabplast Chemo Industries.
+permalink: /articles/
+---
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li aria-current="page">Technical Articles</li>
+      </ol>
+    </nav>
+    <h1>Technical Articles</h1>
+    <p>Practical guidance on PVC stabilization, formulation and processing.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid--3">
+      {% for post in collections.articles %}
+      <a class="card" href="{{ post.url }}">
+        <div class="card__media">
+          {% image post.data.image, post.data.imageAlt, "(max-width: 768px) 100vw, 360px" %}
+        </div>
+        <div class="card__body">
+          <span class="card__tag">{{ post.date.toLocaleDateString("en-IN", { year: "numeric", month: "long" }) }}</span>
+          <h2 class="card__title">{{ post.data.title }}</h2>
+          <p>{{ post.data.description }}</p>
+          <span class="card__link">Read article →</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -61,35 +61,39 @@ export const stats = [
   { count: 35, suffix: "+", label: "Years" },
   { count: 20, suffix: "+", label: "Countries" },
   { count: 500, suffix: "+", label: "Formulations" },
-  { text: "ISO 9001", label: "Certified" },
-  { text: "1988", label: "Established" },
   { count: 24000, suffix: "", label: "MT Annual Capacity" },
+  { text: "1988", label: "Established" },
+  { text: "ISO 9001", label: "Certified" },
 ];
 
 /**
  * "Technical Services" — 4 capability cards (image-backed tiles, dark overlay).
- * Images reuse existing repo assets.
+ * `slug` doubles as the tile's anchor id (#service-{slug}) for the nav dropdown.
  */
 export const services = [
   {
+    slug: "formulation-optimisation",
     title: "Formulation Optimisation",
     text: "Fine-tuning your stabiliser and lubricant package for stability, output and surface finish.",
-    image: "src/assets/images/hero/hero-lab.jpg",
+    image: "src/assets/images/services/formulation-lab.jpg",
   },
   {
+    slug: "cost-reduction",
     title: "Custom Cost Reduction",
     text: "Re-engineering formulations to cut cost per kg without compromising performance.",
-    image: "src/assets/images/hero/hero-3-granules.jpg",
+    image: "src/assets/images/services/cost-optimisation.jpg",
   },
   {
+    slug: "lead-free-migration",
     title: "Lead → Calcium-Zinc Migration",
     text: "Helping you switch from lead to non-toxic Ca-Zn systems smoothly and safely.",
-    image: "src/assets/images/hero/hero-2-plant.jpg",
+    image: "src/assets/images/services/lead-free-migration.jpg",
   },
   {
+    slug: "technical-support",
     title: "We Love Your Problems",
     text: "Custom problem-solving for your process — bring us your toughest PVC challenge.",
-    image: "src/assets/images/hero/hero-1-pipes.jpg",
+    image: "src/assets/images/services/technical-support.jpg",
   },
 ];
 
