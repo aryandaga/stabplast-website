@@ -397,7 +397,10 @@ a:not([class]):hover { color: var(--color-primary-darker); }
     cursor: pointer;
   }
 
-  .btn--quote-desktop { display: none; }
+  /* Two-class selector (0,2,0) so this wins regardless of source order —
+     the base .btn--quote rule lives later in the file and would otherwise
+     override a single-class hide here, leaving the CTA overflowing the bar. */
+  .header-utility .btn--quote-desktop { display: none; }
 }
 @media (max-width: 768px) {
   .footer__grid { grid-template-columns: 1fr; gap: var(--space-3); }
