@@ -231,6 +231,16 @@
     transition: background var(--transition), transform var(--transition);
   }
   .hero-slider__tab.is-active::before { background: var(--color-yellow); border-color: var(--color-yellow); transform: scale(1.2); }
+
+  /* Mobile hero copy: anchor to the top *below* the full two-tier header
+     (dark utility bar ~30px + nav row = var(--header-h)). Centring it made a
+     tall copy block overflow upward on short phones and render behind the
+     transparent header, tangling the eyebrow/title into the whitewashed logo. */
+  .hero-slide { align-items: flex-start; }
+  .hero-slide__content {
+    padding-top: calc(var(--header-h) + 30px + 1.25rem);
+    padding-bottom: 4rem;
+  }
 }
 
 /* ---------- Applications cards (non-link variant) ---------- */
