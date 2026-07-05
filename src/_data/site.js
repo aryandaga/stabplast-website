@@ -6,7 +6,7 @@
  *     data before launch. Nothing here should be treated as fact until confirmed.
  *
  * Confirmed 2026-07 (brand owner): founded 1988, Amravati (Maharashtra),
- * manufacturer & exporter. Call: +91 98231 66664. WhatsApp: +91 98231 08939.
+ * manufacturer. Call: +91 98231 66664. WhatsApp: +91 98231 08939.
  * Email: sales@stabplastchemo.com.
  *
  * NOTE: The Turnstile SECRET key and the form backend live OUTSIDE this repo
@@ -19,7 +19,7 @@ export default {
   legalName: "Stabplast Chemo Industries Pvt Ltd",
   tagline: "Innovative Chemical Solutions for PVC",
   description:
-    "Stabplast Chemo Industries manufactures and exports high-performance PVC stabilizers, metallic stearates and lead compounds for pipes, profiles, cables and plastics. Established 1988, Amravati, India.",
+    "Stabplast Chemo Industries is a PVC stabilizer manufacturer in Amravati, India, producing calcium-zinc and lead-based stabilizers, one-pack systems, metallic stearates and lead compounds for pipes, profiles, cables and plastics. Established 1988.",
 
   // ---- Deployment ----
   // Custom domain (GitHub Pages, cut over 2026-07-04). The old
@@ -73,7 +73,6 @@ export default {
     founded: "1988",
     experienceYears: "35+",
     certifications: [], // [VERIFY] e.g. ["ISO 9001:2015"] — leave empty until confirmed
-    exportMarkets: "[VERIFY] confirmed exporter; list markets once known",
   },
 
   // ---- Social  [VERIFY / remove unused] ----

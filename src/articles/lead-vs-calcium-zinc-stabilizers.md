@@ -43,7 +43,7 @@ out for potable-water and food-contact use in many markets, and sulphur
 staining can occur in polluted atmospheres. Regulation is the decisive
 factor: the European industry completed a voluntary phase-out of lead
 stabilizers in 2015, and restrictions and customer preferences continue to
-spread across export markets.
+spread across international markets.
 
 ## How calcium-zinc stabilizers work
 
@@ -59,7 +59,7 @@ plus a matched lubricant package in a single non-dusting granule or powder.
 
 What you gain: a non-toxic, heavy-metal-free system accepted for
 potable-water pipe and food-contact articles, cleaner workplaces, and easy
-compliance with tightening regulations in domestic and export markets. What
+compliance with tightening regulations in domestic and international markets. What
 you manage: typically higher formulation cost, a somewhat narrower processing
 window than lead, and the need for a properly balanced package — which is why
 Ca-Zn is almost always bought as an engineered one-pack rather than as
@@ -74,7 +74,7 @@ individual components.
 | Wire & cable insulation | Lead (where permitted); Ca-Zn grades improving | Electrical properties |
 | Window profiles & sheets | Either; Ca-Zn increasingly standard | Weathering + market preference |
 | Food-contact film & fittings | Ca-Zn | Mandatory non-toxic system |
-| Export-oriented products | Ca-Zn | Buyer and regulatory acceptance |
+| Regulated & premium products | Ca-Zn | Buyer and regulatory acceptance |
 
 ## Planning a lead-to-Ca-Zn migration
 

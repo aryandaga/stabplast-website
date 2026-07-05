@@ -36,7 +36,7 @@ export const heroSlides = [
     eyebrow: "Proven Performance",
     title: "Proven PVC Stabilizer Chemistry",
     tabLabel: "Proven Chemistry",
-    text: "35+ years supplying pipe, profile, cable and plastics manufacturers across India and for export.",
+    text: "35+ years supplying pipe, profile, cable and plastics manufacturers across India.",
     ctas: [
       { label: "See Applications", href: "/applications/", class: "btn--accent" },
       { label: "Talk to Us", href: "/contact/", class: "btn--ghost btn--on-dark" },
