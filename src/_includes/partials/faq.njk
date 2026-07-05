@@ -1,0 +1,48 @@
+{#
+  FAQ partial — visible accordion + FAQPage JSON-LD.
+
+  Caller contract (set before include):
+    faqItems   — array of { q, a, link? }  (required; see src/_data/faqs.js)
+    faqHeading — section heading            (optional; defaults below)
+    faqEyebrow — small kicker above heading (optional)
+
+  Native <details>/<summary> => works with zero JS and is keyboard-accessible.
+  JSON-LD lives in-body (layout chaining exposes no <head> block) and is valid
+  per schema.org. Answers use `f.a` verbatim; visible-only links come from `f.link`.
+#}
+{% if faqItems and faqItems.length %}
+<section class="section faq" aria-labelledby="faq-heading">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow">{{ faqEyebrow or "FAQ" }}</span>
+      <h2 id="faq-heading">{{ faqHeading or "Frequently asked questions" }}</h2>
+    </div>
+    <div class="faq__list">
+      {% for f in faqItems %}
+      <details class="faq__item"{{ " open" if loop.first }}>
+        <summary class="faq__q">{{ f.q }}</summary>
+        <div class="faq__a">
+          <p>{{ f.a }}</p>
+          {% if f.link %}<p class="faq__link"><a href="{{ f.link.href }}">{{ f.link.label }} →</a></p>{% endif %}
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for f in faqItems %}
+    {
+      "@type": "Question",
+      "name": {{ f.q | dump | safe }},
+      "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | dump | safe }} }
+    }{{ "," if not loop.last }}
+    {%- endfor %}
+  ]
+}
+</script>
+{% endif %}

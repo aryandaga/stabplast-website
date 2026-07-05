@@ -161,6 +161,11 @@ eleventyComputed:
   </div>
 </section>
 
+{# ---- Product FAQ (flagship products only; see src/_data/faqs.js) ---- #}
+{% set faqItems = faqs.products[product.slug] %}
+{% set faqHeading = product.name + " — frequently asked questions" %}
+{% include "partials/faq.njk" %}
+
 {# ---- Structured data (JSON-LD in body is valid per schema.org / Google) ---- #}
 <script type="application/ld+json">
 {

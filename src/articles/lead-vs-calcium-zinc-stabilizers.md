@@ -97,3 +97,10 @@ Done methodically, most lines convert without losing output — and gain access
 to markets that lead-stabilized products can no longer enter. If you are
 weighing the switch, our technical team runs exactly this migration process
 with customers, from formulation audit to plant trial.
+
+## Related reading
+
+- [One-pack vs individual PVC stabilizer systems](/articles/one-pack-vs-individual-pvc-stabilizers/)
+  — once you have chosen a chemistry, decide how to dose it.
+- [Metallic stearates in PVC](/articles/metallic-stearates-in-pvc/) — the
+  calcium and lead stearates that lubricate and co-stabilize both systems.
