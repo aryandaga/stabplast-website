@@ -235,11 +235,25 @@
   /* Mobile hero copy: anchor to the top *below* the full two-tier header
      (dark utility bar ~30px + nav row = var(--header-h)). Centring it made a
      tall copy block overflow upward on short phones and render behind the
-     transparent header, tangling the eyebrow/title into the whitewashed logo. */
-  .hero-slide { align-items: flex-start; }
+     transparent header, tangling the eyebrow/title into the whitewashed logo.
+
+     Stack ALL slides in one grid cell so the slider grows to fit the tallest
+     slide's copy instead of clipping it. The old layout used absolutely-
+     positioned slides inside a fixed-height, overflow-hidden box, so a tall
+     headline + two stacked CTAs overflowed and the second button ("Contact
+     Our Experts") was cut off and overlapped the dots. */
+  .hero-slider { height: auto; }
+  .hero-slider__viewport { position: relative; inset: auto; display: grid; }
+  .hero-slide {
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 1;      /* every slide shares one cell → cell = tallest slide */
+    min-height: 88svh;     /* keep the hero full-height when the copy is short */
+    align-items: flex-start;
+  }
   .hero-slide__content {
     padding-top: calc(var(--header-h) + 30px + 1.25rem);
-    padding-bottom: 4rem;
+    padding-bottom: 4.5rem;  /* clear the slide-dots pinned to the slider base */
   }
 }
 
