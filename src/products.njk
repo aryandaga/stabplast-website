@@ -47,6 +47,20 @@ permalink: /products/
           </div>
         </a>
         {% endfor %}
+        {# Cross-linked products listed canonically in another category #}
+        {% for card in products.items | bySlugs(cat.crossLinks) %}
+        <a class="card" href="/products/{{ card.slug }}/">
+          <div class="card__media">
+            {% image card.image, card.alt, "(max-width: 768px) 100vw, 360px" %}
+          </div>
+          <div class="card__body">
+            <span class="card__tag">Listed under {{ card.category }}</span>
+            <h3 class="card__title">{{ card.name }}</h3>
+            <p>{{ card.summary }}</p>
+            <span class="card__link">View product →</span>
+          </div>
+        </a>
+        {% endfor %}
       </div>
       {% else %}
       <p class="category-note">Grades developed to customer requirements. <a href="{{ site.cta.quote.href }}">Request available grades &amp; TDS →</a></p>

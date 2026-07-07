@@ -63,7 +63,7 @@ export const heroSlides = [
  */
 export const stats = [
   { count: 35, suffix: "+", label: "Years", icon: "clock" },
-  { count: 20, suffix: "+", label: "Countries", icon: "globe" },
+  { text: "100%", label: "Batch Tested", icon: "shield" },
   { count: 500, suffix: "+", label: "Formulations", icon: "flask" },
   { count: 24000, suffix: "", label: "MT Annual Capacity", icon: "factory" },
   { text: "1988", label: "Established", icon: "calendar" },

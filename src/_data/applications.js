@@ -85,7 +85,7 @@ export default [
       "No dry marks",
       "Lower cycle time",
     ],
-    relatedProducts: ["lead-based-complex-stabilizer", "calcium-zinc-stabilizer", "one-pack-stabilizer"],
+    relatedProducts: ["lead-fitting-stabilizer", "calcium-zinc-fitting-stabilizer", "one-pack-stabilizer"],
   },
   {
     slug: "foam-boards",
@@ -110,7 +110,7 @@ export default [
       "Can achieve required Lab values",
       "Superior surface finish",
     ],
-    relatedProducts: ["lead-based-complex-stabilizer", "calcium-zinc-stabilizer"],
+    relatedProducts: ["one-pack-stabilizer", "calcium-zinc-stabilizer"],
   },
   {
     slug: "wires-cables",

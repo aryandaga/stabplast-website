@@ -43,6 +43,7 @@ eleventyComputed:
 
       <div class="product-detail__body">
         <h2 class="product-detail__heading">Overview</h2>
+        {% if product.productCode %}<p class="product-detail__code">Grade <b>{{ product.productCode }}</b></p>{% endif %}
         <p class="product-detail__lead">{{ product.description }}</p>
 
         {% if product.keyProperties.length %}
@@ -50,11 +51,31 @@ eleventyComputed:
           <h3>Key Properties</h3>
           <ul class="prop-list">
             {% for prop in product.keyProperties %}
-            <li>{{ prop | replace(" [verify]", "") }}</li>
+            <li>{{ prop }}</li>
             {% endfor %}
           </ul>
         </div>
         {% endif %}
+
+        {# ---- Specification tables (one per grade; only real TDS/MSDS figures) ---- #}
+        {% for table in product.specTables %}
+        <div class="spec-group">
+          <h3>{{ table.title or "Physical & Chemical Properties" }}</h3>
+          <table class="spec-table">
+            <tbody>
+              {% for row in table.rows %}
+              <tr>
+                <th scope="row">{{ row.label }}</th>
+                <td>{{ row.value }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% if table.note %}
+          <p class="spec-table__note">{{ table.note }}</p>
+          {% endif %}
+        </div>
+        {% endfor %}
 
         <div class="spec-grid">
           {% if product.applications.length %}
@@ -72,15 +93,30 @@ eleventyComputed:
           {% if product.packaging %}
           <div class="spec-item">
             <span class="spec-item__label">Packaging</span>
-            <span class="spec-item__value">{{ product.packaging | replace(" [verify]", "") }}</span>
+            <span class="spec-item__value">{{ product.packaging }}</span>
           </div>
           {% endif %}
         </div>
 
-        {% if not product.verified %}
+        {# ---- Document downloads (TDS / MSDS PDFs in /assets/docs/) ---- #}
+        {% if product.downloads.length %}
+        <div class="product-downloads">
+          <h3>Documents</h3>
+          <div class="product-downloads__links">
+            {% for doc in product.downloads %}
+            <a class="doc-link" href="/assets/docs/{{ doc.file }}" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M12 12v6M9 15l3 3 3-3"/></svg>
+              <span>{{ doc.label }}<small>PDF</small></span>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if product.dataStatus == "described" %}
         <p class="product-note" role="note">
-          Technical details are indicative and subject to confirmation. Contact us for the
-          current product data sheet and specifications.
+          Detailed specifications for this grade are available on request. Contact us for the
+          current technical data sheet, grades and packaging.
         </p>
         {% endif %}
 

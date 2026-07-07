@@ -72,7 +72,8 @@ export default {
   facts: {
     founded: "1988",
     experienceYears: "35+",
-    certifications: [], // [VERIFY] e.g. ["ISO 9001:2015"] — leave empty until confirmed
+    // Confirmed 2026-07 from the company profile (ISO 9001:2015, KVQA/NORSK-accredited).
+    certifications: ["ISO 9001:2015"],
   },
 
   // ---- Social  [VERIFY / remove unused] ----

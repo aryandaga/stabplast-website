@@ -13,6 +13,8 @@ export default function (eleventyConfig) {
   // ---- Passthrough copy: static assets served as-is ----
   eleventyConfig.addPassthroughCopy({ "src/styles": "styles" });
   eleventyConfig.addPassthroughCopy({ "src/assets/static": "assets" });
+  // Product TDS/MSDS PDFs served for download at /assets/docs/*.pdf
+  eleventyConfig.addPassthroughCopy({ "src/assets/docs": "assets/docs" });
   eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });
 
   // ---- Responsive image shortcode (AVIF/WebP/fallback + srcset) ----

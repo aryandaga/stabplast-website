@@ -91,7 +91,7 @@ export const products = {
       a: "Potable-water and plumbing pipe, foam board, edge banding, footwear and other consumer or food-contact PVC where a non-toxic system is required.",
     },
   ],
-  "lead-based-complex-stabilizer": [
+  "tribasic-lead-sulphate": [
     {
       q: "Where are lead-based PVC stabilizers still used?",
       a: "Lead-based stabilizers remain a proven, economical choice for many industrial PVC products — such as wires and cables, drainage pipe and profiles — where potable-water and food-contact rules do not apply.",
