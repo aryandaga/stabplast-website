@@ -35,8 +35,22 @@ permalink: /contact/
           which verifies the Turnstile token server-side (with the secret key kept
           in the script, NOT in this repo) and appends a row to the Google Sheet.
           JS in /assets/site.js handles the AJAX submit + success message.
+
+          ⚠️  The endpoint lives in `data-endpoint`, NOT in `action`. A cross-origin
+          <form action="https://script.google.com/macros/.../exec"> on a page that
+          collects name/email/phone matches the static signature of an Apps-Script
+          credential-harvesting kit — it got the domain flagged as "Phishing" by 12+
+          reputation engines (2026-07). Do NOT move the URL back into `action`.
+          Durable fix: proxy the POST through a same-origin /api/contact endpoint.
         #}
-        <form class="contact-form" method="POST" action="{{ site.forms.endpoint or '#' }}" data-contact-form>
+        <noscript>
+          <p class="form-status form-status--error">
+            This enquiry form needs JavaScript. Please email
+            <a href="{{ site.contact.emailHref }}">{{ site.contact.email }}</a>
+            or call <a href="{{ site.contact.phoneHref }}">{{ site.contact.phone }}</a>.
+          </p>
+        </noscript>
+        <form class="contact-form" method="POST" data-contact-form data-endpoint="{{ site.forms.endpoint }}">
           {# Honeypot anti-spam field (bots fill it, humans don't). Formspree/FormSubmit honour _gotcha. #}
           <div class="form-hp" aria-hidden="true">
             <label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>

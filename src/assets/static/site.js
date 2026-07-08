@@ -150,9 +150,15 @@
       statusEl.className = "form-status" + (kind ? " form-status--" + kind : "");
     };
     cform.addEventListener("submit", function (e) {
-      var action = cform.getAttribute("action");
-      if (!action || action === "#") return; // endpoint not configured yet → no-op
-      e.preventDefault();
+      // Endpoint comes from data-endpoint, never from `action` — a cross-origin
+      // form action to a Google Apps Script /exec URL is the static signature of
+      // a phishing kit and got this domain blacklisted. See contact.njk.
+      var endpoint = cform.getAttribute("data-endpoint");
+      e.preventDefault(); // never let the browser POST this form natively
+      if (!endpoint) {
+        setStatus("Sorry, the form is unavailable right now. Please email us instead.", "error");
+        return;
+      }
       var hp = cform.querySelector('[name="_gotcha"]');
       if (hp && hp.value) return; // honeypot tripped → silently drop
       var token = cform.querySelector('[name="cf-turnstile-response"]');
@@ -163,7 +169,7 @@
       var btn = cform.querySelector('button[type="submit"]');
       if (btn) btn.disabled = true;
       setStatus("Sending your enquiry…", "");
-      fetch(action, { method: "POST", body: new FormData(cform), mode: "no-cors" })
+      fetch(endpoint, { method: "POST", body: new FormData(cform), mode: "no-cors" })
         .then(function () {
           cform.reset();
           if (window.turnstile) { try { window.turnstile.reset(); } catch (err) {} }
