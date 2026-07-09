@@ -7,7 +7,7 @@
  *
  * Confirmed 2026-07 (brand owner): founded 1988, Amravati (Maharashtra),
  * manufacturer. Call: +91 98231 66664. WhatsApp: +91 98231 08939.
- * Email: sales@stabplastchemo.com.
+ * Email: ankit@stabplastchemo.in (Zoho). Website domain: stabplast.com.
  *
  * NOTE: The Turnstile SECRET key and the form backend live OUTSIDE this repo
  * (in the Google Apps Script web app). Only the PUBLIC Turnstile site key and
@@ -22,9 +22,10 @@ export default {
     "Stabplast Chemo Industries is a PVC stabilizer manufacturer in Amravati, India, producing calcium-zinc and lead-based stabilizers, one-pack systems, metallic stearates and lead compounds for pipes, profiles, cables and plastics. Established 1988.",
 
   // ---- Deployment ----
-  // Custom domain (GitHub Pages, cut over 2026-07-04). The old
-  // aryandaga.github.io/stabplast-website URLs redirect here automatically.
-  url: "https://stabplastchemo.com",
+  // Custom domain on Netlify (cut over from stabplastchemo.com/GitHub Pages
+  // 2026-07-09, to escape the phishing-flag reputation on the old domain).
+  // Email stays on stabplastchemo.in (Zoho) — website + mail are separate domains.
+  url: "https://stabplast.com",
   lang: "en",
   locale: "en_IN",
 
@@ -34,9 +35,9 @@ export default {
     phoneHref: "tel:+919823166664",
     whatsapp: "+91 98231 08939",
     whatsappHref: "https://wa.me/919823108939",
-    email: "sales@stabplastchemo.com",
-    emailHref: "mailto:sales@stabplastchemo.com",
-    salesEmail: "sales@stabplastchemo.com",
+    email: "ankit@stabplastchemo.in",
+    emailHref: "mailto:ankit@stabplastchemo.in",
+    salesEmail: "ankit@stabplastchemo.in",
     address: {
       street: "Tiwsa Gin, College Road, Old Cotton Market",
       locality: "Amravati",
@@ -97,7 +98,7 @@ export default {
   cta: {
     quote: { label: "Request a Quote", href: "/contact/" },
     call: { label: "Call Us", href: "tel:+919823166664" },
-    email: { label: "Email Us", href: "mailto:sales@stabplastchemo.com" },
+    email: { label: "Email Us", href: "mailto:ankit@stabplastchemo.in" },
   },
 
   buildYear: `${new Date().getFullYear()}`,
