@@ -16,7 +16,7 @@
   functions = "netlify/functions"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
 
 # ---- Contact form: expose the function at a clean same-origin path ----
 # The browser POSTs to /api/contact (same origin). Netlify rewrites (200, not a
@@ -35,7 +35,7 @@
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
     # CSP is ENFORCING (promoted from Report-Only 2026-07-09 after the browser
     # console showed zero violations across all pages). Covers: Google Fonts,
     # GA4 / Tag Manager, Cloudflare Turnstile, and the Google Maps iframe.
@@ -45,5 +45,11 @@
 # Long-cache fingerprinted-by-?v= assets (CSS/JS/images already cache-busted).
 [[headers]]
   for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# CSS is cache-busted via ?v={buildId}, so it can be cached as long as assets.
+[[headers]]
+  for = "/styles/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000"

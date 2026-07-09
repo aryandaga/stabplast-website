@@ -3,11 +3,11 @@ import { HtmlBasePlugin } from "@11ty/eleventy";
 import imageShortcode from "./src/_config/image-shortcode.js";
 
 export default function (eleventyConfig) {
-  // ---- Path-prefix aware URL rewriting ----
-  // Deployed as a GitHub Pages *project site* under /stabplast-website/.
-  // HtmlBasePlugin rewrites all root-relative href/src/srcset in HTML output
-  // to include the pathPrefix. Absolute URLs (canonical/OG/JSON-LD) are left
-  // untouched and are built via the `absoluteUrl` filter + site.url below.
+  // ---- URL rewriting ----
+  // Hosted on Netlify at the root of https://stabplast.com (no pathPrefix).
+  // HtmlBasePlugin is kept so root-relative URLs keep working if the site is
+  // ever served under a sub-path again. Absolute URLs (canonical/OG/JSON-LD)
+  // are built via the `absoluteUrl` filter + site.url.
   eleventyConfig.addPlugin(HtmlBasePlugin);
 
   // ---- Passthrough copy: static assets served as-is ----
@@ -28,7 +28,6 @@ export default function (eleventyConfig) {
   );
 
   // ---- Filters ----
-  eleventyConfig.addFilter("year", () => `${new Date().getFullYear()}`);
   eleventyConfig.addFilter("byCategory", (items, slug) =>
     (items || []).filter((i) => i.categorySlug === slug)
   );

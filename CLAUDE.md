@@ -2,9 +2,9 @@
 
 Static marketing site for Stabplast Chemo Industries Pvt Ltd (PVC stabilizer
 manufacturer, Amravati, India). Built with **Eleventy 3** (ESM), deployed to
-**GitHub Pages** as a project site at
-`https://aryandaga.github.io/stabplast-website/` (remote:
-`github.com/aryandaga/stabplast-website`, branch `main`).
+**Netlify** (site `unique-hotteok-7bf2b2`) at the custom domain
+**https://stabplast.com** (remote: `github.com/aryandaga/stabplast-website`,
+branch `main` — Netlify CI builds directly from GitHub on every push).
 
 ## Stack
 
@@ -19,20 +19,25 @@ manufacturer, Amravati, India). Built with **Eleventy 3** (ESM), deployed to
 ## Commands
 
 ```
-npm run dev     # eleventy --serve (localhost:8080, serves under /stabplast-website/)
+npm run dev     # eleventy --serve (localhost:8080)
 npm start       # same, --quiet
 npm run build   # eleventy → _site/ (minifies HTML)
 npm run clean   # rimraf _site
 ```
 
-Deploy = push to `main`; `.github/workflows/deploy.yml` runs `npm ci && npm run build`
-and publishes `_site/` via GitHub Pages actions. No manual deploy step.
+Deploy = push to `main`; Netlify (build config in `netlify.toml`) runs
+`npm run build` and publishes `_site/`. No manual deploy step. GitHub Pages is
+retired; `.github/workflows/deploy.yml` was deleted.
 
 ## Layout
 
 ```
+netlify.toml              Netlify build config + security headers (HSTS, CSP, etc.) +
+                          /api/contact → Netlify Function rewrite + long-cache headers
+netlify/functions/contact.mjs  same-origin contact-form proxy (forwards to Apps Script
+                          URL held in the FORM_ENDPOINT Netlify env var, not in repo)
 .eleventy.js              config: HtmlBasePlugin, passthroughs, filters, collections,
-                          pathPrefix "/stabplast-website/", dirs (src → _site)
+                          dirs (src → _site) — no pathPrefix (root domain)
 src/
   _config/image-shortcode.js   responsive <picture> shortcode (alt text REQUIRED — throws)
   _data/                  ALL site content lives here as JS modules:
@@ -71,16 +76,15 @@ with Eleventy pagination over those arrays. `src/assets/static/site.js` adds
 progressive enhancement only (mobile nav, hero slider autoplay 4800 ms, overlay
 header, count-up stats, to-top, contact-form submit); every page works without JS.
 
-## Path-prefix rules (important)
+## URL rules
 
-Deployed under `/stabplast-website/`, so:
+Deployed at the root of the custom domain (no pathPrefix), so:
 - Templates use **root-relative URLs** (`/products/`, `/styles/global.css`);
-  `HtmlBasePlugin` rewrites them with the pathPrefix at build time.
+  `HtmlBasePlugin` is kept as a safety net so these keep working if the site
+  is ever served under a sub-path again.
 - Absolute URLs (canonical, OG, JSON-LD, sitemap) are built with the custom
-  `absoluteUrl` filter + `site.url` — it preserves the sub-path where
+  `absoluteUrl` filter + `site.url` — it preserves any sub-path where
   `new URL()` would drop it.
-- If a custom domain is added later: change `site.url` in `src/_data/site.js`
-  and drop `pathPrefix` in `.eleventy.js`.
 
 ## Conventions
 
@@ -103,27 +107,27 @@ Deployed under `/stabplast-website/`, so:
   form `aria-live` status. Keep it that way.
 - Commits: conventional (`feat:`, `fix:`, `chore:`).
 
-## External services (all wired, no env vars / no secrets in repo)
+## External services
 
-- **Contact form** → POSTs (`no-cors`) to a Google Apps Script web app
-  (`site.forms.endpoint`) which appends to a Google Sheet + emails a
-  notification. The Apps Script + Turnstile SECRET live outside this repo.
+- **Contact form** → browser POSTs same-origin to `/api/contact`, which Netlify
+  rewrites (200, not a redirect) to the `contact` Netlify Function
+  (`netlify/functions/contact.mjs`). The function forwards server-side to a
+  Google Apps Script web app (URL held in the `FORM_ENDPOINT` Netlify env var,
+  not in this repo), which appends to a Google Sheet + emails a notification.
+  The Apps Script URL never appears in HTML/page source — this same-origin
+  proxy replaced a direct client-side POST that had been flagged as a
+  phishing signature. Turnstile SECRET also lives outside this repo.
 - **Cloudflare Turnstile** — public site key in `site.forms.turnstileSiteKey`;
   honeypot field `_gotcha` as backup.
 - **Google Maps** keyless embed; **Google Fonts** (Inter); **wa.me** WhatsApp link.
+- Site email is `ankit@stabplastchemo.in` (Zoho); the `stabplastchemo.com`
+  identity domain still exists for mail only.
 - Nothing is required locally beyond `npm install` — form/captcha degrade gracefully.
+  Netlify env vars (e.g. `FORM_ENDPOINT`) are only needed for the deployed function.
 
 ## Known gaps / debt (as of 2026-07)
 
 - Many product specs in `products.js` still `[verify]` drafts (`verified:false`).
-- `site.facts.certifications` is empty ("leave until confirmed") but the homepage
-  stats band hardcodes "ISO 9001 Certified" in `home.js` — inconsistent.
-- robots.txt is generated by `src/robots.njk` (templated sitemap URL); note that
-  on a GitHub Pages *project site* crawlers never read a sub-path robots.txt —
-  it becomes effective only after the custom-domain cutover.
 - `descOnly` categories (Calcium Organic, Lubricants, Impact Modifiers) have no
   product records yet.
-- Duplicate asset: `src/assets/images/hero-lab.jpg` and `.../hero/hero-lab.jpg`.
-- Untracked at root: `hero_new_slider.png`, `starblast_logo_main.png` —
-  raw incoming assets, purpose to be confirmed before use.
 - No tests, no linting/formatting config.

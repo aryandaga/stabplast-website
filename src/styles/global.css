@@ -267,6 +267,8 @@ a:not([class]):hover { color: var(--color-primary-darker); }
   flex-direction: column;
 }
 .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: transparent; }
+/* Cards deep-linked from the nav (Applications dropdown anchors) clear the fixed header. */
+.card[id] { scroll-margin-top: 100px; }
 .card__media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--color-bg-alt); }
 .card__media img { width: 100%; height: 100%; object-fit: cover; }
 .card__body { padding: var(--space-3); display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
@@ -628,30 +630,6 @@ a:not([class]):hover { color: var(--color-primary-darker); }
 .spec-table td { color: var(--color-ink); font-weight: var(--fw-medium); }
 .spec-table tr:nth-child(even) { background: var(--color-tint, #f7f9fc); }
 .spec-table__note { margin-top: 0.6rem; font-size: 0.78rem; color: var(--color-muted); }
-
-/* ---- Document downloads (TDS / MSDS) ---- */
-.product-downloads { margin-top: var(--space-4); }
-.product-downloads__links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-.doc-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.7rem 1rem;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius, 8px);
-  background: #fff;
-  color: var(--color-ink);
-  font-weight: var(--fw-medium);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-}
-.doc-link:hover {
-  border-color: var(--color-primary);
-  box-shadow: var(--shadow-sm, 0 1px 4px rgba(0,0,0,.08));
-  transform: translateY(-1px);
-}
-.doc-link svg { width: 22px; height: 22px; color: var(--color-primary); flex: none; }
-.doc-link span { display: flex; flex-direction: column; line-height: 1.15; }
-.doc-link small { font-size: 0.68rem; letter-spacing: 0.06em; color: var(--color-muted); text-transform: uppercase; }
 
 .product-note {
   margin-top: var(--space-3);
