@@ -34,7 +34,15 @@ export default [
       "Consistent output at high extrusion speeds",
       "Wide processing window",
     ],
-    relatedProducts: ["one-pack-stabilizer", "tribasic-lead-sulphate", "calcium-zinc-stabilizer"],
+    relatedProducts: [
+      "one-pack-stabilizer",
+      "tribasic-lead-sulphate",
+      "calcium-zinc-stabilizer",
+      "lead-organic-stabilizer",
+      "non-lubricated-lead-stabilizer",
+      "calcium-organic-opvc",
+      "calcium-organic-large-diameter",
+    ],
   },
   {
     slug: "profiles",
@@ -62,7 +70,13 @@ export default [
       "Conventional profiles: excellent surface quality with no pinholes or surface defects",
       "Complex profiles: suitable for complex dies and narrow processing windows",
     ],
-    relatedProducts: ["dibasic-lead-phosphite", "one-pack-stabilizer", "calcium-zinc-stabilizer"],
+    relatedProducts: [
+      "dibasic-lead-phosphite",
+      "one-pack-stabilizer",
+      "calcium-zinc-stabilizer",
+      "calcium-zinc-profile-stabilizer",
+      "impact-modifier",
+    ],
   },
   {
     slug: "pvc-fittings",
@@ -85,7 +99,12 @@ export default [
       "No dry marks",
       "Lower cycle time",
     ],
-    relatedProducts: ["lead-fitting-stabilizer", "calcium-zinc-fitting-stabilizer", "one-pack-stabilizer"],
+    relatedProducts: [
+      "lead-fitting-stabilizer",
+      "calcium-zinc-fitting-stabilizer",
+      "one-pack-stabilizer",
+      "speciality-lubricant",
+    ],
   },
   {
     slug: "foam-boards",
@@ -110,7 +129,7 @@ export default [
       "Can achieve required Lab values",
       "Superior surface finish",
     ],
-    relatedProducts: ["one-pack-stabilizer", "calcium-zinc-stabilizer"],
+    relatedProducts: ["one-pack-stabilizer", "calcium-zinc-stabilizer", "processing-aid"],
   },
   {
     slug: "wires-cables",
@@ -129,7 +148,14 @@ export default [
       "Outstanding weathering resistance",
       "Transparent grades available",
     ],
-    relatedProducts: ["tribasic-lead-sulphate", "dibasic-lead-stearate", "lead-stearate"],
+    relatedProducts: [
+      "tribasic-lead-sulphate",
+      "dibasic-lead-stearate",
+      "lead-stearate",
+      "calcium-zinc-cable-stabilizer",
+      "dibasic-lead-phthalate",
+      "barium-stearate",
+    ],
   },
   {
     slug: "cpvc-pipes-fittings",
@@ -139,7 +165,12 @@ export default [
     summary:
       "Dedicated stabilizer systems for chlorinated PVC (CPVC) pipes and fittings for hot and cold water distribution.",
     detail: false,
-    relatedProducts: ["one-pack-stabilizer", "calcium-zinc-stabilizer"],
+    relatedProducts: [
+      "one-pack-stabilizer",
+      "calcium-zinc-stabilizer",
+      "cpvc-pipe-stabilizer",
+      "cpvc-fitting-stabilizer",
+    ],
   },
   {
     slug: "masterbatch",
@@ -149,7 +180,13 @@ export default [
     summary:
       "Metallic stearates acting as dispersion aids, lubricants and processing aids in masterbatch production.",
     detail: false,
-    relatedProducts: ["calcium-stearate"],
+    relatedProducts: [
+      "calcium-stearate",
+      "stearic-acid",
+      "pvc-wax",
+      "zinc-stearate",
+      "magnesium-stearate",
+    ],
   },
   {
     slug: "pvc-sheets",

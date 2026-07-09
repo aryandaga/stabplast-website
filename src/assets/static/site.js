@@ -81,9 +81,10 @@
     var raf = null;
     var startTs = 0;
     var elapsed = 0; // ms already counted toward the current slide (survives pause)
+    var progress = 0; // 0..1 fill of the active tab (JS-tracked, never read back from the DOM)
     var playing = false;
 
-    var setFill = function (i, pct) { if (fills[i]) fills[i].style.width = pct + "%"; };
+    var setFill = function (i, p) { if (fills[i]) fills[i].style.transform = "scaleX(" + p + ")"; };
 
     var go = function (n) {
       idx = (n + slides.length) % slides.length;
@@ -97,8 +98,9 @@
         d.classList.toggle("is-active", active);
         d.setAttribute("aria-selected", active ? "true" : "false");
       });
-      fills.forEach(function (f) { if (f) f.style.width = "0%"; });
+      fills.forEach(function (f) { if (f) f.style.transform = "scaleX(0)"; });
       elapsed = 0;
+      progress = 0;
       startTs = 0;
     };
     var next = function () { go(idx + 1); };
@@ -107,9 +109,9 @@
     // and the timer stay perfectly in sync and pause/resume together.
     var frame = function (ts) {
       if (!startTs) startTs = ts;
-      var p = Math.min((elapsed + (ts - startTs)) / DELAY, 1);
-      setFill(idx, p * 100);
-      if (p >= 1) next();
+      progress = Math.min((elapsed + (ts - startTs)) / DELAY, 1);
+      setFill(idx, progress);
+      if (progress >= 1) next();
       if (playing) raf = window.requestAnimationFrame(frame);
     };
     var start = function () {
@@ -122,8 +124,7 @@
       if (!playing) return;
       playing = false;
       if (raf) { window.cancelAnimationFrame(raf); raf = null; }
-      var w = fills[idx] ? parseFloat(fills[idx].style.width) || 0 : 0;
-      elapsed = (w / 100) * DELAY; // freeze progress so resume continues from here
+      elapsed = progress * DELAY; // freeze from JS state (not the DOM) so resume is exact
       startTs = 0;
     };
 

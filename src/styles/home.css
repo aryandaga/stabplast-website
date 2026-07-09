@@ -194,8 +194,11 @@
 .hero-slider__tab-fill {
   position: absolute;
   top: 0; left: 0; bottom: 0;
-  width: 0;
+  width: 100%;
   background: #fff;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
 }
 .hero-slider__tab-row { display: flex; align-items: center; gap: 0.55rem; }
 .hero-slider__tab-num { font-size: 1.6rem; font-weight: var(--fw-black); line-height: 1; }

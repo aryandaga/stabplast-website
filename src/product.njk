@@ -57,26 +57,6 @@ eleventyComputed:
         </div>
         {% endif %}
 
-        {# ---- Specification tables (one per grade; only real TDS/MSDS figures) ---- #}
-        {% for table in product.specTables %}
-        <div class="spec-group">
-          <h3>{{ table.title or "Physical & Chemical Properties" }}</h3>
-          <table class="spec-table">
-            <tbody>
-              {% for row in table.rows %}
-              <tr>
-                <th scope="row">{{ row.label }}</th>
-                <td>{{ row.value }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-          {% if table.note %}
-          <p class="spec-table__note">{{ table.note }}</p>
-          {% endif %}
-        </div>
-        {% endfor %}
-
         <div class="spec-grid">
           {% if product.applications.length %}
           <div class="spec-item">
@@ -128,9 +108,18 @@ eleventyComputed:
       <span class="eyebrow">Where it's used</span>
       <h2>Applications</h2>
     </div>
-    <div class="chips">
-      {% for app in relatedApps %}
-      <a class="chip" href="/applications/#{{ app.slug }}">{{ app.name }}</a>
+    <div class="grid grid--3">
+      {% for relApp in relatedApps %}
+      <a class="card" href="{{ ('/applications/' + relApp.slug + '/') if relApp.detail else ('/applications/#' + relApp.slug) }}">
+        <div class="card__media">
+          {% image relApp.image, relApp.alt, "(max-width: 768px) 100vw, 360px" %}
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">{{ relApp.name }}</h3>
+          <p>{{ relApp.summary }}</p>
+          <span class="card__link">{{ "Explore application →" if relApp.detail else "View applications →" }}</span>
+        </div>
+      </a>
       {% endfor %}
     </div>
   </div>
