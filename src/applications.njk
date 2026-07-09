@@ -25,7 +25,7 @@ permalink: /applications/
     <div class="grid grid--3">
       {% for app in applications %}
       {% if app.detail %}
-      <a class="card" href="/applications/{{ app.slug }}/">
+      <a class="card" id="{{ app.slug }}" style="scroll-margin-top:100px" href="/applications/{{ app.slug }}/">
         <div class="card__media">
           {% image app.image, app.alt, "(max-width: 768px) 100vw, 360px" %}
         </div>
@@ -36,7 +36,7 @@ permalink: /applications/
         </div>
       </a>
       {% else %}
-      <article class="card">
+      <article class="card" id="{{ app.slug }}" style="scroll-margin-top:100px">
         <div class="card__media">
           {% image app.image, app.alt, "(max-width: 768px) 100vw, 360px" %}
         </div>

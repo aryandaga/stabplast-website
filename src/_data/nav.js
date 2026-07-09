@@ -22,9 +22,12 @@ export default {
     {
       label: "Applications",
       href: "/applications/",
-      children: applications
-        .filter((a) => a.detail)
-        .map((a) => ({ label: a.name, href: `/applications/${a.slug}/` })),
+      // List EVERY application. Ones with their own detail page link to it;
+      // the rest link to their card on the /applications/ index (anchor by slug).
+      children: applications.map((a) => ({
+        label: a.name,
+        href: a.detail ? `/applications/${a.slug}/` : `/applications/#${a.slug}`,
+      })),
     },
     {
       label: "Technical Services",
