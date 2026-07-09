@@ -34,7 +34,8 @@ export default {
     phone: "+91 98231 66664",
     phoneHref: "tel:+919823166664",
     whatsapp: "+91 98231 08939",
-    whatsappHref: "https://wa.me/919823108939",
+    // ?text= pre-fills the chat to reduce friction (wa.me URL-encodes the message).
+    whatsappHref: "https://wa.me/919823108939?text=I%20want%20to%20know%20more%20about%20Stabplast%20products.",
     email: "ankit@stabplastchemo.in",
     emailHref: "mailto:ankit@stabplastchemo.in",
     salesEmail: "ankit@stabplastchemo.in",
