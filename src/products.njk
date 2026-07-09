@@ -33,7 +33,7 @@ permalink: /products/
       </div>
       {% set catItems = products.items | byCategory(cat.slug) %}
       {% if catItems.length %}
-      <div class="grid grid--3">
+      <div class="grid grid--4 cards-compact">
         {% for card in catItems %}
         <a class="card" href="/products/{{ card.slug }}/">
           <div class="card__media">

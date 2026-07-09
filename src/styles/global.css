@@ -94,8 +94,10 @@ a:not([class]):hover { color: var(--color-primary-darker); }
 
 .grid { display: grid; gap: var(--space-3); }
 .grid--2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-.grid--3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.grid--4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+/* auto-fill (not auto-fit) so cards keep a constant width instead of stretching
+   to fill sparse rows — uniform card size across product/application sections. */
+.grid--3 { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.grid--4 { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 
 /* ---------- Buttons ---------- */
 .btn {

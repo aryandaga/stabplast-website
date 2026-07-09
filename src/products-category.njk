@@ -30,7 +30,7 @@ eleventyComputed:
   <div class="container">
     {% set catItems = products.items | byCategory(category.slug) %}
     {% if catItems.length %}
-    <div class="grid grid--3">
+    <div class="grid grid--4 cards-compact">
       {% for card in catItems %}
       <a class="card" href="/products/{{ card.slug }}/">
         <div class="card__media">

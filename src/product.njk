@@ -108,7 +108,7 @@ eleventyComputed:
       <span class="eyebrow">Where it's used</span>
       <h2>Applications</h2>
     </div>
-    <div class="grid grid--3">
+    <div class="grid grid--4 cards-compact">
       {% for relApp in relatedApps %}
       <a class="card" href="{{ ('/applications/' + relApp.slug + '/') if relApp.detail else ('/applications/#' + relApp.slug) }}">
         <div class="card__media">
@@ -137,7 +137,7 @@ eleventyComputed:
       <span class="eyebrow">More in {{ product.category }}</span>
       <h2>Related Products</h2>
     </div>
-    <div class="grid grid--3">
+    <div class="grid grid--4 cards-compact">
       {% for sib in siblings %}
       {% if sib.slug != product.slug %}
       <a class="card" href="/products/{{ sib.slug }}/">
