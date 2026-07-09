@@ -36,10 +36,11 @@
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
-    # CSP starts in REPORT-ONLY so a missed origin logs a console warning instead
-    # of breaking Google Maps / Turnstile / GA4. Promote to Content-Security-Policy
-    # (enforcing) once the browser console shows zero violations on every page.
-    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; frame-src https://www.google.com https://challenges.cloudflare.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'self'"
+    # CSP is ENFORCING (promoted from Report-Only 2026-07-09 after the browser
+    # console showed zero violations across all pages). Covers: Google Fonts,
+    # GA4 / Tag Manager, Cloudflare Turnstile, and the Google Maps iframe.
+    # If a new external origin is added, update this list or the browser blocks it.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; frame-src https://www.google.com https://challenges.cloudflare.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'self'"
 
 # Long-cache fingerprinted-by-?v= assets (CSS/JS/images already cache-busted).
 [[headers]]
