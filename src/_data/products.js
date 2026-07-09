@@ -109,7 +109,7 @@ export const items = [
     category: "Lead Based Stabilizers",
     categorySlug: "lead-based-stabilizers",
     dataStatus: "full",
-    image: "src/assets/images/products/one-pack-stabilizer.jpg",
+    image: "src/assets/images/products/cards/one-pack-stabilizer.jpg",
     alt: "One-pack lead PVC stabilizer flakes for pipe extrusion",
     summary:
       "Complete lead stabilizer + lubricant pack in a single addition — grades from 12% to 50% PbO, switchable across applications, so one dosing step replaces the whole stabilizer-lubricant system.",
@@ -155,7 +155,7 @@ export const items = [
     category: "Lead Based Stabilizers",
     categorySlug: "lead-based-stabilizers",
     dataStatus: "described",
-    image: "src/assets/images/products/lead-based-complex-stabilizer.jpg",
+    image: "src/assets/images/products/cards/lead-organic-stabilizer.jpg",
     alt: "Lead-organic low-lead high-stability PVC stabilizer",
     summary:
       "Special lead-organic chemistry running 9–35% Pb — low-lead formulations with high heat stability and a wide processing window, in grades for all applications.",
@@ -178,7 +178,7 @@ export const items = [
     category: "Lead Based Stabilizers",
     categorySlug: "lead-based-stabilizers",
     dataStatus: "described",
-    image: "src/assets/images/products/lead-based-complex-stabilizer.jpg",
+    image: "src/assets/images/products/cards/non-lubricated-lead-stabilizer.jpg",
     alt: "Non-lubricated lead stabilizer for suction and hose pipe",
     summary:
       "Pure heat stabilization with no built-in lubricant — for suction and hose pipe, and for processors who prefer to design their own lubrication system.",
@@ -200,7 +200,7 @@ export const items = [
     category: "Lead Based Stabilizers",
     categorySlug: "lead-based-stabilizers",
     dataStatus: "described",
-    image: "src/assets/images/products/lead-based-complex-stabilizer.jpg",
+    image: "src/assets/images/products/cards/lead-fitting-stabilizer.jpg",
     alt: "Lead-based PVC fitting stabilizer for injection moulding",
     summary:
       "Developed specifically for injection-moulded PVC fittings — strong VST and SRT performance, with grades available with or without built-in processing aid and impact modifier.",
@@ -227,7 +227,7 @@ export const items = [
     category: "Calcium-Zinc (Ca-Zn) Stabilizers",
     categorySlug: "calcium-zinc-stabilizers",
     dataStatus: "full",
-    image: "src/assets/images/products/calcium-zinc-stabilizer.jpg",
+    image: "src/assets/images/products/cards/calcium-zinc-stabilizer.jpg",
     alt: "Calcium-zinc (Ca-Zn) lead-free PVC pipe stabilizer flakes",
     summary:
       "Lead-free one-pack replacing every lead pipe grade — plumbing, agricultural, column and SWR — with excellent colour retention, impact strength and consistent wall thickness.",
@@ -275,7 +275,7 @@ export const items = [
     category: "Calcium-Zinc (Ca-Zn) Stabilizers",
     categorySlug: "calcium-zinc-stabilizers",
     dataStatus: "described",
-    image: "src/assets/images/products/calcium-zinc-stabilizer.jpg",
+    image: "src/assets/images/products/cards/calcium-zinc-fitting-stabilizer.jpg",
     alt: "Calcium-zinc PVC fitting stabilizer",
     summary:
       "Replaces tin systems in injection-moulded fittings — VST up to 80 °C, excellent SRT and low cycle times for high-output moulding.",
@@ -298,7 +298,7 @@ export const items = [
     category: "Calcium-Zinc (Ca-Zn) Stabilizers",
     categorySlug: "calcium-zinc-stabilizers",
     dataStatus: "described",
-    image: "src/assets/images/products/calcium-zinc-stabilizer.jpg",
+    image: "src/assets/images/products/cards/calcium-zinc-profile-stabilizer.jpg",
     alt: "Calcium-zinc uPVC window and door profile stabilizer",
     summary:
       "For uPVC door and window profiles — whiteness up to L* ≈ 100, excellent surface finish, no line vibration and outstanding weathering.",
@@ -321,7 +321,7 @@ export const items = [
     category: "Calcium-Zinc (Ca-Zn) Stabilizers",
     categorySlug: "calcium-zinc-stabilizers",
     dataStatus: "described",
-    image: "src/assets/images/products/calcium-zinc-stabilizer.jpg",
+    image: "src/assets/images/products/cards/calcium-zinc-cable-stabilizer.jpg",
     alt: "Calcium-zinc PVC wire and cable stabilizer",
     summary:
       "Lead-free stabilizer grades for insulation and sheathing compounds covering the full 70–125 °C service-temperature range, with excellent wet electrical properties.",
@@ -348,7 +348,7 @@ export const items = [
     category: "Calcium-Organic Stabilizers",
     categorySlug: "calcium-organic-stabilizers",
     dataStatus: "described",
-    image: "src/assets/images/hero/hero-3-granules.jpg",
+    image: "src/assets/images/products/cards/calcium-organic-opvc.jpg",
     alt: "Calcium-organic zinc-free stabilizer for OPVC pipe",
     summary:
       "Heavy-metal-free AND zinc-free stabilizer with extra-high heat stability, developed for the demanding thermal profile of oriented PVC (OPVC) pipe.",
@@ -370,7 +370,7 @@ export const items = [
     category: "Calcium-Organic Stabilizers",
     categorySlug: "calcium-organic-stabilizers",
     dataStatus: "described",
-    image: "src/assets/images/hero/hero-3-granules.jpg",
+    image: "src/assets/images/products/cards/calcium-organic-large-diameter.jpg",
     alt: "Calcium-organic stabilizer for large-diameter PVC pipe",
     summary:
       "Zinc-free calcium-organic stabilizer for high-diameter pipe — good whiteness and colour hold with the heat stability long, high-mass extrusion runs demand.",
@@ -397,7 +397,7 @@ export const items = [
     category: "Individual Heat Stabilizers",
     categorySlug: "individual-stabilizers",
     dataStatus: "full",
-    image: "src/assets/images/products/tribasic-lead-sulphate.jpg",
+    image: "src/assets/images/products/cards/tribasic-lead-sulphate.jpg",
     alt: "Tribasic lead sulphate (TBLS) primary heat stabilizer powder",
     summary:
       "Powerful non-lubricating primary heat stabilizer — stable at elevated temperature without decomposition, so finished products stay sound and free of porosity.",
@@ -438,7 +438,7 @@ export const items = [
     category: "Individual Heat Stabilizers",
     categorySlug: "individual-stabilizers",
     dataStatus: "full",
-    image: "src/assets/images/products/lead-stearate.jpg",
+    image: "src/assets/images/products/cards/lead-stearate.jpg",
     alt: "Lead stearate lubricating co-stabilizer powder",
     summary:
       "Lubricating co-stabilizer — greater lubricity than DBLS with better dispersion thanks to its lower melting point, giving rigid and flexible PVC a smooth surface.",
@@ -481,7 +481,7 @@ export const items = [
     category: "Individual Heat Stabilizers",
     categorySlug: "individual-stabilizers",
     dataStatus: "full",
-    image: "src/assets/images/products/dibasic-lead-stearate.jpg",
+    image: "src/assets/images/products/cards/dibasic-lead-stearate.jpg",
     alt: "Dibasic lead stearate (DBLS) co-stabilizer powder",
     summary:
       "High free-lead co-stabilizer plus high-temperature lubricant — it does not melt under normal service conditions, enabling long, fast production runs.",
@@ -521,7 +521,7 @@ export const items = [
     category: "Individual Heat Stabilizers",
     categorySlug: "individual-stabilizers",
     dataStatus: "full",
-    image: "src/assets/images/products/dibasic-lead-phosphite.jpg",
+    image: "src/assets/images/products/cards/dibasic-lead-phosphite.jpg",
     alt: "Dibasic lead phosphite (DBLP) heat and light stabilizer powder",
     summary:
       "Heat stabilizer and primary light stabilizer — excellent UV and weathering resistance with retention of physical properties after ageing.",
@@ -560,7 +560,7 @@ export const items = [
     category: "Individual Heat Stabilizers",
     categorySlug: "individual-stabilizers",
     dataStatus: "described",
-    image: "src/assets/images/products/dibasic-lead-stearate.jpg",
+    image: "src/assets/images/products/cards/dibasic-lead-phthalate.jpg",
     alt: "Dibasic lead phthalate (DBLPh) high-temperature co-stabilizer",
     summary:
       "High-temperature heat stabilizer for demanding flexible PVC — the choice for heat-resistant cable insulation and compounds that must survive sustained heat ageing. Distinct from DBLP (phosphite).",
@@ -588,7 +588,7 @@ export const items = [
     category: "Lubricants & Waxes",
     categorySlug: "lubricants-waxes",
     dataStatus: "full",
-    image: "src/assets/images/products/calcium-stearate.jpg",
+    image: "src/assets/images/products/cards/stearic-acid.jpg",
     alt: "Stearic acid white flakes for PVC processing",
     summary:
       "Internal and external lubricant plus viscosity depressant with excellent lubricity — supplied in multiple grades differentiated by acid, saponification and iodine value.",
@@ -630,7 +630,7 @@ export const items = [
     category: "Lubricants & Waxes",
     categorySlug: "lubricants-waxes",
     dataStatus: "described",
-    image: "src/assets/images/products/lead-stearate.jpg",
+    image: "src/assets/images/products/cards/pvc-wax.jpg",
     alt: "PVC processing wax",
     summary:
       "External lubricant waxes in grades spanning a range of drop-melting temperatures — matched to your process temperature for clean metal release and surface finish.",
@@ -652,7 +652,7 @@ export const items = [
     category: "Lubricants & Waxes",
     categorySlug: "lubricants-waxes",
     dataStatus: "described",
-    image: "src/assets/images/products/lead-stearate.jpg",
+    image: "src/assets/images/products/cards/speciality-lubricant.jpg",
     alt: "Speciality PVC lubricant blend",
     summary:
       "Engineered wax + ester combinations delivering special lubrication properties that single-component lubricants cannot reach.",
@@ -679,7 +679,7 @@ export const items = [
     category: "Metallic Stearates",
     categorySlug: "metallic-stearates",
     dataStatus: "full",
-    image: "src/assets/images/products/calcium-stearate.jpg",
+    image: "src/assets/images/products/cards/calcium-stearate.jpg",
     alt: "Calcium stearate fine white powder",
     summary:
       "Non-toxic internal and external lubricant and co-stabilizer — lowers melt viscosity, resists colour degradation and qualifies for FDA-approved compounds.",
@@ -721,7 +721,7 @@ export const items = [
     category: "Metallic Stearates",
     categorySlug: "metallic-stearates",
     dataStatus: "full",
-    image: "src/assets/images/products/calcium-stearate.jpg",
+    image: "src/assets/images/products/cards/zinc-stearate.jpg",
     alt: "Zinc stearate fine white powder",
     summary:
       "Non-toxic lubricant and dispersing agent that adds heat stability — the basis of lead-free stabilizer systems, also serving rubber, paints and cosmetics.",
@@ -762,7 +762,7 @@ export const items = [
     category: "Metallic Stearates",
     categorySlug: "metallic-stearates",
     dataStatus: "described",
-    image: "src/assets/images/products/calcium-stearate.jpg",
+    image: "src/assets/images/products/cards/magnesium-stearate.jpg",
     alt: "Magnesium stearate fine white powder",
     summary:
       "Non-toxic lubricant and release agent — a fine white metallic soap for plastics, rubber and allied industries.",
@@ -784,7 +784,7 @@ export const items = [
     category: "Metallic Stearates",
     categorySlug: "metallic-stearates",
     dataStatus: "msds",
-    image: "src/assets/images/products/calcium-stearate.jpg",
+    image: "src/assets/images/products/cards/barium-stearate.jpg",
     alt: "Barium stearate white powder",
     summary:
       "High-temperature co-stabilizer and lubricant — with a 210–220 °C melting point it keeps lubricating where lower-melting soaps have already melted away.",
@@ -823,7 +823,7 @@ export const items = [
     category: "CPVC One-Pack Stabilizers",
     categorySlug: "cpvc-one-pack",
     dataStatus: "described",
-    image: "src/assets/images/products/one-pack-stabilizer.jpg",
+    image: "src/assets/images/products/cards/cpvc-pipe-stabilizer.jpg",
     alt: "CPVC one-pack stabilizer for hot and cold water pipe",
     summary:
       "One-pack system for CPVC pipe with grades matched to your resin — with or without TiO₂ and colour — delivering good pressure, IZOD, VST and impact results.",
@@ -845,7 +845,7 @@ export const items = [
     category: "CPVC One-Pack Stabilizers",
     categorySlug: "cpvc-one-pack",
     dataStatus: "described",
-    image: "src/assets/images/products/one-pack-stabilizer.jpg",
+    image: "src/assets/images/products/cards/cpvc-fitting-stabilizer.jpg",
     alt: "CPVC one-pack stabilizer for injection-moulded fittings",
     summary:
       "One-pack system for injection-moulded CPVC fittings — resin-matched grades, with or without TiO₂ and colour, tuned for pressure, IZOD, VST and impact.",
@@ -871,7 +871,7 @@ export const items = [
     category: "Processing Aids & Impact Modifiers",
     categorySlug: "processing-aids-impact-modifiers",
     dataStatus: "described",
-    image: "src/assets/images/hero/hero-3-granules.jpg",
+    image: "src/assets/images/products/cards/processing-aid.jpg",
     alt: "Acrylic processing aid for rigid PVC",
     summary:
       "SAN-based, MMA-based and high-molecular-weight acrylic processing aids that drive fusion, build melt strength and clean up surface finish in rigid PVC.",
@@ -893,7 +893,7 @@ export const items = [
     category: "Processing Aids & Impact Modifiers",
     categorySlug: "processing-aids-impact-modifiers",
     dataStatus: "described",
-    image: "src/assets/images/hero/hero-3-granules.jpg",
+    image: "src/assets/images/products/cards/impact-modifier.jpg",
     alt: "Impact modifier for rigid PVC profiles and pipe",
     summary:
       "High-impact and MBS-based impact modifiers that raise toughness and durability in rigid PVC without giving up processability.",

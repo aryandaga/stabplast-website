@@ -7,7 +7,8 @@
     "start": "eleventy --serve --quiet",
     "dev": "eleventy --serve",
     "build": "eleventy",
-    "clean": "rimraf _site"
+    "clean": "rimraf _site",
+    "gen:images": "node scripts/gen-product-images.mjs"
   },
   "author": "Stabplast Chemo Industries Pvt Ltd",
   "license": "UNLICENSED",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-img": "^5.0.0",
+    "@resvg/resvg-js": "^2.6.2",
     "html-minifier-terser": "^7.2.0",
     "rimraf": "^6.0.1"
   }
