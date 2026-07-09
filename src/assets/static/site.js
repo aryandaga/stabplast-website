@@ -150,15 +150,11 @@
       statusEl.className = "form-status" + (kind ? " form-status--" + kind : "");
     };
     cform.addEventListener("submit", function (e) {
-      // Endpoint comes from data-endpoint, never from `action` — a cross-origin
-      // form action to a Google Apps Script /exec URL is the static signature of
-      // a phishing kit and got this domain blacklisted. See contact.njk.
-      var endpoint = cform.getAttribute("data-endpoint");
+      // Same-origin endpoint (/api/contact → Netlify Function → Apps Script).
+      // Never a cross-origin script.google.com/.../exec URL — that is the phishing
+      // signature that got this domain flagged. See contact.njk / netlify.toml.
+      var endpoint = cform.getAttribute("action") || "/api/contact";
       e.preventDefault(); // never let the browser POST this form natively
-      if (!endpoint) {
-        setStatus("Sorry, the form is unavailable right now. Please email us instead.", "error");
-        return;
-      }
       var hp = cform.querySelector('[name="_gotcha"]');
       if (hp && hp.value) return; // honeypot tripped → silently drop
       var token = cform.querySelector('[name="cf-turnstile-response"]');
@@ -169,8 +165,13 @@
       var btn = cform.querySelector('button[type="submit"]');
       if (btn) btn.disabled = true;
       setStatus("Sending your enquiry…", "");
-      fetch(endpoint, { method: "POST", body: new FormData(cform), mode: "no-cors" })
-        .then(function () {
+      // Same-origin now, so drop no-cors and read the JSON {ok} the function returns.
+      fetch(endpoint, { method: "POST", body: new FormData(cform) })
+        .then(function (res) {
+          return res.json().catch(function () { return { ok: res.ok }; });
+        })
+        .then(function (data) {
+          if (!data || !data.ok) throw new Error("submit-failed");
           cform.reset();
           if (window.turnstile) { try { window.turnstile.reset(); } catch (err) {} }
           setStatus("Thank you! Your enquiry has been sent — we'll get back to you within one business day.", "ok");

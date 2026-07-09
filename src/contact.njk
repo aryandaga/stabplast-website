@@ -31,17 +31,14 @@ permalink: /contact/
         <p class="contact-form__intro">Fields marked <span aria-hidden="true">*</span> are required. We typically reply within one business day.</p>
 
         {#
-          Submissions POST to the Google Apps Script web app (site.forms.endpoint),
-          which verifies the Turnstile token server-side (with the secret key kept
-          in the script, NOT in this repo) and appends a row to the Google Sheet.
-          JS in /assets/site.js handles the AJAX submit + success message.
-
-          ⚠️  The endpoint lives in `data-endpoint`, NOT in `action`. A cross-origin
-          <form action="https://script.google.com/macros/.../exec"> on a page that
-          collects name/email/phone matches the static signature of an Apps-Script
-          credential-harvesting kit — it got the domain flagged as "Phishing" by 12+
-          reputation engines (2026-07). Do NOT move the URL back into `action`.
-          Durable fix: proxy the POST through a same-origin /api/contact endpoint.
+          The form POSTs SAME-ORIGIN to /api/contact, a Netlify Function
+          (netlify/functions/contact.mjs) that forwards to the Google Apps Script
+          web app server-side. The Apps Script URL therefore never appears in this
+          page's source — a cross-origin <form action> to script.google.com/.../exec
+          on a page collecting name/email/phone is the phishing-kit signature that
+          got this domain flagged (2026-07). Keep the action SAME-ORIGIN.
+          JS in /assets/site.js intercepts, submits via fetch, and reads the JSON
+          {ok:true|false} the function returns.
         #}
         <noscript>
           <p class="form-status form-status--error">
@@ -50,7 +47,7 @@ permalink: /contact/
             or call <a href="{{ site.contact.phoneHref }}">{{ site.contact.phone }}</a>.
           </p>
         </noscript>
-        <form class="contact-form" method="POST" data-contact-form data-endpoint="{{ site.forms.endpoint }}">
+        <form class="contact-form" method="POST" action="/api/contact" data-contact-form>
           {# Honeypot anti-spam field (bots fill it, humans don't). Formspree/FormSubmit honour _gotcha. #}
           <div class="form-hp" aria-hidden="true">
             <label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>

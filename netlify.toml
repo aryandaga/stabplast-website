@@ -1,0 +1,48 @@
+# Netlify hosting config for stabplastchemo.com (Eleventy static site).
+#
+# WHY NETLIFY (2026-07): GitHub Pages cannot send custom response headers and
+# cannot run a same-origin form proxy. Both are required to clear the domain's
+# security review:
+#   1. Security headers (HSTS/CSP/etc)         -> [[headers]] below
+#   2. Same-origin contact form (no 3rd-party  -> /api/contact -> Netlify Function
+#      Apps Script URL in the page source)        (see netlify/functions/contact.mjs)
+#
+# DNS stays at GoDaddy — only the web A/CNAME records change to point at Netlify.
+# MX / SPF / DKIM / DMARC are NOT touched.
+
+[build]
+  command = "npm run build"
+  publish = "_site"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# ---- Contact form: expose the function at a clean same-origin path ----
+# The browser POSTs to /api/contact (same origin). Netlify rewrites (200, not a
+# redirect) to the function, which forwards to the Apps Script server-side. The
+# Apps Script /exec URL therefore never appears in any HTML page.
+[[redirects]]
+  from = "/api/contact"
+  to = "/.netlify/functions/contact"
+  status = 200
+
+# ---- Security headers (applied to every response) ----
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+    # CSP starts in REPORT-ONLY so a missed origin logs a console warning instead
+    # of breaking Google Maps / Turnstile / GA4. Promote to Content-Security-Policy
+    # (enforcing) once the browser console shows zero violations on every page.
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; frame-src https://www.google.com https://challenges.cloudflare.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'self'"
+
+# Long-cache fingerprinted-by-?v= assets (CSS/JS/images already cache-busted).
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
