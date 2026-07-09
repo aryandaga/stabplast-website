@@ -8,7 +8,8 @@
     "dev": "eleventy --serve",
     "build": "eleventy",
     "clean": "rimraf _site",
-    "gen:images": "node scripts/gen-product-images.mjs"
+    "gen:images": "node scripts/gen-product-images.mjs",
+    "gen:categories": "node scripts/gen-category-images.mjs"
   },
   "author": "Stabplast Chemo Industries Pvt Ltd",
   "license": "UNLICENSED",

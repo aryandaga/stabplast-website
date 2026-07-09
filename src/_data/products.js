@@ -41,42 +41,42 @@ export const categories = [
     name: "Lead Based Stabilizers",
     summary:
       "Complete lead-based heat stabilizer systems — one-pack, lead-organic, non-lubricated and fitting grades — delivering proven long-term thermal stability across pipes, fittings and profiles.",
-    image: "src/assets/images/products/lead-based-complex-stabilizer.jpg",
+    image: "src/assets/images/products/cards/cat-lead-based-stabilizers.jpg",
   },
   {
     slug: "calcium-zinc-stabilizers",
     name: "Calcium-Zinc (Ca-Zn) Stabilizers",
     summary:
       "Lead-free, non-toxic calcium-zinc one-pack stabilizers replacing every lead grade — pipe, fitting, profile and cable — with performance comparable to lead systems.",
-    image: "src/assets/images/products/calcium-zinc-stabilizer.jpg",
+    image: "src/assets/images/products/cards/cat-calcium-zinc-stabilizers.jpg",
   },
   {
     slug: "calcium-organic-stabilizers",
     name: "Calcium-Organic Stabilizers",
     summary:
       "Heavy-metal-free AND zinc-free calcium-organic stabilizers with extra-high heat stability — developed for OPVC and large-diameter pressure pipe.",
-    image: "src/assets/images/hero/hero-3-granules.jpg",
+    image: "src/assets/images/products/cards/cat-calcium-organic-stabilizers.jpg",
   },
   {
     slug: "individual-stabilizers",
     name: "Individual Heat Stabilizers",
     summary:
       "Single-compound lead stabilizers and co-stabilizers — TBLS, lead stearate, dibasic lead stearate, dibasic lead phosphite and dibasic lead phthalate — for compounders who build their own formulations.",
-    image: "src/assets/images/products/tribasic-lead-sulphate.jpg",
+    image: "src/assets/images/products/cards/cat-individual-stabilizers.jpg",
   },
   {
     slug: "lubricants-waxes",
     name: "Lubricants & Waxes",
     summary:
       "Stearic acid grades, waxes across a range of drop-melting temperatures and engineered wax-ester speciality lubricants that control fusion, flow and metal release.",
-    image: "src/assets/images/products/lead-stearate.jpg",
+    image: "src/assets/images/products/cards/cat-lubricants-waxes.jpg",
   },
   {
     slug: "metallic-stearates",
     name: "Metallic Stearates",
     summary:
       "Calcium, zinc, magnesium, lead and barium stearates — multi-functional metal soaps used as lubricants, acid scavengers and co-stabilizers across PVC, rubber, paints and plastics.",
-    image: "src/assets/images/products/calcium-stearate.jpg",
+    image: "src/assets/images/products/cards/cat-metallic-stearates.jpg",
     // Lead Stearate is canonically listed under Individual Heat Stabilizers
     // (owner: "list once, cross-link") — shown here as a linked card.
     crossLinks: ["lead-stearate"],
@@ -86,14 +86,14 @@ export const categories = [
     name: "CPVC One-Pack Stabilizers",
     summary:
       "Dedicated one-pack systems for chlorinated PVC pipes and fittings — grades matched to your resin, with or without TiO₂ and colour, meeting pressure, IZOD, VST and impact requirements.",
-    image: "src/assets/images/products/one-pack-stabilizer.jpg",
+    image: "src/assets/images/products/cards/cpvc-fitting-stabilizer.jpg",
   },
   {
     slug: "processing-aids-impact-modifiers",
     name: "Processing Aids & Impact Modifiers",
     summary:
       "SAN-based, MMA-based and high-molecular-weight acrylic processing aids, plus high-impact and MBS-based impact modifiers for tough, well-fused rigid PVC.",
-    image: "src/assets/images/hero/hero-3-granules.jpg",
+    image: "src/assets/images/products/cards/cat-processing-aids-impact-modifiers.jpg",
   },
 ];
 
