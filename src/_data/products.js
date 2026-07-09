@@ -23,7 +23,6 @@
  *   { slug, name, shortName, productCode?, category, categorySlug, dataStatus,
  *     image, alt, summary, description, keyProperties[]?,
  *     specTables: [{ title?, note?, rows: [{label, value}] }]?,
- *     downloads:  [{ label, file }]?,          // PDFs in /assets/docs/
  *     applications[]?, forms[]?, packaging?, featured? }
  *
  * Category shape:
@@ -144,10 +143,6 @@ export const items = [
         ],
       },
     ],
-    downloads: [
-      { label: "TDS — SCI-240-SP", file: "SCI_240_SP_R2.pdf" },
-      { label: "TDS — SCI-275-SLF", file: "SCI_275_SLF_R1.pdf" },
-    ],
     applications: ["PVC rigid pipes", "Agricultural & SWR pipe", "Screw & barrel flushing"],
     forms: ["Flake", "Powder (on request)"],
     packaging: "25 kg HDPE bag with liner",
@@ -267,11 +262,6 @@ export const items = [
           { label: "Packing", value: "25 kg HDPE bag with liner" },
         ],
       },
-    ],
-    downloads: [
-      { label: "TDS — SCI-720-CZ", file: "SCI_720_CZ.pdf" },
-      { label: "TDS — SCI-729-AG", file: "SCI_729_AG.pdf" },
-      { label: "Safety Data Sheet — Ca-Zn", file: "MSDS_SCI_CZN.pdf" },
     ],
     applications: ["Plumbing & potable-water pipe", "Agricultural pipe", "Column pipe", "SWR & commercial pipe"],
     forms: ["Flake", "Powder (on request)"],
@@ -435,10 +425,6 @@ export const items = [
         ],
       },
     ],
-    downloads: [
-      { label: "Technical Data Sheet", file: "SCI_180_TBLS.pdf" },
-      { label: "Safety Data Sheet", file: "MSDS_SCI_180_TBLS.pdf" },
-    ],
     applications: ["Wires & cables", "Pipes & fittings", "Rigid profiles", "Suction hose"],
     forms: ["Powder"],
     packaging: "25 kg HDPE bag with liner",
@@ -482,10 +468,6 @@ export const items = [
         ],
       },
     ],
-    downloads: [
-      { label: "Technical Data Sheet", file: "SCI_120_LS_R1.pdf" },
-      { label: "Safety Data Sheet", file: "MSDS_SCI_120_LS.pdf" },
-    ],
     applications: ["Wires & cables", "Pipes & fittings", "Profiles", "Footwear"],
     forms: ["Powder"],
     packaging: "25 kg HDPE bag with liner",
@@ -525,10 +507,6 @@ export const items = [
           { label: "Packing", value: "25 kg HDPE bag with liner" },
         ],
       },
-    ],
-    downloads: [
-      { label: "Technical Data Sheet", file: "SCI_150_DBLS.pdf" },
-      { label: "Safety Data Sheet", file: "MSDS_SCI_150_DBLS.pdf" },
     ],
     applications: ["Wires & cables", "Conduit", "Rigid profiles", "Calendering"],
     forms: ["Powder"],
@@ -570,7 +548,6 @@ export const items = [
         ],
       },
     ],
-    downloads: [{ label: "Technical Data Sheet", file: "SCI_165_DBLP.pdf" }],
     applications: ["Outdoor profiles", "PVC sheets", "Roofing sheets"],
     forms: ["Powder"],
     packaging: "50 kg HDPE bag with liner",
@@ -641,7 +618,6 @@ export const items = [
         ],
       },
     ],
-    downloads: [{ label: "Technical Data Sheet", file: "SCI_305_SA-R1.pdf" }],
     applications: ["PVC pipe, plates & profiles", "PVC film", "Rubber", "Cosmetics"],
     forms: ["Flakes"],
     packaging: "50 kg HDPE woven bag",
@@ -732,10 +708,6 @@ export const items = [
         ],
       },
     ],
-    downloads: [
-      { label: "Technical Data Sheet", file: "SCI_105_CS.pdf" },
-      { label: "Safety Data Sheet", file: "MSDS_SCI_105_CS.pdf" },
-    ],
     applications: ["PVC processing", "Masterbatch", "Paints", "Construction chemicals"],
     forms: ["Powder"],
     packaging: "25 kg HDPE bag with liner",
@@ -778,7 +750,6 @@ export const items = [
         ],
       },
     ],
-    downloads: [{ label: "Technical Data Sheet", file: "SCI_135_ZS.pdf" }],
     applications: ["PVC processing", "Ca-Zn systems", "Rubber", "Paints", "Cosmetics"],
     forms: ["Powder"],
     packaging: "25 kg HDPE bag with liner",
@@ -837,7 +808,6 @@ export const items = [
         ],
       },
     ],
-    downloads: [{ label: "Safety Data Sheet", file: "MSDS_SCI_BS.pdf" }],
     applications: ["PVC processing", "Allied plastics"],
     forms: ["Powder"],
     featured: false,
