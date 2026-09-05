@@ -176,26 +176,15 @@ eleventyComputed:
 {% set faqHeading = product.name + " — frequently asked questions" %}
 {% include "partials/faq.njk" %}
 
-{# ---- Structured data (JSON-LD in body is valid per schema.org / Google) ---- #}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": {{ product.name | dump | safe }},
-  "description": {{ product.summary | dump | safe }},
-  "category": {{ product.category | dump | safe }},
-  "url": {{ canonical | dump | safe }},
-  "brand": {
-    "@type": "Brand",
-    "name": {{ site.legalName | dump | safe }}
-  },
-  "manufacturer": {
-    "@type": "Organization",
-    "name": {{ site.legalName | dump | safe }},
-    "url": {{ site.url | dump | safe }}
-  }
-}
-</script>
+{# ---- Structured data (JSON-LD in body is valid per schema.org / Google) ----
+     No Product schema here on purpose. Google requires one of `offers`,
+     `review` or `aggregateRating` for a valid Product snippet; this is a
+     quote-on-request B2B catalogue with no public pricing and no reviews, so
+     the markup could never be valid and only raised a Search Console error
+     ("Either 'offers', 'review' or 'aggregateRating' should be specified")
+     across all product pages. Do NOT re-add Product markup unless real price
+     or review data exists — fabricating either breaches Google's policy.
+     BreadcrumbList below is valid and does earn a SERP enhancement. #}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
